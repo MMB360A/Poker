@@ -1,0 +1,77 @@
+.label {
+	-fx-padding: 5.0px;
+    -fx-max-width: 2000.0;
+  	-fx-alignment: center;
+  	-fx-text-fill: white;
+}
+
+#controlArea {
+    -fx-spacing: 15.0px;
+    -fx-padding: 15.0px;
+    -fx-border-radius: 15px;
+    -fx-border-color: darkred;
+    -fx-border-width: 2.0px;
+    -fx-max-width: 550px;
+    -fx-background-color: black;
+}
+
+.controlButton{
+	-fx-font-size: 18px;
+	-fx-padding: 2.0px;
+    -fx-border-color: white;
+    -fx-border-width: 1.0px;
+    -fx-border-radius: 3px;
+    -fx-background-color: Black;
+    -fx-text-fill: White;
+    -fx-min-width: 70px;
+    -fx-min-height: 30px;
+}
+
+
+.deckOfCards{
+	-fx-min-width: 50;
+    -fx-pref-width: 111;
+    -fx-max-width: 111;
+}
+
+.root{
+	-fx-background-color: darkred ;
+}
+
+.field {
+    -fx-min-height: 200;
+}
+
+.player {
+	-fx-padding: 5.0px;
+    -fx-border-color: darkred;
+    -fx-border-width: 2.0px;
+    -fx-border-radius: 15px;
+    -fx-background-color:black;
+}
+.widthSpace{
+	    -fx-min-width: 25px;
+	    -fx-max-width: 25px;
+}
+.heightSpace{
+	    -fx-min-height: 25px;
+	    -fx-max-height: 25px;
+}
+.card {
+  -fx-font-size: 18px;
+	-fx-padding: 2.0px;
+    -fx-border-color: gold;
+    -fx-border-width: 1.0px;
+    -fx-border-radius: 15px;
+    -fx-min-width: 50;
+    -fx-pref-width: 111;
+    -fx-max-width: 500;
+    -fx-min-height: 80;
+    -fx-pref-height: 162;
+    -fx-max-height: 800;
+}
+
+.cardSpace {
+		-fx-min-width: 15px;
+	    -fx-max-width: 15px;
+}
