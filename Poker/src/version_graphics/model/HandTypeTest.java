@@ -43,7 +43,7 @@ public class HandTypeTest {
 	
 	private static String[][] straight = {
 			{ "2S", "3C", "4D", "5D", "6H" },
-			{ "6S", "5C", "7H", "3D", "4H" },
+			{ "AS", "3C", "4H", "2D", "5H" },
 			{ "JS", "AC", "TH", "KD", "QH" },
 			{ "9S", "8C", "7H", "6D", "5H" }
 			};
@@ -73,7 +73,7 @@ public class HandTypeTest {
 			{ "2S", "3S", "4S", "5S", "6S" },
 			{ "6H", "5H", "7H", "3H", "4H" },
 			{ "JC", "9C", "TC", "KC", "QC" },
-			{ "9D", "8D", "7D", "6D", "5D" }
+			{ "5D", "4D", "3D", "2D", "AD" }
 			};
 	
 	private static String[][] royalFlush = {
@@ -262,6 +262,7 @@ public class HandTypeTest {
 			assertFalse(HandType.evaluateHand(hand) == HandType.Straight);
 		}
 	}
+	
 	
 	@Test
 	public void testIsFlush() {
@@ -467,7 +468,7 @@ public class HandTypeTest {
 	@Test
 	public void testScoreStraight() {
 		assertTrue(evalueteHandScore(straightHands.get(0)) == 40605040302L);
-		assertTrue(evalueteHandScore(straightHands.get(1)) == 40706050403L);
+		assertTrue(evalueteHandScore(straightHands.get(1)) == 40504030201L);
 		assertTrue(evalueteHandScore(straightHands.get(2)) == 41413121110L);
 		assertTrue(evalueteHandScore(straightHands.get(3)) == 40908070605L);
 	}
@@ -501,7 +502,7 @@ public class HandTypeTest {
 		assertTrue(evalueteHandScore(straightFlushHands.get(0)) == 80605040302L);
 		assertTrue(evalueteHandScore(straightFlushHands.get(1)) == 80706050403L);
 		assertTrue(evalueteHandScore(straightFlushHands.get(2)) == 81312111009L);
-		assertTrue(evalueteHandScore(straightFlushHands.get(3)) == 80908070605L);
+		assertTrue(evalueteHandScore(straightFlushHands.get(3)) == 80504030201L);
 	}
 	
 	@Test

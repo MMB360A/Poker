@@ -11,8 +11,7 @@ public enum HandType {
 	
 	
 	/**
-     * Determine the value of this hand. Note that this does not
-     * account for any tie-breaking
+     * Determine the value of this hand 
      */
     public static HandType evaluateHand(ArrayList<Card> cards) {
         HandType currentEval = HighCard;
@@ -38,16 +37,16 @@ public enum HandType {
     }
     
 	private static boolean isTwoPair(ArrayList<Card> cards) {
-        if(cards.get(1).getRank() == cards.get(0).getRank() || cards.get(1).getRank() == cards.get(2).getRank()) {
+		boolean found = false;
+		if(cards.get(1).getRank() == cards.get(0).getRank() || cards.get(1).getRank() == cards.get(2).getRank()) {
         	if(cards.get(3).getRank() == cards.get(2).getRank() || cards.get(3).getRank() == cards.get(4).getRank())
-        		return true;
-        	else return false;
+        		found = true;
         }
-        else return false;
+        return found;
     }
     
 	private static boolean isThreeOfAKind(ArrayList<Card> cards) {
-        boolean found = false;
+        boolean found = false;        
         for (int i = 2; i < cards.size(); i++) {
         	if(cards.get(i).getRank() == cards.get(i-1).getRank() 
         	&& cards.get(i).getRank() == cards.get(i-2).getRank()) found = true;
@@ -57,8 +56,10 @@ public enum HandType {
     
 	private static boolean isStraight(ArrayList<Card> cards) {
     	Boolean isStreet = true;
-    	for (int i = 1; i < cards.size();  i++) {
-    		if (cards.get(i-1).getRank().ordinal() + 1 != (cards.get(i).getRank().ordinal())) isStreet = false;
+    	for (int i = 1; i < cards.size() && isStreet;  i++) {
+    		if (cards.get(i-1).getRank().ordinal() + 1 != (cards.get(i).getRank().ordinal()))
+    			if(cards.get(i).getRank() != Card.Rank.Ace || cards.get(0).getRank()  != Card.Rank.Two) 
+    				isStreet = false;
     	}
         return isStreet;
     }
@@ -72,14 +73,14 @@ public enum HandType {
     }
     
 	private static boolean isFullHouse(ArrayList<Card> cards) {
-    	Boolean isFullHouse = true;  	
-    	Card c1 = cards.get(0);
-    	Card c5 = cards.get(cards.size()-1);
-    	for(Card c : cards){
-    		if(c.getRank() != c1.getRank() && c.getRank() != c5.getRank()) isFullHouse = false;
+		Boolean isFullHouse = false;  	
+    	if(cards.get(0).getRank() == cards.get(2).getRank()) {
+    		if(cards.get(3).getRank() == cards.get(4).getRank()) isFullHouse = true;   
     	}
-        return isFullHouse;
-    }
+    	else if(cards.get(2).getRank() == cards.get(4).getRank())
+    		if(cards.get(0).getRank() == cards.get(1).getRank()) isFullHouse = true;  	
+    	return isFullHouse;
+    	}
     
     private static boolean isFourOfAKind(ArrayList<Card> cards) {
         return cards.get(0).getRank() == cards.get(3).getRank() || cards.get(1).getRank() == cards.get(4).getRank();
@@ -90,10 +91,16 @@ public enum HandType {
     }
     
     private static boolean isRoyalFlush(ArrayList<Card> cards) {
-		return (isStraight(cards) && isFlush(cards) && cards.get(0).getRank() == Rank.Ten);
+		return (isStraightFlush(cards) && cards.get(0).getRank() == Rank.Ten);
 	}
 
 
+    /**
+     * Evaluates a Score of the hand. This score is based on the handType and every card. - This score is used to
+     * evalutate the winner(s) 
+     * @param cards all Cards of the Hand
+     * @return Score of the hand as long
+     */
 	public long evaluateScore( ArrayList<Card> cards) {
 		ArrayList<Card> sortedCards =(ArrayList<Card>) cards.clone();
 		Collections.sort(sortedCards);
@@ -132,8 +139,14 @@ public enum HandType {
 					scoreString += sortedCards.get(i).getRankAsScore();
 			}
 			break;
+			
 		case Straight:
-			scoreString = "4" + scoreOfCards(sortedCards);
+			//If the Straight is Ace,2,3,4,5 the highest Card is the 5 and not the Ace so there is a fix Score
+			//ATTENTION: MagicNumber
+			if(sortedCards.get(0).getRank() == Card.Rank.Two && sortedCards.get(4).getRank() ==Card.Rank.Ace)
+				scoreString = "40504030201";
+			else 
+				scoreString = "4" + scoreOfCards(sortedCards);
 			break;
 		case Flush:
 			scoreString = "5" + scoreOfCards(sortedCards);
@@ -155,7 +168,11 @@ public enum HandType {
 			}
 			break;
 		case StraightFlush:
-			scoreString = "8" + scoreOfCards(sortedCards);
+			//If the StraightFlush is Ace,2,3,4,5 the highest Card is the 5 and not the Ace so there is a fix Score
+			//ATTENTION: MagicNumber
+			if(sortedCards.get(0).getRank() == Card.Rank.Two && sortedCards.get(4).getRank() ==Card.Rank.Ace)
+				scoreString = "80504030201";
+			else scoreString = "8" + scoreOfCards(sortedCards);
 			break;
 		case RoyalFlush:
 			scoreString = "9" + scoreOfCards(sortedCards);
@@ -166,9 +183,9 @@ public enum HandType {
 	}
 	
 	/**
-	 * 
+	 * Used by the evaluate Score Method to prevent codedublicates
 	 * @param cards 
-	 * @return
+	 * @return The Score of all Cards, sorted by Value (Top to Bottom) as String
 	 */
 	private String scoreOfCards(ArrayList<Card> cards)
 	{

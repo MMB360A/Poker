@@ -58,7 +58,6 @@ public class Card implements Comparable<Object>{
     }
     
     /**
-     * Generates a CardScore to compare different Cards, the Score is a String to make sure
      *  that every number has 2 digits
      * @return The CardScore as String
      */

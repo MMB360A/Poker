@@ -10,14 +10,14 @@ import version_graphics.model.Card;
 import version_graphics.model.DeckOfCards;
 
 public class DeckLabel extends VBox {
-	private Label lblCardNumer = new Label();
+	private Label lblCardNumber = new Label();
 	private Label lblCardRemaining = new Label(" Cards remaning");
 	public DeckLabel(Button deal) {
 		super();
     	Card card = new Card(null, null, true);
     	CardLabel cardLabel = new CardLabel();
     	cardLabel.setCard(card);
-		this.getChildren().addAll(cardLabel, lblCardNumer, lblCardRemaining);
+		this.getChildren().addAll(cardLabel, lblCardNumber, lblCardRemaining);
     	cardLabel.getStyleClass().add("deckOfCards");
     	this.getStyleClass().add("deckOfCards");
     	cardLabel.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
@@ -30,6 +30,6 @@ public class DeckLabel extends VBox {
 	
 	// Bind the label to the CardsRemaining property of the deck
 	public void setDeck(DeckOfCards deck) {
-		lblCardNumer.textProperty().bind(deck.getCardsRemainingProperty().asString());
+		lblCardNumber.textProperty().bind(deck.getCardsRemainingProperty().asString());
 	}
 }
