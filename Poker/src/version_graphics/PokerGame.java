@@ -13,7 +13,7 @@ public class PokerGame extends Application {
 	PokerGameController controller;
 	
     public static void main(String[] args) {
-        launch();
+    	launch();
     }
 
     @Override

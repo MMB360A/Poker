@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
@@ -29,7 +30,7 @@ public class PokerGameView {
 		Menu file = new Menu("File");
 		menuBar.getMenus().add(file);
 		
-		VBox center = new VBox();
+
 		// Create all of the player panes we need, and put them into an HBox
 		HBox players = new HBox();
 		playerPanes = new ArrayList<PlayerPane>(); 
@@ -37,35 +38,51 @@ public class PokerGameView {
 			PlayerPane pp = new PlayerPane();
 			pp.setPlayer(model.getPlayer(i)); // link to player object in the logic
 			FlowPane spacePlayer = new FlowPane();
+			players.getChildren().addAll(pp, spacePlayer);
 			spacePlayer.getStyleClass().add("widthSpace");
-			players.getChildren().addAll(spacePlayer, pp);
 			playerPanes.add(pp);
 		}
-		FlowPane spacePlayer = new FlowPane();
-		spacePlayer.getStyleClass().add("widthSpace");
-		players.getChildren().add(spacePlayer);
+		players.getChildren().remove(players.getChildren().size() -1);
+		
+		FlowPane spacePlayerLeft = new FlowPane();
+		spacePlayerLeft.getStyleClass().add("widthSpace");
+		FlowPane spacePlayerRight = new FlowPane();
+		spacePlayerRight.getStyleClass().add("widthSpace");
+		
+		//Players Area
 		FlowPane spaceTop = new FlowPane();
 		spaceTop.getStyleClass().add("heightSpace");
-		//players.getChildren().remove(players.getChildren().size() -1);
-		FlowPane field = new FlowPane();
-		field.getStyleClass().add("field");
-		center.getChildren().addAll(spaceTop, players, field);
 		
+		//Playing Field
+		BorderPane field = new BorderPane();
+		field.setCenter(new CasinoLabel());
+		field.getStyleClass().add("field");
+		
+		BorderPane center = new BorderPane(players, spaceTop, spacePlayerRight, field, spacePlayerLeft);
+		
+		//Bootom with HandsList, Control Area and Statistics
 		BorderPane bottom = new BorderPane();
 		// Create the control area
 		controls = new ControlArea();
 		controls.linkDeck(model.getDeck()); // link DeckLabel to DeckOfCards in the logic
+		FlowPane spaceBottom = new FlowPane();
 		FlowPane spaceLeft = new FlowPane();
 		spaceLeft.getStyleClass().add("widthSpace");
 		FlowPane spaceRight = new FlowPane();
 		spaceRight.getStyleClass().add("widthSpace");
-		FlowPane spaceBottom = new FlowPane();
+		
+		
+		BorderPane contolArea = new BorderPane(controls, null, new Statistics(), null, new HandList());
+		
+		
 		spaceBottom.getStyleClass().add("heightSpace");
 		bottom.setLeft(spaceLeft);
-		bottom.setCenter(controls);
+		bottom.setCenter(contolArea);
 		bottom.setRight(spaceRight);
 		bottom.setBottom(spaceBottom);
-		//botoom.getChildren().addAll(spaceLeft, controls, spaceRight);
+
+		
+
 		
 		// Put players and controls into a BorderPane
 		BorderPane root = new BorderPane();

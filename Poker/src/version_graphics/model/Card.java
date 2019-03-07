@@ -1,7 +1,6 @@
 package version_graphics.model;
 
 public class Card implements Comparable<Object>{
-    private boolean covered;
 	public enum Suit {Clubs, Diamonds, Hearts, Spades;
         @Override
         public String toString() {
@@ -37,6 +36,8 @@ public class Card implements Comparable<Object>{
     
     private final Suit suit;
     private final Rank rank;
+    //Is the Card turned (Show backside)
+    private boolean covered;
     
     public Card(Suit suit, Rank rank, boolean covered) {
        this.covered = covered;
@@ -44,8 +45,6 @@ public class Card implements Comparable<Object>{
         this.rank = rank;
     }
     
-    
-
     public Suit getSuit() {
         return suit;
     }
@@ -58,6 +57,11 @@ public class Card implements Comparable<Object>{
     	return covered;
     }
     
+    /**
+     * Generates a CardScore to compare different Cards, the Score is a String to make sure
+     *  that every number has 2 digits
+     * @return The CardScore as String
+     */
     public String getRankAsScore() {
     	String score = "";
     	if(rank == rank.Ace) score = "14";

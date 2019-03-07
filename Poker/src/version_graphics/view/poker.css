@@ -12,6 +12,7 @@
     -fx-border-color: darkred;
     -fx-border-width: 2.0px;
     -fx-max-width: 550px;
+    -fx-min-width: 550px;
     -fx-background-color: black;
 }
 
@@ -74,4 +75,24 @@
 .cardSpace {
 		-fx-min-width: 15px;
 	    -fx-max-width: 15px;
+}
+
+.statistics{
+	 -fx-max-height: 250px;
+}
+.handsList {
+	-fx-max-height: 260px;
+
+}
+
+.casinoLabel {
+	-fx-max-width: 400px;
+	-fx-border-color: gold;
+    -fx-border-width: 1.0px;
+    -fx-border-radius: 15px;
+  	-fx-alignment: center;
+  	-fx-font-size: 40px;
+  	-fx-font-family: 'Blackadder ITC';
+  	-fx-text-fill: gold;
+  	
 }
