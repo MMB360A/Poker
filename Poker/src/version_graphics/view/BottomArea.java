@@ -9,7 +9,7 @@ import version_graphics.model.PokerGameModel;
 
 public class BottomArea extends BorderPane{
 	private ControlArea controls;
-
+	private Statistics statistics;
 	public BottomArea(PokerGameModel model) {
 		super();
 		// Create the control area
@@ -22,8 +22,9 @@ public class BottomArea extends BorderPane{
 		spaceLeft.getStyleClass().add("widthSpace");
 		Region spaceRight = new Region();
 		spaceRight.getStyleClass().add("widthSpace");
+		statistics = new Statistics();
 		//All Elements in one Borderpane
-		BorderPane contolArea = new BorderPane(controls, null, new Statistics(), null, new HandList());
+		BorderPane contolArea = new BorderPane(controls, null,statistics , null, new HandList());
 		//Add the elements
 		this.setLeft(spaceLeft);
 		this.setCenter(contolArea);
@@ -36,5 +37,9 @@ public class BottomArea extends BorderPane{
 	 */
 	protected ControlArea getControls() {
 		return controls;
+	}
+	protected Statistics getStatistics() {
+		
+		return statistics;
 	}
 }

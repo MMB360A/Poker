@@ -85,6 +85,8 @@ public class PlayerPane extends VBox {
 	    	sequence.getChildren().add(move);
 	    	
     	}
+    	//sequence.play();
+
     	return sequence;
     }
     

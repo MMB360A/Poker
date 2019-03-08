@@ -9,6 +9,8 @@ public class MenuArea extends MenuBar{
 		super();
 		
 		Menu file = new Menu("File");
+		Menu settings = new Menu("Settings");
 		this.getMenus().add(file);
+		
 	}
 }

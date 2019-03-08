@@ -58,18 +58,38 @@ public class PokerGameController {
         		}
         		p.evaluateHand();
         		PlayerPane pp = view.getPlayerPane(i);
-        		pp.updatePlayerDisplay().play();
-        		
+            	pp.updatePlayerDisplay().play();
+
         	}
         	//sequence.play();
+
+        	
+        	
     		ArrayList<Player> winners = model.evaluateWinner();
+		if(winners.size() == 1) {	
+    		for(int i = 0; i< view.getPlayerPanes().size(); i++) {
+				PlayerPane pp = view.getPlayerPanes().get(i);
+				if(pp.getPlayer() == winners.get(0)) {
+					pp.setWinner("Winner");
+					winners.get(0).icreaseStatisticWinns();
+					view.getStatistics().addWinner(winners.get(0));
+				}
+			}
+    	}
+		else {
     		for(Player p : winners) {
     			for(int i = 0; i< view.getPlayerPanes().size(); i++) {
     				PlayerPane pp = view.getPlayerPanes().get(i);
-    				if(pp.getPlayer() == p) pp.setWinner("Winner");
+    				if(pp.getPlayer() == p) {
+    					pp.setWinner("Splittpot Winner");
+    					p.icreaseStatisticWinns();
+    					view.getStatistics().addWinner(p);
+    				}
     			}
     			
     		}
+		}
+    		
     	} else {
             Alert alert = new Alert(AlertType.ERROR, "Not enough cards - shuffle first");
             alert.showAndWait();

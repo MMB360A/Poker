@@ -8,16 +8,26 @@ public class Player implements Comparable<Player> {
     private final String playerName; // This is the ID
     private final ArrayList<Card> cards = new ArrayList<>();
     private HandType handType;
+    private int totalWinns;
     
     public Player(String playerName) {
         this.playerName = playerName;
+        totalWinns = 0;
     }
 
-    public String getPlayerName() {
+    public int getTotalWinns() {
+		return totalWinns;
+	}
+
+	public String getPlayerName() {
         return playerName;
     }
 
-    public ArrayList<Card> getCards() {
+    public HandType getHandType() {
+		return handType;
+	}
+
+	public ArrayList<Card> getCards() {
         return cards;
     }
     
@@ -57,4 +67,9 @@ public class Player implements Comparable<Player> {
     public long comaperHand(Player o) {
     	return handType.evaluateScore(cards) - o.handType.evaluateScore(o.getCards());
     }
+
+	public void icreaseStatisticWinns() {
+		this.totalWinns++;
+		
+	}
 }
