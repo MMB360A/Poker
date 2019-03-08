@@ -10,19 +10,26 @@ public class MultiLangModule {
 	private String defalutLanguage;
 	private ArrayList<MultiLangElement> translations;
 	private ArrayList<String> languages;
-	public MultiLangModule() {
+	
+	public MultiLangModule(String langugage) {
 		languages = new ArrayList<String>();
 		translations = new ArrayList<MultiLangElement>();
+		this.defalutLanguage = langugage;
 		this.readBasicElements();
-		for(MultiLangElement e : translations) System.out.println(e);
+		
+		//for(MultiLangElement e : translations) System.out.println(e);
 	}
 	
+	public ArrayList<String> getLanguages() {
+		return languages;
+	}
+
 	public void readBasicElements() {
 		 String csvFile = System.getProperty("user.dir")+ "\\src\\version_graphics\\view\\MultiLang\\translations.csv";
 	        BufferedReader br = null;
 	        String line = "";
 	        String cvsSplitBy = ";";
-
+	        
 	        try {
 
 	            br = new BufferedReader(new FileReader(csvFile));
@@ -55,11 +62,12 @@ public class MultiLangModule {
 		MultiLangElement multielement;
 		LangElement langElement;
 		for(MultiLangElement e : translations) {
-			if(e.getId() == id) {
+			if(e.getId().compareTo(id) == 0) {
+				
 				multielement = e;
 				for(LangElement le : multielement.getElements()) 
 				{
-				if(le.getLanguage() == this.defalutLanguage) value = le.getValue();
+				if(le.getLanguage().compareTo(this.defalutLanguage) == 0) value = le.getValue();
 				}
 			}
 		}
@@ -82,4 +90,19 @@ public class MultiLangModule {
 		}
 		return value;
 	}
+
+	public void setLangugage() {
+	    
+		try {
+	        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+	        Stage stage = new Stage();
+	        stage.setTitle("New Window");
+	        stage.setScene(scene);
+	        stage.show();
+	    } catch (IOException e) {
+	        Logger logger = Logger.getLogger(getClass().getName());
+	        logger.log(Level.SEVERE, "Failed to create new Window.", e);
+	    }
+	}
+
 }

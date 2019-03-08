@@ -4,16 +4,17 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
 import version_graphics.model.PokerGameModel;
+import version_graphics.view.MultiLang.MultiLangModule;
 
 
 
 public class BottomArea extends BorderPane{
 	private ControlArea controls;
 	private Statistics statistics;
-	public BottomArea(PokerGameModel model) {
+	public BottomArea(PokerGameModel model, MultiLangModule multilangModule) {
 		super();
 		// Create the control area
-		controls = new ControlArea();
+		controls = new ControlArea(multilangModule);
 		controls.linkDeck(model.getDeck()); // link DeckLabel to DeckOfCards in the logic
 		//Regions because FXCSS does not have margin
 		Region spaceBottom = new Region();
@@ -22,7 +23,7 @@ public class BottomArea extends BorderPane{
 		spaceLeft.getStyleClass().add("widthSpace");
 		Region spaceRight = new Region();
 		spaceRight.getStyleClass().add("widthSpace");
-		statistics = new Statistics();
+		statistics = new Statistics(multilangModule);
 		//All Elements in one Borderpane
 		BorderPane contolArea = new BorderPane(controls, null,statistics , null, new HandList());
 		//Add the elements

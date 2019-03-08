@@ -1,2 +1,25 @@
 ID;English;Deutsch;French
-Penis;Penis ;Penis;Penis
+File;File;Datei;
+Settings;Settings;Einstellungen;
+Winner;Winner;Gewinner;
+Hand;Hand;Blatt;
+TotalWinns;Total Winns;Total Siege;
+Shuffle;Shuffle;Mischen;
+Deal;Deal;Geben;
+Cardsremaning;Cards Reaning;Karten übrig;
+CasinoLabel;Michael's Casino;Michael 's Casino;
+HighCard;HighCard;Höchste Karte;
+OnePair;OnePair;Ein Paar;
+TwoPair;TwoPair;Zwei Paare;
+ThreeOfAKind;ThreeOfAKind;Drilling;
+Straight;Straight;Strasse;
+Flush;Flush;Flush;
+FullHouse;FullHouse;FullHouse;
+FourOfAKind;FourOfAKind;Vierling;
+StraightFlush;StraightFlush;StraightFlush;
+RoyalFlush;RoyalFlush;RoyalFlush;
+Winner;Winner;Gewinner;
+Splitt;Splitt Winner;Splitt Gewinner;
+Player;Player;Spieler;
+Language;Language;Sprache;
+NumOfPlayers;Number of Player;Anzahl Spieler;

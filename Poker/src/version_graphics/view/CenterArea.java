@@ -8,20 +8,21 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import version_graphics.PokerGame;
 import version_graphics.model.PokerGameModel;
+import version_graphics.view.MultiLang.MultiLangModule;
 
 public class CenterArea extends BorderPane{
 			
 	private  ArrayList<PlayerPane> playerPanes;
 	
-	public CenterArea(PokerGameModel model) {
+	public CenterArea(PokerGameModel model, MultiLangModule multilangModule) {
 				super();
 				// Create all of the player panes we need, and put them into an HBox
 				HBox players = new HBox();
 				playerPanes = new ArrayList<PlayerPane>(); 
 				for (int i = 0; i < PokerGame.NUM_PLAYERS; i++) {
-					PlayerPane pp = new PlayerPane();
+					PlayerPane pp = new PlayerPane(multilangModule);
 					pp.setPlayer(model.getPlayer(i)); // link to player object in the logic
-					FlowPane spacePlayer = new FlowPane();
+					Region spacePlayer = new Region();
 					players.getChildren().addAll(pp, spacePlayer);
 					spacePlayer.getStyleClass().add("widthSpace");
 					playerPanes.add(pp);
@@ -38,7 +39,7 @@ public class CenterArea extends BorderPane{
 				
 				//Playing Field
 				BorderPane field = new BorderPane();
-				field.setCenter(new CasinoLabel());
+				field.setCenter(new CasinoLabel(multilangModule));
 				field.getStyleClass().add("field");
 				
 				this.setCenter(players);

@@ -11,6 +11,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import version_graphics.model.Card;
 import version_graphics.model.DeckOfCards;
+import version_graphics.view.MultiLang.MultiLangModule;
 /**
  * Control Area is the Dealers Area in the Bottom of the GUI
  * It Contains a Shuffle Button, a Deal Buton and a Deck of Cards
@@ -19,11 +20,14 @@ import version_graphics.model.DeckOfCards;
  */
 public class ControlArea extends BorderPane{
     
-    Button btnShuffle = new Button("Shuffle");
-    Button btnDeal = new Button("Deal");
-    private DeckLabel vBoxDeck = new DeckLabel(btnDeal);
-    public ControlArea() {
+    Button btnShuffle = new Button();
+    Button btnDeal = new Button();
+    private DeckLabel vBoxDeck;
+    public ControlArea(MultiLangModule multilangModule) {
     	super();
+    	vBoxDeck = new DeckLabel(btnDeal, multilangModule);
+        btnShuffle.setText(multilangModule.getTranslation("Shuffle"));
+        btnDeal.setText(multilangModule.getTranslation("Deal"));
     	vBoxDeck.setId("controlDeckLabel");
     	btnShuffle.getStyleClass().add("controlButton");
     	btnDeal.getStyleClass().add("controlButton");

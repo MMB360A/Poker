@@ -24,18 +24,20 @@ import javafx.util.Duration;
 import version_graphics.model.Card;
 import version_graphics.model.HandType;
 import version_graphics.model.Player;
+import version_graphics.view.MultiLang.MultiLangModule;
 
 public class PlayerPane extends VBox {
     private Label lblName = new Label();
     private HBox hboxCards = new HBox();
     private ArrayList<Label> cards = new ArrayList<Label>();
     private Label lblEvaluation = new Label("--");
-    
+    private MultiLangModule multilangModule;
     // Link to player object
     private Player player;
     
-    public PlayerPane() {
+    public PlayerPane(MultiLangModule multilangModule) {
         super(); // Always call super-constructor first !!
+        this.multilangModule = multilangModule;
         this.getStyleClass().add("player"); // CSS style class
         // Add child nodes
         this.getChildren().addAll(lblName, hboxCards, lblEvaluation);
@@ -61,7 +63,7 @@ public class PlayerPane extends VBox {
     }
     
     public SequentialTransition updatePlayerDisplay() {
-    	lblName.setText(player.getPlayerName()); 
+    	lblName.setText(multilangModule.getTranslation("Player") + ": "+player.getPlayerName()); 
     	SequentialTransition sequence = new SequentialTransition();
     	for (int i = 0; i < Player.HAND_SIZE; i++) {
     		Card card = null;
@@ -70,7 +72,7 @@ public class PlayerPane extends VBox {
     		cl.setCard(card);
     		HandType evaluation = player.evaluateHand();
     		if (evaluation != null)
-    			lblEvaluation.setText(evaluation.toString());
+    			lblEvaluation.setText(multilangModule.getTranslation(evaluation.toString()));
     		else
     			lblEvaluation.setText("--");
     		Bounds boundsInScene = cl.localToScene(cl.getBoundsInLocal());
@@ -91,6 +93,6 @@ public class PlayerPane extends VBox {
     }
     
     public void setWinner(String message) {
-    	lblEvaluation.setText(lblEvaluation.getText()+ "  " + message);
+    	lblEvaluation.setText(lblEvaluation.getText()+ "  " + multilangModule.getTranslation(message));
     }
 }

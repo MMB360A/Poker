@@ -8,12 +8,14 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import version_graphics.model.Card;
 import version_graphics.model.DeckOfCards;
+import version_graphics.view.MultiLang.MultiLangModule;
 
 public class DeckLabel extends VBox {
 	private Label lblCardNumber = new Label();
-	private Label lblCardRemaining = new Label(" Cards remaning");
-	public DeckLabel(Button deal) {
+	private Label lblCardRemaining;
+	public DeckLabel(Button deal, MultiLangModule multilangModule) {
 		super();
+		lblCardRemaining = new Label(multilangModule.getTranslation("Cardsremaning"));
     	Card card = new Card(null, null, true);
     	CardLabel cardLabel = new CardLabel();
     	cardLabel.setCard(card);

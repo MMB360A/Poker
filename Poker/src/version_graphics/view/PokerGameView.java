@@ -2,6 +2,7 @@ package version_graphics.view;
 
 import java.util.ArrayList;
 
+import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -25,16 +26,20 @@ public class PokerGameView {
 	private PokerGameModel model;
 	private CenterArea center;
 	private BottomArea bottom;
-	
-	
+	private MenuArea menu;
+	private MultiLangModule multilangModule;
+	private Stage stage;
 	public PokerGameView(Stage stage, PokerGameModel model) {
 		this.model = model;
-		MultiLangModule multi = new MultiLangModule();
-		center = new CenterArea(model);
-		bottom = new BottomArea(model);
+		this.stage = stage;
+		multilangModule = new MultiLangModule("Deutsch");
+		menu = new MenuArea(multilangModule);
+		
+		center = new CenterArea(model, multilangModule);
+		bottom = new BottomArea(model, multilangModule);
 		// Put players and controls into a BorderPane
 		BorderPane root = new BorderPane();
-		root.setTop(new MenuArea());
+		root.setTop(menu);
 		root.setCenter(center);
 		root.setBottom(bottom );
 		root.getStyleClass().add("root");
@@ -48,6 +53,14 @@ public class PokerGameView {
         stage.show();		
 	}
 	
+	public MultiLangModule getMultilangModule() {
+		return multilangModule;
+	}
+
+	public MenuArea getMenu() {
+		return menu;
+	}
+
 	public Button getShuffleButton() {
 		return bottom.getControls().btnShuffle;
 	}
@@ -65,5 +78,18 @@ public class PokerGameView {
 }
 	public Statistics getStatistics() {
 		return bottom.getStatistics();
+	}
+
+	public void restart() {
+		  stage.close();
+		  Platform.runLater( () -> {
+			try {
+				new PokerGame().start( new Stage() );
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} );
+		
 	}
 }

@@ -23,6 +23,7 @@ public class PokerGameController {
 		
 		view.getShuffleButton().setOnAction( e -> shuffle() );
 		view.getDealButton().setOnAction( e -> deal() );
+		view.getMenu().getLangugageSetting().setOnAction(e -> changeLanguage());
 	}
 	
 
@@ -81,7 +82,7 @@ public class PokerGameController {
     			for(int i = 0; i< view.getPlayerPanes().size(); i++) {
     				PlayerPane pp = view.getPlayerPanes().get(i);
     				if(pp.getPlayer() == p) {
-    					pp.setWinner("Splittpot Winner");
+    					pp.setWinner("Splitt");
     					p.icreaseStatisticWinns();
     					view.getStatistics().addWinner(p);
     				}
@@ -95,4 +96,10 @@ public class PokerGameController {
             alert.showAndWait();
     	}
     }
+
+public void changeLanguage()
+{
+	view.getMultilangModule().setLangugage();
+	view.restart();
+}
 }
