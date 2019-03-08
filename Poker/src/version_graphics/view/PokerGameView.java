@@ -17,7 +17,7 @@ import javafx.stage.Stage;
 import version_graphics.PokerGame;
 import version_graphics.model.Player;
 import version_graphics.model.PokerGameModel;
-import version_graphics.view.MultiLang.MultiLangElementController;
+import version_graphics.view.MultiLang.MultiLangModule;
 
 public class PokerGameView {
 	
@@ -29,7 +29,7 @@ public class PokerGameView {
 	
 	public PokerGameView(Stage stage, PokerGameModel model) {
 		this.model = model;
-		MultiLangElementController multi = new MultiLangElementController();
+		MultiLangModule multi = new MultiLangModule();
 		center = new CenterArea(model);
 		bottom = new BottomArea(model);
 		// Put players and controls into a BorderPane

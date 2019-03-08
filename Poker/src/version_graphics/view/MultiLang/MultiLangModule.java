@@ -6,11 +6,11 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class MultiLangElementController {
+public class MultiLangModule {
 	private String defalutLanguage;
 	private ArrayList<MultiLangElement> translations;
 	private ArrayList<String> languages;
-	public MultiLangElementController() {
+	public MultiLangModule() {
 		languages = new ArrayList<String>();
 		translations = new ArrayList<MultiLangElement>();
 		this.readBasicElements();
@@ -50,7 +50,36 @@ public class MultiLangElementController {
 	}
 	
 	
-	public void getTranslation() {
+	public String getTranslation(String id) {
+		String value = "Not Found";
+		MultiLangElement multielement;
+		LangElement langElement;
+		for(MultiLangElement e : translations) {
+			if(e.getId() == id) {
+				multielement = e;
+				for(LangElement le : multielement.getElements()) 
+				{
+				if(le.getLanguage() == this.defalutLanguage) value = le.getValue();
+				}
+			}
+		}
+		return value;
 		
+	}
+	
+	public String getTranslationByLanguage(String id, String language) {
+		String value = "Not Found";
+		MultiLangElement multielement;
+		LangElement langElement;
+		for(MultiLangElement e : translations) {
+			if(e.getId() == id) {
+				multielement = e;
+				for(LangElement le : multielement.getElements()) 
+				{
+				if(le.getLanguage() == language) value = le.getValue();
+				}
+			}
+		}
+		return value;
 	}
 }

@@ -12,4 +12,12 @@ public class LangElement {
 		this.language = language;
 		this.value = value;
 	}
+
+	public String getLanguage() {
+		return language;
+	}
+
+	public String getValue() {
+		return value;
+	}
 }

@@ -21,6 +21,14 @@ public class MultiLangElement {
 	public String toString() {
 		return "MultiLangElement [id=" + id + ", elements=" + elements + "]";
 	}
+
+	public String getId() {
+		return id;
+	}
+
+	public ArrayList<LangElement> getElements() {
+		return elements;
+	}
 	
 	
 }
