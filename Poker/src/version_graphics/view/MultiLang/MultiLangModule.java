@@ -92,17 +92,8 @@ public class MultiLangModule {
 	}
 
 	public void setLangugage() {
-	    
-		try {
-	        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
-	        Stage stage = new Stage();
-	        stage.setTitle("New Window");
-	        stage.setScene(scene);
-	        stage.show();
-	    } catch (IOException e) {
-	        Logger logger = Logger.getLogger(getClass().getName());
-	        logger.log(Level.SEVERE, "Failed to create new Window.", e);
-	    }
+		ChangeLanguageView view = new ChangeLanguageView();
+
 	}
 
 }

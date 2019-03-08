@@ -86,7 +86,6 @@ public class PokerGameView {
 			try {
 				new PokerGame().start( new Stage() );
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		} );
