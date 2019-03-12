@@ -92,8 +92,7 @@ public class MultiLangModule {
 	}
 
 	public void setLangugage() {
-		ChangeLanguageView view = new ChangeLanguageView();
-
+		
 	}
 
 }
