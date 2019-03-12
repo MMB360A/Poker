@@ -12,6 +12,7 @@ import version_graphics.model.Player;
 import version_graphics.model.PokerGameModel;
 import version_graphics.view.PlayerPane;
 import version_graphics.view.PokerGameView;
+import version_graphics.view.MultiLang.ChangeLanguageView;
 
 public class PokerGameController {
 	private PokerGameModel model;
@@ -20,15 +21,24 @@ public class PokerGameController {
 	public PokerGameController(PokerGameModel model, PokerGameView view) {
 		this.model = model;
 		this.view = view;
-		
-		view.getShuffleButton().setOnAction( e -> shuffle() );
-		view.getDealButton().setOnAction( e -> deal() );
-		view.getMenu().getLangugageSetting().setOnAction(e -> changeLanguage());
+		this.setEvents();
+
 	}
 	
+	private void setEvents() {
+		view.getShuffleButton().setOnAction( e -> shuffle() );
+		view.getDealButton().setOnAction( e -> deal() );
+		view.getMenu().getLanguageSetting().setOnAction(e -> changeLanguage());
+		view.getMenu().getAbout().setOnAction(e -> about());
+		view.getMenu().getAddPlayer().setOnAction(e -> addPlayer());
+		view.getMenu().getRemovePlayer().setOnAction(e -> removePlayer());
+		view.getMenu().getChangeSkin().setOnAction(e -> changeSkin());
+	}
 
 
-    /**
+
+
+	/**
      * Remove all cards from players hands, and shuffle the deck
      */
     private void shuffle() {
@@ -97,10 +107,27 @@ public class PokerGameController {
     	}
     }
 
-public void changeLanguage()
-{
-	view.getMultilangModule().setLangugage();
-	
-	view.restart();
-}
+    public void changeLanguage()
+	{
+    	ChangeLanguageView clView = view.getMultilangModule().setDefalutLanguage(view.getStage());
+    	clView.show();
+    	clView.setOnHidden(e -> {view = view.restart(); this.setEvents();});
+	}
+    
+    private void changeSkin() {
+		
+	}
+
+	private void removePlayer() {
+		
+	}
+
+	private void addPlayer() {
+		
+		
+	}
+
+	private void about() {
+		
+	}
 }

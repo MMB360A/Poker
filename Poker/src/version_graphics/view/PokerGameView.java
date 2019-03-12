@@ -29,10 +29,10 @@ public class PokerGameView {
 	private MenuArea menu;
 	private MultiLangModule multilangModule;
 	private Stage stage;
-	public PokerGameView(Stage stage, PokerGameModel model) {
+	public PokerGameView(Stage stage, PokerGameModel model, MultiLangModule multilangModule) {
 		this.model = model;
 		this.stage = stage;
-		multilangModule = new MultiLangModule("Deutsch");
+		this.multilangModule = multilangModule;
 		menu = new MenuArea(multilangModule);
 		
 		center = new CenterArea(model, multilangModule);
@@ -47,12 +47,16 @@ public class PokerGameView {
 		stage.setResizable(false);
         // Create the scene using our layout; then display it
         Scene scene = new Scene(root);
-        scene.getStylesheets().add(getClass().getResource("poker.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource("css\\poker.css").toExternalForm());
         stage.setTitle("Poker Miniproject");
         stage.setScene(scene);
         stage.show();		
 	}
 	
+	public Stage getStage() {
+		return stage;
+	}
+
 	public MultiLangModule getMultilangModule() {
 		return multilangModule;
 	}
@@ -80,15 +84,9 @@ public class PokerGameView {
 		return bottom.getStatistics();
 	}
 
-	public void restart() {
-		  stage.close();
-		  Platform.runLater( () -> {
-			try {
-				new PokerGame().start( new Stage() );
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		} );
-		
+	public PokerGameView restart() {
+			PokerGameView v = this;
+			v = new PokerGameView(stage, model, multilangModule);
+			return v;
 	}
 }

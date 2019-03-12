@@ -6,8 +6,13 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javafx.scene.control.RadioButton;
+import javafx.stage.Stage;
+
 public class MultiLangModule {
 	private String defalutLanguage;
+
+
 	private ArrayList<MultiLangElement> translations;
 	private ArrayList<String> languages;
 	
@@ -90,9 +95,29 @@ public class MultiLangModule {
 		}
 		return value;
 	}
-
-	public void setLangugage() {
-		
+	
+	public String getDefalutLanguage() {
+		return defalutLanguage;
 	}
+
+	public ChangeLanguageView setDefalutLanguage(Stage primaryStage) {
+		ChangeLanguageView view = new ChangeLanguageView(this, primaryStage);
+		view.getCancel().setOnAction(e -> cancel(view));
+		view.getOk().setOnAction(e -> save(view));
+		
+		return view;
+	}
+	
+	private void cancel(ChangeLanguageView view) {
+		view.close();
+	}
+
+	private void save(ChangeLanguageView view) {
+		RadioButton btn = (RadioButton) view.getTg().getSelectedToggle();
+		this.defalutLanguage = btn.getText();
+		view.close();
+	}
+	
+
 
 }

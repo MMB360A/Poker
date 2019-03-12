@@ -1,0 +1,4 @@
+.heightSpace{
+	    -fx-min-height: 15px;
+	    -fx-max-height: 15px;
+}

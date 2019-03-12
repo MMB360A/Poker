@@ -7,7 +7,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import version_graphics.model.Player;
 import version_graphics.view.MultiLang.MultiLangModule;
 
-public class Statistics extends TableView{
+public class Statistics extends TableView  implements Cloneable{
 	public Statistics(MultiLangModule multilangModule) {
 		this.getStyleClass().add("statistics");
         TableColumn winnerCol = new TableColumn((multilangModule.getTranslation("Winner")));
@@ -29,4 +29,8 @@ public class Statistics extends TableView{
 	public void addWinner(Player p) {
 		this.getItems().add(p);
 	}
+	
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
 }

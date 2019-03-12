@@ -43,4 +43,7 @@ public class BottomArea extends BorderPane{
 		
 		return statistics;
 	}
+	public void setStatistics(Statistics statistics) {
+		this.statistics = statistics;
+	}
 }

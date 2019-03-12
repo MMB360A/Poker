@@ -5,6 +5,7 @@ import javafx.stage.Stage;
 import version_graphics.controller.PokerGameController;
 import version_graphics.model.PokerGameModel;
 import version_graphics.view.PokerGameView;
+import version_graphics.view.MultiLang.MultiLangModule;
 
 public class PokerGame extends Application {
 	public static final int NUM_PLAYERS = 2;
@@ -20,7 +21,7 @@ public class PokerGame extends Application {
     public void start(Stage primaryStage) throws Exception {
     	// Create and initialize the MVC components
     	model = new PokerGameModel();
-    	view = new PokerGameView(primaryStage, model);
+    	view = new PokerGameView(primaryStage, model, new MultiLangModule("Deutsch"));
     	controller = new PokerGameController(model, view);
     }
 }
