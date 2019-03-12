@@ -14,6 +14,7 @@ public class MenuArea extends MenuBar{
 		Menu file = new Menu(multilangModule.getTranslation("File"));
 		Menu settings = new Menu(multilangModule.getTranslation("Settings"));
 		langugageSetting = new MenuItem(multilangModule.getTranslation("Language"));
+		
 		numOfPlayers = new MenuItem(multilangModule.getTranslation("NumOfPlayers"));
 		settings.getItems().addAll(langugageSetting, numOfPlayers);
 		this.getMenus().addAll(file, settings);
@@ -25,4 +26,5 @@ public class MenuArea extends MenuBar{
 	public MenuItem getNumOfPlayers() {
 		return numOfPlayers;
 	}
+	
 }

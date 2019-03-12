@@ -100,6 +100,7 @@ public class PokerGameController {
 public void changeLanguage()
 {
 	view.getMultilangModule().setLangugage();
+	
 	view.restart();
 }
 }
