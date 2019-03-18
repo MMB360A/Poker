@@ -33,10 +33,8 @@ public class PokerGameController {
 		view.getMenu().getAddPlayer().setOnAction(e -> addPlayer());
 		view.getMenu().getRemovePlayer().setOnAction(e -> removePlayer());
 		view.getMenu().getChangeSkin().setOnAction(e -> changeSkin());
+		view.getClose().setOnAction(e -> close());
 	}
-
-
-
 
 	/**
      * Remove all cards from players hands, and shuffle the deck
@@ -102,7 +100,7 @@ public class PokerGameController {
 		}
     		
     	} else {
-            Alert alert = new Alert(AlertType.ERROR, "Not enough cards - shuffle first");
+            Alert alert = new Alert(AlertType.ERROR, view.getMultilangModule().getTranslation("notEnoughCards"));
             alert.showAndWait();
     	}
     }
@@ -111,23 +109,47 @@ public class PokerGameController {
 	{
     	ChangeLanguageView clView = view.getMultilangModule().setDefalutLanguage(view.getStage());
     	clView.show();
-    	clView.setOnHidden(e -> {view = view.restart(); this.setEvents();});
+    	clView.setOnHidden(e -> {view = view.restart(model); this.setEvents();});
 	}
     
     private void changeSkin() {
-		
+		PokerGameView.darkthem = !PokerGameView.darkthem;
+		view = view.restart(model); this.setEvents();
 	}
 
 	private void removePlayer() {
-		
+		if(PokerGame.NUM_PLAYERS > 2) {
+			PokerGame.NUM_PLAYERS--;
+			model = new PokerGameModel();
+			view = view.restart(model); 
+			this.setEvents();
+		}
+		else {
+            Alert alert = new Alert(AlertType.ERROR, view.getMultilangModule().getTranslation("MinPlayers"));
+            alert.showAndWait();
+		}            
 	}
 
 	private void addPlayer() {
-		
-		
+		if(PokerGame.NUM_PLAYERS < 4) {
+			PokerGame.NUM_PLAYERS++;
+			model = new PokerGameModel();
+			view = view.restart(model); 
+			this.setEvents();
+		}
+		else {
+            Alert alert = new Alert(AlertType.ERROR, view.getMultilangModule().getTranslation("MaxPlayers"));
+            alert.showAndWait();
+		}            
 	}
 
 	private void about() {
-		
+        Alert alert = new Alert(AlertType.INFORMATION, view.getMultilangModule().getTranslation("programInfo"));
+        alert.setHeaderText("");
+        alert.showAndWait();
+	}
+	
+	private void close() {
+		view.getStage().close();
 	}
 }

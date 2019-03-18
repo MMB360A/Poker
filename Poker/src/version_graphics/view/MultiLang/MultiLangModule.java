@@ -25,6 +25,10 @@ public class MultiLangModule {
 		//for(MultiLangElement e : translations) System.out.println(e);
 	}
 	
+	public void setDefalutLanguage(String defalutLanguage) {
+		this.defalutLanguage = defalutLanguage;
+	}
+
 	public ArrayList<String> getLanguages() {
 		return languages;
 	}

@@ -16,16 +16,21 @@ public class CardLabel extends Label {
 		if (card != null) {
 			
 			String fileName = cardToFileName(card);
-			Image image = new Image(this.getClass().getClassLoader().getResourceAsStream("images/" + fileName));
+			Image image;
+			if(PokerGameView.darkthem)  image = new Image(this.getClass().getClassLoader().getResourceAsStream("images/dark/" + fileName));
+			else image = new Image(this.getClass().getClassLoader().getResourceAsStream("images/light/" + fileName));
 			ImageView imv = new ImageView(image);
 			imv.fitWidthProperty().bind(this.widthProperty());
 			imv.fitHeightProperty().bind(this.heightProperty());
 			imv.setPreserveRatio(true);
 				this.setGraphic(imv);
-				this.setStyle("-fx-background-color: lemonchiffon");
+				
+				if(PokerGameView.darkthem)this.setStyle("-fx-background-color: lemonchiffon");
+				else this.setStyle("-fx-background-color: lemonchiffon");
 			}
 		else {
-			this.setStyle("-fx-background-color: black");
+			if(PokerGameView.darkthem)this.setStyle("-fx-background-color: black");
+			else this.setStyle("-fx-background-color: darkGreen");
 			this.setGraphic(null);
 		}
 	}

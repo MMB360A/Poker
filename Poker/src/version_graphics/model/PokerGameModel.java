@@ -12,7 +12,6 @@ public class PokerGameModel {
 		for (int i = 0; i < PokerGame.NUM_PLAYERS; i++) {
 			players.add(new Player("Player " + i));
 		}
-		
 		deck = new DeckOfCards();
 	}
 	

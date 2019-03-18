@@ -1,0 +1,66 @@
+.label {
+  	-fx-text-fill: white;
+}
+
+#controlArea {
+    -fx-border-color: darkred;
+    -fx-background-color: black;
+}
+
+.controlButton{
+    -fx-border-color: white;
+    -fx-background-color: Black;
+    -fx-text-fill: White;
+}
+
+
+.deckOfCards{
+}
+
+.root{
+	-fx-background-color: darkred ;
+}
+
+.field {
+}
+
+.player {
+    -fx-border-color: darkred;
+    -fx-background-color:black;
+}
+.widthSpace{
+}
+.heightSpace{
+}
+.card {
+}
+
+.cardSpace {
+}
+
+.statistics{
+	  -fx-border-color: darkred;
+     -fx-background-color: black;
+     -fx-text-fill: white;
+}
+.statisticsCol{
+     -fx-background-color: black;
+     -fx-text-fill: white;
+}
+
+
+.handsList {
+
+}
+
+
+.top {
+	-fx-background-color: black;
+}
+.close{
+	-fx-background-color: black;
+}
+
+.close:hover {
+	-fx-background-color: red;
+}

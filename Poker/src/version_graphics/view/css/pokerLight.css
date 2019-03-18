@@ -1,0 +1,60 @@
+
+#controlArea {
+    -fx-border-color: gold;
+}
+
+.controlButton{
+    -fx-border-color: gold;
+    -fx-background-color: Darkgreen ;
+    -fx-text-fill: gold;
+
+}
+
+
+.deckOfCards{
+}
+
+.root{
+	-fx-background-color: Darkgreen;
+}
+
+.field {
+}
+
+.player {
+    -fx-border-color: green;
+    -fx-background-color:forestgreen ;
+}
+.widthSpace{
+}
+.heightSpace{
+}
+.card {
+}
+
+.cardSpace {
+}
+
+.statistics{
+	  -fx-border-color: green;
+     -fx-background-color: forestgreen ;
+     -fx-text-fill: Black;
+}
+.statisticsCol{
+     -fx-background-color: forestgreen ;
+     -fx-text-fill: Black;
+     -fx-min-width: 120px;
+}
+
+
+.handsList {
+	-fx-max-height: 260px;
+
+}
+
+.top {
+	-fx-background-color: forestgreen ;
+}
+.close{
+	-fx-background-color: forestgreen ;
+}
