@@ -19,10 +19,18 @@ public class PokerGameModel {
 		return players.get(i);
 	}
 	
+	public void setPlayer(int i, Player p) {
+		players.set(i, p);
+	}
+	
 	public DeckOfCards getDeck() {
 		return deck;
 	}
 	
+	public ArrayList<Player> getPlayers() {
+		return players;
+	}
+
 	public ArrayList<Player> evaluateWinner(){
 		ArrayList<Player> winners = new ArrayList<Player>();
 		winners.add(players.get(0));

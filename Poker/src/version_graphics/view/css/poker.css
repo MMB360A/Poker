@@ -53,11 +53,11 @@
   -fx-font-size: 18px;
 	-fx-padding: 2.0px;
     -fx-min-width: 50;
-    -fx-pref-width: 111;
-    -fx-max-width: 500;
-    -fx-min-height: 80;
-    -fx-pref-height: 162;
-    -fx-max-height: 800;
+    -fx-pref-width: 111px;
+    -fx-max-width: 500px;
+    -fx-min-height: 80px;
+    -fx-pref-height: 162px;
+    -fx-max-height: 800px;
 }
 
 .cardSpace {

@@ -1,9 +1,12 @@
 package version_graphics.view;
 
+import java.util.ArrayList;
+
 import javafx.scene.Node;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import version_graphics.controller.PlayerStatisticsDummie;
 import version_graphics.model.Player;
 import version_graphics.view.MultiLang.MultiLangModule;
 
@@ -26,11 +29,13 @@ public class Statistics extends TableView  implements Cloneable{
         
 	}
 	
-	public void addWinner(Player p) {
+	public void addWinner(PlayerStatisticsDummie p) {
 		this.getItems().add(p);
 	}
 	
-    protected Object clone() throws CloneNotSupportedException {
-        return super.clone();
-    }
+	public void setWinners(ArrayList<PlayerStatisticsDummie> winners) {
+		this.getItems().clear();
+		for(PlayerStatisticsDummie p : winners)
+			this.getItems().add(p);
+	}
 }

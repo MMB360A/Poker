@@ -1,39 +1,42 @@
-ID;English;Deutsch;French
-File;File;Datei;
-Settings;Settings;Einstellungen;
-Winner;Winner;Gewinner;
-Hand;Hand;Blatt;
-TotalWinns;Total Winns;Total Siege;
-Shuffle;Shuffle;Mischen;
-Deal;Deal;Geben;
-Cardsremaning;Cards Reaning;Karten übrig;
-CasinoLabel;Michael's Casino;Michael 's Casino;
-HighCard;HighCard;Höchste Karte;
-OnePair;OnePair;Ein Paar;
-TwoPair;TwoPair;Zwei Paare;
-ThreeOfAKind;ThreeOfAKind;Drilling;
-Straight;Straight;Strasse;
-Flush;Flush;Flush;
-FullHouse;FullHouse;FullHouse;
-FourOfAKind;FourOfAKind;Vierling;
-StraightFlush;StraightFlush;StraightFlush;
-RoyalFlush;RoyalFlush;RoyalFlush;
-Winner;Winner;Gewinner;
-Splitt;Splitt Winner;Splitt Gewinner;
-Player;Player;Spieler;
-Language;Language;Sprache;
-NumOfPlayers;Number of Player;Anzahl Spieler;
-selectLanguage;Select Language;Sprache Auswählen;
-save;Save;Speichern;
-cancel;Cancel;Schliessen;
-selectLanguageText;Select prefered language;Bevorzugte Sprache auswählen;
-about;about;über;
-lightTheme;Change to Daymode;Tagesmodus;
-addPlayer;Add Player;Spieler hinzufügen;
-removePlayer;remove Player;Spieler entfernen;
-view;View;Ansicht;
-darkTheme;Nightmode;Nachtmodus;
-programInfo;This programm was Created by Michael Berger;Michael Berger;
-MaxPlayers;Max 4 Players;Maximum 4 Spieler;
-MinPlayers;Min 2 Players;Minnimum 2 Spieler;
-notEnoughCards;Not enough cards - shuffle first;nicht genügend Karten im Deck;
+ID;English;Deutsch
+File;File;Datei
+Settings;Settings;Einstellungen
+Winner;Winner;Gewinner
+Hand;Hand;Blatt
+TotalWinns;Total Winns;Total Siege
+Shuffle;Shuffle;Mischen
+Deal;Deal;Geben
+Cardsremaning;Cards Reaning;Karten übrig
+CasinoLabel;Michael 's Casino;Michael 's Casino
+HighCard;HighCard;Höchste Karte
+OnePair;OnePair;Ein Paar
+TwoPair;TwoPair;Zwei Paare
+ThreeOfAKind;ThreeOfAKind;Drilling
+Straight;Straight;Strasse
+Flush;Flush;Flush
+FullHouse;FullHouse;FullHouse
+FourOfAKind;FourOfAKind;Vierling
+StraightFlush;StraightFlush;StraightFlush
+RoyalFlush;RoyalFlush;RoyalFlush
+Winner;Winner;Gewinner
+Splitt;Splitt Winner;Splitt Gewinner
+Player;Player;Spieler
+Language;Language;Sprache
+NumOfPlayers;Number of Player;Anzahl Spieler
+selectLanguage;Select Language;Sprache Auswählen
+save;Save;Speichern
+cancel;Cancel;Schliessen
+selectLanguageText;Select prefered language;Bevorzugte Sprache auswählen
+about;about;über
+lightTheme;Change to Daymode;Tagesmodus
+addPlayer;Add Player;Spieler hinzufügen
+removePlayer;remove Player;Spieler entfernen
+view;View;Ansicht
+darkTheme;Nightmode;Nachtmodus
+programInfo;This programm was Created by Michael Berger;Michael Berger
+MaxPlayers;Max 4 Players;Maximum 4 Spieler
+MinPlayers;Min 2 Players;Minnimum 2 Spieler
+notEnoughCards;Not enough cards - shuffle first;nicht genügend Karten im Deck
+changeUserNames;changeUserNames;Namen ändern
+viewStatistics;Statistics;Statistik
+NumOfPlayers;NumOfPlayers;Spieleranzahl

@@ -6,36 +6,51 @@ import javafx.scene.control.MenuItem;
 import version_graphics.view.MultiLang.MultiLangModule;
 
 public class MenuArea extends MenuBar{
+	//All MenuItems are Global to set the Actions in the Controler 
 	private MenuItem languageSetting;
 	private MenuItem addPlayer;
 	private MenuItem removePlayer;
 	private MenuItem about;
 	private MenuItem changeSkin;
+	private MenuItem changeUserName;
+	private MenuItem viewStatistics;
+	
 	public MenuArea(MultiLangModule multilangModule) {
 		super();
-		
+		//CSS Style Sheet
 		if(PokerGameView.darkthem) this.getStylesheets().add(getClass().getResource("css\\MenuDark.css").toExternalForm());
 		else this.getStylesheets().add(getClass().getResource("css\\MenuLight.css").toExternalForm());
+		//Set Styleclass
 		this.getStyleClass().add("MenuBar");
+		
+		//Menu File
 		Menu file = new Menu(multilangModule.getTranslation("File"));
 		file.getStyleClass().add("Menu");
 		about= new MenuItem(multilangModule.getTranslation("about"));
 		about.getStyleClass().add("MenuItem");
-		file.getItems().add(about);
+		viewStatistics= new MenuItem(multilangModule.getTranslation("viewStatistics"));
+		viewStatistics.getStyleClass().add("MenuItem");
+		file.getItems().addAll(about, viewStatistics);
 		
+		//Menu Settings
 		Menu settings = new Menu(multilangModule.getTranslation("Settings"));
 		settings.getStyleClass().add("Menu");
 		languageSetting = new MenuItem(multilangModule.getTranslation("Language"));
 		languageSetting.getStyleClass().add("MenuItem");
-		Menu numOfPlayers = new Menu("NumOfPlayers");
+		changeUserName= new MenuItem(multilangModule.getTranslation("changeUserNames"));
+		changeUserName.getStyleClass().add("MenuItem");
+		//SubMenu Number of Players
+		Menu numOfPlayers = new Menu(multilangModule.getTranslation("NumOfPlayers"));
 		numOfPlayers.getStyleClass().add("Menu");
 		addPlayer = new MenuItem(multilangModule.getTranslation("addPlayer"));
 		addPlayer.getStyleClass().add("MenuItem");
 		removePlayer = new MenuItem(multilangModule.getTranslation("removePlayer"));
 		removePlayer.getStyleClass().add("MenuItem");
 		numOfPlayers.getItems().addAll(addPlayer, removePlayer);
-		settings.getItems().addAll(languageSetting, numOfPlayers);
+		//Add the Items and the Submenu to the Settings Menu
+		settings.getItems().addAll(languageSetting, numOfPlayers, changeUserName);
 		
+		//Menu View
 		Menu view = new Menu(multilangModule.getTranslation("view"));
 		changeSkin = new MenuItem();
 		if(PokerGameView.darkthem) changeSkin.setText(multilangModule.getTranslation("lightTheme"));
@@ -43,25 +58,18 @@ public class MenuArea extends MenuBar{
 		changeSkin.getStyleClass().add("MenuItem");
 		view.getItems().addAll(changeSkin);
 		
+		//Add all Menus to the Menubar
 		this.getMenus().addAll(file, settings, view);
 		
 	}
-	public MenuItem getLanguageSetting() {
-		return languageSetting;
-	}
-	public MenuItem getAddPlayer() {
-		return addPlayer;
-	}
-	public MenuItem getRemovePlayer() {
-		return removePlayer;
-	}
-	public MenuItem getAbout() {
-		return about;
-	}
-	public MenuItem getChangeSkin() {
-		return changeSkin;
-	}
-	
+	//getters of the MenuItems
+	public MenuItem getLanguageSetting() {return languageSetting;}
+	public MenuItem getAddPlayer() {return addPlayer;}
+	public MenuItem getRemovePlayer() {return removePlayer;}
+	public MenuItem getAbout() {return about;}
+	public MenuItem getChangeSkin() {return changeSkin;}
+	public MenuItem getChangeUserName() {return changeUserName;}
+	public MenuItem getViewStatistics() {return viewStatistics;}
 
 	
 }

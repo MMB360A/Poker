@@ -1,7 +1,5 @@
 package version_graphics.view.MultiLang;
 
-import java.util.ArrayList;
-
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -16,14 +14,12 @@ import javafx.stage.Stage;
 
 public class ChangeLanguageView extends Stage{
 	
-	private MultiLangModule multiLangModule;
 	private ToggleGroup tg;
 	private Button ok;
 	private Button cancel;
 	
 	public ChangeLanguageView(MultiLangModule multiLangModule, final Stage primaryStage) {
 		 super();
-		 this.multiLangModule = multiLangModule;
 		 BorderPane pane = new BorderPane();
        
        Label desc = new  Label(multiLangModule.getTranslation("selectLanguageText"));

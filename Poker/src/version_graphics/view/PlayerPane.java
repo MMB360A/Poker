@@ -78,7 +78,7 @@ public class PlayerPane extends VBox {
     		Bounds boundsInScene = cl.localToScene(cl.getBoundsInLocal());
     		int centralXPos = (int) ((boundsInScene.getMaxX() + boundsInScene.getMinX()) /2);
     		PathElement pe1;
-    		 pe1	= new MoveTo(700 -  centralXPos,500);
+    		 pe1	= new MoveTo(748 -  centralXPos,494);
 	    	PathElement pe2 = new LineTo(cl.getScaleX() + 55, cl.getScaleY() + 80); 
 	    	Path path = new Path();
 	    	path.getElements().add(pe1);

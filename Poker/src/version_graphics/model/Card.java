@@ -36,7 +36,11 @@ public class Card implements Comparable<Object>{
     
     private final Suit suit;
     private final Rank rank;
-    //Is the Card turned (Show backside)
+    private int statisticNumber = 0;
+    
+
+
+	//Is the Card turned (Show backside)
     private boolean covered;
     
     public Card(Suit suit, Rank rank, boolean covered) {
@@ -56,6 +60,18 @@ public class Card implements Comparable<Object>{
     public Boolean getCovered() {
     	return covered;
     }
+    
+    public int getStatisticNumber() {
+		return statisticNumber;
+	}
+
+	public void setStatisticNumber(int statisticNumber) {
+		this.statisticNumber = statisticNumber;
+	}
+	
+	public void increaseStatistics() {
+		this.statisticNumber++;
+	}
     
     /**
      *  that every number has 2 digits

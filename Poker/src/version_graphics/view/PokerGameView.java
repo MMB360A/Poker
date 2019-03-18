@@ -124,5 +124,10 @@ public class PokerGameView {
 			v = new PokerGameView(stage, m, multilangModule);
 			return v;
 	}
+
+	public void setStistics(Statistics statistics) {
+		bottom.setStatistics(statistics);
+		
+	}
 	
 }

@@ -9,6 +9,19 @@ import version_graphics.model.Card.Rank;
 public enum HandType {
     HighCard, OnePair, TwoPair, ThreeOfAKind, Straight, Flush, FullHouse, FourOfAKind, StraightFlush, RoyalFlush;
 	
+	private int statisticNumber = 0;
+	
+	public int getStatisticNumber() {
+		return statisticNumber;
+	}
+
+	public void setStatisticNumber(int statisticNumber) {
+		this.statisticNumber = statisticNumber;
+	}
+
+	public void increaseStatistics() {
+		this.statisticNumber++;
+	}
 	
 	/**
      * Determine the value of this hand 

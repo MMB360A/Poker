@@ -10,13 +10,18 @@ import version_graphics.model.Card;
 import version_graphics.model.DeckOfCards;
 import version_graphics.model.Player;
 import version_graphics.model.PokerGameModel;
+import version_graphics.view.ChangePlayerNamesView;
 import version_graphics.view.PlayerPane;
 import version_graphics.view.PokerGameView;
+import version_graphics.view.Statistics;
+import version_graphics.view.StatisticsView;
 import version_graphics.view.MultiLang.ChangeLanguageView;
 
 public class PokerGameController {
 	private PokerGameModel model;
 	private PokerGameView view;
+	private ArrayList<PlayerStatisticsDummie> winners = new ArrayList<PlayerStatisticsDummie>();
+	
 	
 	public PokerGameController(PokerGameModel model, PokerGameView view) {
 		this.model = model;
@@ -25,6 +30,9 @@ public class PokerGameController {
 
 	}
 	
+	/**
+	 * Set all Events of the View
+	 */
 	private void setEvents() {
 		view.getShuffleButton().setOnAction( e -> shuffle() );
 		view.getDealButton().setOnAction( e -> deal() );
@@ -33,6 +41,8 @@ public class PokerGameController {
 		view.getMenu().getAddPlayer().setOnAction(e -> addPlayer());
 		view.getMenu().getRemovePlayer().setOnAction(e -> removePlayer());
 		view.getMenu().getChangeSkin().setOnAction(e -> changeSkin());
+		view.getMenu().getViewStatistics().setOnAction(e -> showStatistics());
+		view.getMenu().getChangeUserName().setOnAction(e -> changePlayerNames());
 		view.getClose().setOnAction(e -> close());
 	}
 
@@ -54,6 +64,7 @@ public class PokerGameController {
      * Deal each player five cards, then evaluate the two hands
      */
     private void deal() {
+    	PokerGame.numberOfGames++;
     	int cardsRequired = PokerGame.NUM_PLAYERS * Player.HAND_SIZE;
     	DeckOfCards deck = model.getDeck();
     	if (cardsRequired <= deck.getCardsRemaining()) {
@@ -68,35 +79,37 @@ public class PokerGameController {
         		p.evaluateHand();
         		PlayerPane pp = view.getPlayerPane(i);
             	pp.updatePlayerDisplay().play();
-
+            	//Statistics:
+    			for(Card c :p.getCards())
+    				c.increaseStatistics();
+    			p.getHandType().increaseStatistics();
         	}
         	//sequence.play();
-
-        	
-        	
     		ArrayList<Player> winners = model.evaluateWinner();
-		if(winners.size() == 1) {	
-    		for(int i = 0; i< view.getPlayerPanes().size(); i++) {
-				PlayerPane pp = view.getPlayerPanes().get(i);
-				if(pp.getPlayer() == winners.get(0)) {
-					pp.setWinner("Winner");
-					winners.get(0).icreaseStatisticWinns();
-					view.getStatistics().addWinner(winners.get(0));
-				}
-			}
-    	}
-		else {
-    		for(Player p : winners) {
-    			for(int i = 0; i< view.getPlayerPanes().size(); i++) {
-    				PlayerPane pp = view.getPlayerPanes().get(i);
-    				if(pp.getPlayer() == p) {
-    					pp.setWinner("Splitt");
-    					p.icreaseStatisticWinns();
-    					view.getStatistics().addWinner(p);
-    				}
-    			}
-    			
+    		for(Player p: winners) this.winners.add(new PlayerStatisticsDummie(p));
+    		if(winners.size() == 1) {	
+				winners.get(0).icreaseStatisticWinns();
+				view.getStatistics().addWinner(new PlayerStatisticsDummie(winners.get(0)));
+	    		for(int i = 0; i< view.getPlayerPanes().size(); i++) {
+					PlayerPane pp = view.getPlayerPanes().get(i);
+					if(pp.getPlayer() == winners.get(0)) {
+						pp.setWinner("Winner");					
+					}
+	    		}
     		}
+    		else {
+	    		for(Player p : winners) {
+	    			p.icreaseStatisticWinns();
+	    			view.getStatistics().addWinner(new PlayerStatisticsDummie(p));
+	    			for(int i = 0; i< view.getPlayerPanes().size(); i++) {
+	    				PlayerPane pp = view.getPlayerPanes().get(i);
+	    				if(pp.getPlayer() == p) {
+	    					pp.setWinner("Splitt");
+	    					
+	    				}
+	    			}
+	    			
+	    		}
 		}
     		
     	} else {
@@ -105,24 +118,52 @@ public class PokerGameController {
     	}
     }
 
+    /**
+     * Open the Language Settings Window and Updates the view in the new Language if needed
+     */
     public void changeLanguage()
 	{
     	ChangeLanguageView clView = view.getMultilangModule().setDefalutLanguage(view.getStage());
     	clView.show();
-    	clView.setOnHidden(e -> {view = view.restart(model); this.setEvents();});
+    	clView.setOnHidden(e -> {
+    		//Restart the VIew with the new Settings
+    		view = view.restart(model);
+    		//Reconnect all ActionEvents to the new View
+    		this.setEvents(); 
+    		//Set the Statistics Table correct
+    		view.getStatistics().setWinners(this.winners);
+    	});
 	}
-    
+    /**
+     * Changes the View form Day to Nightmode and from Nightmode to Daymode
+     */
     private void changeSkin() {
 		PokerGameView.darkthem = !PokerGameView.darkthem;
-		view = view.restart(model); this.setEvents();
+		//Restart the VIew with the new Settings
+		view = view.restart(model);
+		//Reconnect all ActionEvents to the new View
+		this.setEvents(); 
+		//Set the Statistics Table correct
+		view.getStatistics().setWinners(this.winners);
 	}
-
+    
+    /**
+     * Removes the last Player from the Game 
+     */
 	private void removePlayer() {
-		if(PokerGame.NUM_PLAYERS > 2) {
+		if(PokerGame.NUM_PLAYERS > PokerGame.MINNUM_PLAYERS) {
 			PokerGame.NUM_PLAYERS--;
+			//Recreates the Model with the new number of Players
+			ArrayList<Player> savePlayer = (ArrayList<Player>) model.getPlayers().clone();
 			model = new PokerGameModel();
-			view = view.restart(model); 
-			this.setEvents();
+			for(int i = 0; i < savePlayer.size() && i < model.getPlayers().size(); i++)
+				model.setPlayer(i, savePlayer.get(i));
+    		//Restart the VIew with the new Settings
+    		view = view.restart(model);
+    		//Reconnect all ActionEvents to the new View
+    		this.setEvents(); 
+    		//Set the Statistics Table correct
+    		view.getStatistics().setWinners(this.winners);
 		}
 		else {
             Alert alert = new Alert(AlertType.ERROR, view.getMultilangModule().getTranslation("MinPlayers"));
@@ -130,12 +171,24 @@ public class PokerGameController {
 		}            
 	}
 
+	/**
+	 * Adds a Player to the Game
+	 */
 	private void addPlayer() {
-		if(PokerGame.NUM_PLAYERS < 4) {
+		if(PokerGame.NUM_PLAYERS < PokerGame.MAXNUM_PLAYERS) {
 			PokerGame.NUM_PLAYERS++;
+			
+			//Recreates the Model with the new number of Players
+			ArrayList<Player> savePlayer = (ArrayList<Player>) model.getPlayers().clone();
 			model = new PokerGameModel();
-			view = view.restart(model); 
-			this.setEvents();
+			for(int i = 0; i < savePlayer.size() && i < model.getPlayers().size(); i++)
+				model.setPlayer(i, savePlayer.get(i));
+    		//Restart the VIew with the new Settings
+    		view = view.restart(model);
+    		//Reconnect all ActionEvents to the new View
+    		this.setEvents(); 
+    		//Set the Statistics Table correct
+    		view.getStatistics().setWinners(this.winners);
 		}
 		else {
             Alert alert = new Alert(AlertType.ERROR, view.getMultilangModule().getTranslation("MaxPlayers"));
@@ -143,12 +196,53 @@ public class PokerGameController {
 		}            
 	}
 
+	/**
+	 * Shows an Information about the Project and the Author
+	 * @author mibe1
+	 */
 	private void about() {
         Alert alert = new Alert(AlertType.INFORMATION, view.getMultilangModule().getTranslation("programInfo"));
         alert.setHeaderText("");
         alert.showAndWait();
 	}
 	
+	/**
+	 * Opens a new Window to change each Players Name
+	 * @return
+	 */
+	private void changePlayerNames() {
+		ChangePlayerNamesView namesView = new ChangePlayerNamesView(view.getMultilangModule(), model.getPlayers());
+		namesView.initOwner(view.getStage());
+		namesView.getOk().setOnAction(e -> {
+			ArrayList<String> newNames = namesView.getPlayerNames();
+			for(int i = 0; i < model.getPlayers().size(); i++)
+				model.getPlayer(i).setPlayerName(newNames.get(i));
+			namesView.close();
+    		//Restart the VIew with the new Settings
+    		view = view.restart(model);
+    		//Reconnect all ActionEvents to the new View
+    		this.setEvents(); 
+    		//Set the Statistics Table correct
+    		view.getStatistics().setWinners(this.winners);
+		});
+		namesView.getCancel().setOnAction(e ->{
+			namesView.close();
+		});
+		namesView.show();
+	}
+
+	/**
+	 * Opens a new Window and shows some Statistics
+	 */
+	private void showStatistics() {
+		StatisticsView sv = new StatisticsView(view.getMultilangModule(), model);
+		sv.initOwner(view.getStage());
+		sv.show();
+	}
+	
+	/**
+	 * Close the Programm
+	 */
 	private void close() {
 		view.getStage().close();
 	}

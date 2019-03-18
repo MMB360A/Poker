@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Player implements Comparable<Player> {
     public static final int HAND_SIZE = 5;
     
-    private final String playerName; // This is the ID
+    private String playerName; // This is the ID
     private final ArrayList<Card> cards = new ArrayList<>();
     private HandType handType;
     private int totalWinns;
@@ -19,9 +19,13 @@ public class Player implements Comparable<Player> {
 		return totalWinns;
 	}
 
+    
 	public String getPlayerName() {
         return playerName;
     }
+	public void setPlayerName(String name) {
+		this.playerName = name;
+	}
 
     public HandType getHandType() {
 		return handType;
@@ -68,8 +72,19 @@ public class Player implements Comparable<Player> {
     	return handType.evaluateScore(cards) - o.handType.evaluateScore(o.getCards());
     }
 
+	public void setTotalWinns(int totalWinns) {
+		this.totalWinns = totalWinns;
+	}
+
 	public void icreaseStatisticWinns() {
 		this.totalWinns++;
 		
 	}
+
+	@Override
+	public Object clone() throws CloneNotSupportedException {
+		return super.clone();
+	}
+	
+
 }

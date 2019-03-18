@@ -14,6 +14,9 @@ import version_graphics.view.MultiLang.MultiLangModule;
 
 public class PokerGame extends Application {
 	public static int NUM_PLAYERS = 2;
+	public final static int MAXNUM_PLAYERS = 4;
+	public final static int MINNUM_PLAYERS = 2;
+	public static int numberOfGames = 0;
 	PokerGameModel model;
 	PokerGameView view;
 	PokerGameController controller;
