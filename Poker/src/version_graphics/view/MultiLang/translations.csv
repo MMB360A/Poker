@@ -40,3 +40,6 @@ notEnoughCards;Not enough cards - shuffle first;nicht genügend Karten im Deck
 changeUserNames;changeUserNames;Namen ändern
 viewStatistics;Statistics;Statistik
 NumOfPlayers;NumOfPlayers;Spieleranzahl
+statistics;statistics;Statistik
+player;player;Spieler
+hands;Hände;Blätter

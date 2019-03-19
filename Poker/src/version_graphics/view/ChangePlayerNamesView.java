@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -22,30 +23,42 @@ public class ChangePlayerNamesView extends Stage{
 		 super();
 		 BorderPane pane = new BorderPane();
 		 vBoxPlayers = new VBox();
+		 vBoxPlayers.getStyleClass().add("vBox");
 		 	for(Player p : players)  {
 		 		TextField tf = new TextField();
+		 		tf.getStyleClass().add("textfield");
 		 		tf.setText(p.getPlayerName());
-		 		vBoxPlayers.getChildren().add(tf);
+		        Region reg = new Region();
+		        reg.getStyleClass().add("regHeigt");
+		 		vBoxPlayers.getChildren().addAll(tf, reg);
 		 	}
 		 	pane.setCenter(vBoxPlayers);
+		 	pane.getStyleClass().add("root");
 		 	//Control Buttons
+
+	        VBox bottom = new VBox();
 	        HBox buttons = new HBox();
+	        bottom.getStyleClass().add("bottomPane");
 	        ok = new Button(multiLangModule.getTranslation("save"));
-	        //ok.setOnAction( e -> save() );
 	        cancel = new Button(multiLangModule.getTranslation("cancel"));
-	        //ok.setOnAction( e -> cancel() );
-	        buttons.getChildren().addAll(ok, cancel);
+	        Region regCenter = new Region();
+	        regCenter.getStyleClass().add("regCenter");
+	        buttons.getChildren().addAll(ok, regCenter, cancel);
+	        Region regBottom = new Region();
+	        regCenter.getStyleClass().add("regHeigt");
+	        bottom.getChildren().addAll(buttons, regBottom);
+	        buttons.setSpacing(20);
 	        pane.setBottom(buttons);
-		 
-	        Scene scene = new Scene(pane, 230, (multiLangModule.getLanguages().size() * 25 + 100));
-	        //scene.getStylesheets().add(getClass().getResource("multiLang.css").toExternalForm());
+	        
+	        Scene scene = new Scene(pane, 270, (players.size()*50) + 100);
 	        if(PokerGameView.darkthem) scene.getStylesheets().add(getClass().getResource("css\\changeNamesDark.css").toExternalForm());
 	        else scene.getStylesheets().add(getClass().getResource("css\\changeNamesLight.css").toExternalForm());
 	        this.setTitle(multiLangModule.getTranslation("selectLanguage"));
 	        this.setScene(scene);
 	        // Specifies the modality for new window.
 	        this.initModality(Modality.WINDOW_MODAL);
-
+	        this.setResizable(false);
+	       
 	}
 	
 	public Button getOk() {	return ok;}
@@ -53,7 +66,7 @@ public class ChangePlayerNamesView extends Stage{
 	
 	public ArrayList<String> getPlayerNames(){
 		ArrayList<String> names = new ArrayList<String>();
-		for(int i = 0; i < vBoxPlayers.getChildren().size(); i++) 
+		for(int i = 0; i < vBoxPlayers.getChildren().size(); i+= 2) 
 			names.add(((TextField)vBoxPlayers.getChildren().get(i)).getText());
 		return names;
 	}

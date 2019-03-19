@@ -1,0 +1,79 @@
+/*Tab Pane  */
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-background-color: black;
+    
+}
+
+.tab-pane
+{
+    -fx-tab-min-width:90px;
+}
+
+.tab{
+}
+.tab-pane .tab
+{
+    -fx-background-color: #3c3c3c;
+
+}
+
+.tab .tab-label { 
+    -fx-alignment: CENTER;
+    -fx-text-fill: #96b946;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+
+/*Chart Basics */
+.chart {
+	-fx-background-color: #3c3c3c;
+}
+
+
+.chart-title {
+	-fx-text-fill: #96b946;
+}
+.chart-legend {
+	-fx-background-color:  #3c3c3c;
+}
+
+.chart-legend-item{
+    -fx-text-fill: #96b946;
+}
+
+.axis {   
+    -fx-tick-label-fill: #96b946;
+    
+}
+ 
+.axis-tick-mark {
+    -fx-stroke: #96b946; 
+}
+.axis-minor-tick-mark {
+    -fx-stroke: transparent;
+}
+
+/*Pie Chart Players */
+.chart-pie-label {
+    -fx-fill: #96b946;
+}
+
+.default-color0.chart-pie { -fx-pie-color: #00ffff; }
+.default-color1.chart-pie { -fx-pie-color:  #7cfc00; }
+.default-color2.chart-pie { -fx-pie-color: #87cefa; }
+.default-color3.chart-pie { -fx-pie-color: #ee82ee; }
+.default-color4.chart-pie { -fx-pie-color: #ff5700; }
+
+/*Bar Chart Hands */
+.chart-bar {
+    -fx-background-color: #96b946;
+}
+.chart-plot-background {
+    -fx-background-color:#3c3c3c;
+}
+.chart-vertical-grid-lines {
+    -fx-stroke: #96b946;
+}
+.chart-horizontal-grid-lines {
+    -fx-stroke: #96b946;
+}
