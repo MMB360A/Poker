@@ -31,11 +31,7 @@ public class PokerGame extends Application {
     	Locale locale = Locale.getDefault();
     	String lang = locale.getDisplayLanguage();
     	MultiLangModule multiLangModule = new MultiLangModule("English");
-    	if(multiLangModule.getLanguages().contains(lang)) multiLangModule.setDefalutLanguage(lang);
-    	
-    	//Disable windows default bar
-    	primaryStage.initStyle(StageStyle.UNDECORATED);
-    	
+    	if(multiLangModule.getLanguages().contains(lang)) multiLangModule.setDefalutLanguage(lang);  	
     	// Create and initialize the MVC components
     	model = new PokerGameModel();
     	view = new PokerGameView(primaryStage, model, multiLangModule);

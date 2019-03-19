@@ -1,6 +1,4 @@
-package version_graphics.controller;
-
-import version_graphics.model.Player;
+package version_graphics.model;
 
 public class PlayerStatisticsDummie {
 	

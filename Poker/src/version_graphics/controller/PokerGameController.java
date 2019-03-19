@@ -9,6 +9,7 @@ import version_graphics.PokerGame;
 import version_graphics.model.Card;
 import version_graphics.model.DeckOfCards;
 import version_graphics.model.Player;
+import version_graphics.model.PlayerStatisticsDummie;
 import version_graphics.model.PokerGameModel;
 import version_graphics.view.ChangePlayerNamesView;
 import version_graphics.view.PlayerPane;
@@ -43,7 +44,6 @@ public class PokerGameController {
 		view.getMenu().getChangeSkin().setOnAction(e -> changeSkin());
 		view.getMenu().getViewStatistics().setOnAction(e -> showStatistics());
 		view.getMenu().getChangeUserName().setOnAction(e -> changePlayerNames());
-		view.getClose().setOnAction(e -> close());
 	}
 
 	/**
@@ -238,12 +238,5 @@ public class PokerGameController {
 		StatisticsView sv = new StatisticsView(view.getMultilangModule(), model);
 		sv.initOwner(view.getStage());
 		sv.show();
-	}
-	
-	/**
-	 * Close the Programm
-	 */
-	private void close() {
-		view.getStage().close();
 	}
 }

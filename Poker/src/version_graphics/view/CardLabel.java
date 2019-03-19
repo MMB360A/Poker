@@ -30,7 +30,7 @@ public class CardLabel extends Label {
 			}
 		else {
 			if(PokerGameView.darkthem)this.setStyle("-fx-background-color: black");
-			else this.setStyle("-fx-background-color: darkGreen");
+			else this.setStyle("-fx-background-color: #228B22");
 			this.setGraphic(null);
 		}
 	}

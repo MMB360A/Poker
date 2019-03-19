@@ -1,57 +1,45 @@
+/* This is the Dark Color Styling Class of the Poker Mainview-------------------- */
+/* Basicstyling is made in the MainStylesheets */
+/*Basics ------------------------------------------------------------------ */
 .label {
-  	-fx-text-fill: white;
+  	-fx-text-fill: #96b946;
 }
-
+.root{
+	-fx-background-color: darkred ;
+}
+/*------------------------------------------------------------------------- */
+/*Menu is a diferent style sheet */
+/*Player panes with cards-------------------------------------------------- */
+.player {
+    -fx-background-color:black;
+}
+/*--------------------------------------------------------------------------------------------- */
+/*Field with Casino Label ----------------------------------------------------------------------*/
+.casinoLabel {
+  	-fx-text-fill: gold; 	
+}
+/*--------------------------------------------------------------------------------------------- */
+/*Control Area with BUttons and Statistics, the Decklabel is a Card --------------------------- */
 #controlArea {
     -fx-border-color: darkred;
     -fx-background-color: black;
 }
-
-.controlButton{
-    -fx-border-color: white;
-    -fx-background-color: Black;
-    -fx-text-fill: White;
+.button {
+	-fx-border-color: #96b946;
+    -fx-background-color: #3c3c3c;
+    -fx-text-fill: #96b946;
 }
-
-
-.deckOfCards{
+.button:hover {
+	-fx-border-color: white;
+    -fx-background-color: #4d4d4d;
+    -fx-text-fill: white;
 }
-
-.root{
-	-fx-background-color: darkred ;
-}
-
-.field {
-}
-
-.player {
-    -fx-border-color: darkred;
-    -fx-background-color:black;
-}
-
 .statistics{
-	  -fx-border-color: darkred;
      -fx-background-color: black;
-     -fx-text-fill: white;
+     -fx-text-fill: #96b946;
 }
 .statisticsCol{
      -fx-background-color: black;
-     -fx-text-fill: white;
+     -fx-text-fill: #96b946;
 }
-
-
-.handsList {
-
-}
-
-
-.top {
-	-fx-background-color: black;
-}
-.close{
-	-fx-background-color: black;
-}
-
-.close:hover {
-	-fx-background-color: red;
-}
+/*---------------------------------------------------------------------------------------------- */

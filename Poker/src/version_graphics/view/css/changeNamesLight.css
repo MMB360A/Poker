@@ -1,0 +1,40 @@
+/*Window Background */
+.root {
+		-fx-background-color: #f5f5f5;
+}
+/*Player Textfields */
+.textfield{
+	 -fx-text-fill: black;
+	 -fx-background-color: #e5e5e5;
+	 -fx-min-width: 50px;
+	-fx-max-width: 150px;
+}
+
+.vBox {
+	-fx-alignment: center;
+}
+
+/*Bottom are */
+.bottomPane {
+		-fx-alignment: center;
+		-fx-max-width: 270px;
+
+}
+
+
+.regCenter {
+		-fx-max-width: 75px;
+		-fx-min-width: 75px;
+}
+
+.regHeigt {
+    -fx-min-height: 20px;
+    -fx-max-height: 20px;
+}
+
+.button {
+	-fx-background-color: #e5e5e5;
+	-fx-text-fill: black;
+	-fx-max-width: 75;
+	-fx-min-width: 75;
+}

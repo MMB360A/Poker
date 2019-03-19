@@ -1,60 +1,45 @@
-
-#controlArea {
-    -fx-border-color: gold;
+/* This is the Dark Color Styling Class of the Poker Mainview-------------------- */
+/* Basicstyling is made in the MainStylesheets */
+/*Basics ------------------------------------------------------------------ */
+.label {
+  	-fx-text-fill: 	#FFFF00;
 }
-
-.controlButton{
-    -fx-border-color: gold;
-    -fx-background-color: Darkgreen ;
-    -fx-text-fill: gold;
-
-}
-
-
-.deckOfCards{
-}
-
 .root{
-	-fx-background-color: Darkgreen;
+	-fx-background-color: #008000 ;
 }
-
-.field {
-}
-
+/*------------------------------------------------------------------------- */
+/*Menu is a diferent style sheet */
+/*Player panes with cards-------------------------------------------------- */
 .player {
-    -fx-border-color: green;
-    -fx-background-color:forestgreen ;
+    -fx-background-color:#228B22;
 }
-.widthSpace{
+/*--------------------------------------------------------------------------------------------- */
+/*Field with Casino Label ----------------------------------------------------------------------*/
+.casinoLabel {
+  	-fx-text-fill: gold; 	
 }
-.heightSpace{
+/*--------------------------------------------------------------------------------------------- */
+/*Control Area with BUttons and Statistics, the Decklabel is a Card --------------------------- */
+#controlArea {
+    -fx-border-color: #008000;
+    -fx-background-color: #228B22;
 }
-.card {
+.button {
+	-fx-border-color: 	#FFFF00;
+    -fx-background-color: #3c3c3c;
+    -fx-text-fill: 	#FFFF00;
 }
-
-.cardSpace {
+.button:hover {
+	-fx-border-color: #FFFF00;
+    -fx-background-color: #4d4d4d;
+    -fx-text-fill: #FFFF00;
 }
-
 .statistics{
-	  -fx-border-color: green;
-     -fx-background-color: forestgreen ;
-     -fx-text-fill: Black;
+     -fx-background-color: #228B22;
+     -fx-text-fill: 	#FFFF00;
 }
 .statisticsCol{
-     -fx-background-color: forestgreen ;
-     -fx-text-fill: Black;
-     -fx-min-width: 120px;
+     -fx-background-color: #228B22;
+     -fx-text-fill: 	#FFFF00;
 }
-
-
-.handsList {
-	-fx-max-height: 260px;
-
-}
-
-.top {
-	-fx-background-color: forestgreen ;
-}
-.close{
-	-fx-background-color: forestgreen ;
-}
+/*---------------------------------------------------------------------------------------------- */

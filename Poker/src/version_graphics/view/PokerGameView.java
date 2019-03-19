@@ -35,7 +35,6 @@ public class PokerGameView {
 	private CenterArea center;
 	private BottomArea bottom;
 	private MenuArea menu;
-	private Button close;
 	private MultiLangModule multilangModule;
 	private Stage stage;
 	public PokerGameView(Stage stage, PokerGameModel model, MultiLangModule multilangModule) {
@@ -43,27 +42,16 @@ public class PokerGameView {
 		this.stage = stage;
 		this.multilangModule = multilangModule;
 		
-		//Close Button
-		close = new Button();
-		close.getStyleClass().add("close");
-		Image i = new Image(this.getClass().getClassLoader().getResourceAsStream("images\\close.png"));
-		ImageView imv = new ImageView(i);		
-		close.setGraphic(imv);
 		//Top Pane with menu and close Button
 		menu = new MenuArea(multilangModule);
-		BorderPane top = new BorderPane();
-		top.setLeft(menu);
-		top.setRight(close);
-		top.getStyleClass().add("top");
 		
 		center = new CenterArea(model, multilangModule);
 		bottom = new BottomArea(model, multilangModule);
 		// Put players and controls into a BorderPane
 		BorderPane root = new BorderPane();
-		root.setTop(top);
+		root.setTop(menu);
 		root.setCenter(center);
 		root.setBottom(bottom );
-		root.getStyleClass().add("root");
 		// Disallow resizing - which is difficult to get right with images
 		stage.setResizable(false);
         // Create the scene using our layout; then display it
@@ -80,10 +68,6 @@ public class PokerGameView {
         Image image = new Image(this.getClass().getClassLoader().getResourceAsStream("images\\icon.png"));
         stage.getIcons().add(image);
         stage.show();		
-	}
-	
-	public Button getClose() {
-		return close;
 	}
 
 	public Stage getStage() {

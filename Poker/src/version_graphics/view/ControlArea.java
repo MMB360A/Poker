@@ -28,9 +28,7 @@ public class ControlArea extends BorderPane{
     	vBoxDeck = new DeckLabel(btnDeal, multilangModule);
         btnShuffle.setText(multilangModule.getTranslation("Shuffle"));
         btnDeal.setText(multilangModule.getTranslation("Deal"));
-    	vBoxDeck.setId("controlDeckLabel");
-    	btnShuffle.getStyleClass().add("controlButton");
-    	btnDeal.getStyleClass().add("controlButton");
+
     	
     	this.setLeft(btnShuffle);
     	this.setCenter(vBoxDeck);

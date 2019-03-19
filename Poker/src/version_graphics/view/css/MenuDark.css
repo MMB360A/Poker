@@ -1,11 +1,30 @@
-.MenuBar{
-	-fx-background-color: Black;
+.menu-bar{
+	-fx-background-color: #3c3c3c;
 }
-.Menu{
-	-fx-background-color: Black;
+.menu{
+	-fx-background-color: transparent;
 	
 }
-
-.MenuItem{
-	-fx-background-color: Black;
+.menu .label {
+    -fx-text-fill: #96b946;
 }
+
+.menu:hover,
+.menu:showing, /* selects Menu in MenuBar, if shown */
+.menu-item:focused {
+    -fx-background-color: #4d4d4d;
+}
+
+.context-menu {
+    -fx-background-color: #3c3c3c;
+}
+
+.menu-item .label {
+    -fx-text-fill: #96b946;
+}
+
+.menu-item:focused {
+     -fx-background-color: #4d4d4d;
+}
+
+

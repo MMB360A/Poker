@@ -6,8 +6,8 @@ import javafx.scene.Node;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import version_graphics.controller.PlayerStatisticsDummie;
 import version_graphics.model.Player;
+import version_graphics.model.PlayerStatisticsDummie;
 import version_graphics.view.MultiLang.MultiLangModule;
 
 public class Statistics extends TableView  implements Cloneable{
