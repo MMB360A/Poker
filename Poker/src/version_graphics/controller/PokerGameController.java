@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javafx.animation.SequentialTransition;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.util.Duration;
 import version_graphics.PokerGame;
 import version_graphics.model.Card;
 import version_graphics.model.DeckOfCards;
@@ -55,6 +56,7 @@ public class PokerGameController {
     		p.discardHand();
     		PlayerPane pp = view.getPlayerPane(i);
     		pp.updatePlayerDisplay();
+
     	}
 
     	model.getDeck().shuffle();
@@ -64,11 +66,11 @@ public class PokerGameController {
      * Deal each player five cards, then evaluate the two hands
      */
     private void deal() {
+    	this.shuffle();
+    	view.getDealButton().setDisable(true);
     	PokerGame.numberOfGames++;
     	int cardsRequired = PokerGame.NUM_PLAYERS * Player.HAND_SIZE;
     	DeckOfCards deck = model.getDeck();
-    	if (cardsRequired <= deck.getCardsRemaining()) {
-    		SequentialTransition sequence = new SequentialTransition();
         	for (int i = 0; i < PokerGame.NUM_PLAYERS; i++) {
         		Player p = model.getPlayer(i);
         		p.discardHand();
@@ -78,13 +80,14 @@ public class PokerGameController {
         		}
         		p.evaluateHand();
         		PlayerPane pp = view.getPlayerPane(i);
-            	pp.updatePlayerDisplay().play();
+        		SequentialTransition sequence = pp.updatePlayerDisplay();
+        		sequence.setDelay(new Duration(i * 5000 + 1));
+            	sequence.play();
             	//Statistics:
     			for(Card c :p.getCards())
     				c.increaseStatistics();
     			p.getHandType().increaseStatistics();
         	}
-        	//sequence.play();
     		ArrayList<Player> winners = model.evaluateWinner();
     		for(Player p: winners) this.winners.add(new PlayerStatisticsDummie(p));
     		if(winners.size() == 1) {	
@@ -111,11 +114,7 @@ public class PokerGameController {
 	    			
 	    		}
 		}
-    		
-    	} else {
-            Alert alert = new Alert(AlertType.ERROR, view.getMultilangModule().getTranslation("notEnoughCards"));
-            alert.showAndWait();
-    	}
+    		//view.getDealButton().setDisable(false);
     }
 
     /**
@@ -126,7 +125,7 @@ public class PokerGameController {
     	ChangeLanguageView clView = view.getMultilangModule().setDefalutLanguage(view.getStage());
     	clView.show();
     	clView.setOnHidden(e -> {
-    		//Restart the VIew with the new Settings
+    		//Restart the View with the new Settings
     		view = view.restart(model);
     		//Reconnect all ActionEvents to the new View
     		this.setEvents(); 
