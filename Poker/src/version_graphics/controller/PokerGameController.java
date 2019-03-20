@@ -1,7 +1,6 @@
 package version_graphics.controller;
 
 import java.util.ArrayList;
-
 import javafx.animation.SequentialTransition;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -15,7 +14,6 @@ import version_graphics.model.PokerGameModel;
 import version_graphics.view.ChangePlayerNamesView;
 import version_graphics.view.PlayerPane;
 import version_graphics.view.PokerGameView;
-import version_graphics.view.Statistics;
 import version_graphics.view.StatisticsView;
 import version_graphics.view.MultiLang.ChangeLanguageView;
 
@@ -71,6 +69,7 @@ public class PokerGameController {
     	PokerGame.numberOfGames++;
     	int cardsRequired = PokerGame.NUM_PLAYERS * Player.HAND_SIZE;
     	DeckOfCards deck = model.getDeck();
+    	double d = 0;
         	for (int i = 0; i < PokerGame.NUM_PLAYERS; i++) {
         		Player p = model.getPlayer(i);
         		p.discardHand();
@@ -81,7 +80,8 @@ public class PokerGameController {
         		p.evaluateHand();
         		PlayerPane pp = view.getPlayerPane(i);
         		SequentialTransition sequence = pp.updatePlayerDisplay();
-        		sequence.setDelay(new Duration(i * 5000 + 1));
+        		d = i * 5000;
+        		sequence.setDelay(new Duration(d));
             	sequence.play();
             	//Statistics:
     			for(Card c :p.getCards())
@@ -113,8 +113,11 @@ public class PokerGameController {
 	    			}
 	    			
 	    		}
+
 		}
-    		//view.getDealButton().setDisable(false);
+
+				//view.getDealButton().setDisable(false);
+    		
     }
 
     /**
