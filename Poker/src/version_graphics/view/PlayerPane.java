@@ -70,26 +70,31 @@ public class PlayerPane extends VBox {
     		if (player.getCards().size() > i) card = player.getCards().get(i);
     		CardLabel cl = (CardLabel) cards.get(i);
     		cl.setCard(card);
-    		HandType evaluation = player.evaluateHand();
-    		if (evaluation != null)
-    			lblEvaluation.setText(multilangModule.getTranslation(evaluation.toString()));
-    		else
-    			lblEvaluation.setText("--");
-    		Bounds boundsInScene = cl.localToScene(cl.getBoundsInLocal());
-    		int centralXPos = (int) ((boundsInScene.getMaxX() + boundsInScene.getMinX()) /2);
-    		PathElement pe1;
-    		 pe1	= new MoveTo(748 -  centralXPos,494);
-	    	PathElement pe2 = new LineTo(cl.getScaleX() + 55, cl.getScaleY() + 80); 
-	    	Path path = new Path();
-	    	path.getElements().add(pe1);
-	    	path.getElements().add(pe2);
-	    	PathTransition move = new PathTransition(Duration.millis(1000), path, cl);
-	    	sequence.getChildren().add(move);
-	    	
+    		sequence.getChildren().add(cl.getMove(748, 494));	    	
     	}
-
     	return sequence;
     }
+    
+    public void setevaluateText(String s) {
+		//if (evaluation != null)
+			lblEvaluation.setText(multilangModule.getTranslation(s));
+		//else
+			//lblEvaluation.setText("--");
+    }
+    
+    public ParallelTransition removeAllCards() {
+    	ParallelTransition p = new ParallelTransition();
+    	for (int i = 0; i < Player.HAND_SIZE; i++) {
+    		Card card = null;
+    		if (player.getCards().size() > i) card = player.getCards().get(i);
+    		CardLabel cl = (CardLabel) cards.get(i);
+    		cl.setCard(card);
+    		p.getChildren().add(cl.getReverseMove(748, 494));
+    	}
+    	lblEvaluation.setText("--");
+    	return p;
+    }
+    
     
     public void setWinner(String message) {
     	lblEvaluation.setText(lblEvaluation.getText()+ "  " + multilangModule.getTranslation(message));

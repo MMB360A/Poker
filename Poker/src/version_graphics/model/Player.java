@@ -53,7 +53,7 @@ public class Player implements Comparable<Player> {
      * then evaluate it.
      */
     public HandType evaluateHand() {
-        if (handType == null && cards.size() == HAND_SIZE) {
+    	if (handType == null && cards.size() == HAND_SIZE) {
             handType = HandType.evaluateHand(cards);
         }
         return handType;
@@ -64,7 +64,6 @@ public class Player implements Comparable<Player> {
      */
     @Override
     public int compareTo(Player o) {
-
         return (int) (handType.evaluateScore(cards) - o.handType.evaluateScore(o.getCards()));
     }
     

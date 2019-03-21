@@ -1,6 +1,8 @@
 package version_graphics.controller;
 
 import java.util.ArrayList;
+
+import javafx.animation.ParallelTransition;
 import javafx.animation.SequentialTransition;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -8,6 +10,7 @@ import javafx.util.Duration;
 import version_graphics.PokerGame;
 import version_graphics.model.Card;
 import version_graphics.model.DeckOfCards;
+import version_graphics.model.HandType;
 import version_graphics.model.Player;
 import version_graphics.model.PlayerStatisticsDummie;
 import version_graphics.model.PokerGameModel;
@@ -51,12 +54,13 @@ public class PokerGameController {
     private void shuffle() {
     	for (int i = 0; i < PokerGame.NUM_PLAYERS; i++) {
     		Player p = model.getPlayer(i);
-    		p.discardHand();
     		PlayerPane pp = view.getPlayerPane(i);
-    		pp.updatePlayerDisplay();
-
+    		ParallelTransition trans =  pp.removeAllCards();
+    		trans.play();
+    		trans.setOnFinished(e-> {p.discardHand();});
+    		
     	}
-
+    	
     	model.getDeck().shuffle();
     }
     
@@ -64,60 +68,57 @@ public class PokerGameController {
      * Deal each player five cards, then evaluate the two hands
      */
     private void deal() {
-    	this.shuffle();
-    	view.getDealButton().setDisable(true);
+    	if(model.getDeck().getCardsRemaining() < 52)this.shuffle();
+    	
+    	/*view.getDealButton().setDisable(true);
+    	view.getShuffleButton().setDisable(true);
+    	view.getMenu().setDisable(true);*/
     	PokerGame.numberOfGames++;
-    	int cardsRequired = PokerGame.NUM_PLAYERS * Player.HAND_SIZE;
     	DeckOfCards deck = model.getDeck();
     	double d = 0;
-        	for (int i = 0; i < PokerGame.NUM_PLAYERS; i++) {
-        		Player p = model.getPlayer(i);
-        		p.discardHand();
-        		for (int j = 0; j < Player.HAND_SIZE; j++) {
-        			Card card = deck.dealCard();
-        			p.addCard(card);
-        		}
-        		p.evaluateHand();
-        		PlayerPane pp = view.getPlayerPane(i);
-        		SequentialTransition sequence = pp.updatePlayerDisplay();
-        		d = i * 5000;
-        		sequence.setDelay(new Duration(d));
-            	sequence.play();
-            	//Statistics:
-    			for(Card c :p.getCards())
-    				c.increaseStatistics();
-    			p.getHandType().increaseStatistics();
+    	SequentialTransition lastSequence = new SequentialTransition();
+        for (int i = 0; i < PokerGame.NUM_PLAYERS; i++) {
+        	Player p = model.getPlayer(i);
+        	
+        	p.discardHand();
+        	for (int j = 0; j < Player.HAND_SIZE; j++) {
+        		
+        		Card card = deck.dealCard();
+        		p.addCard(card);
         	}
-    		ArrayList<Player> winners = model.evaluateWinner();
-    		for(Player p: winners) this.winners.add(new PlayerStatisticsDummie(p));
-    		if(winners.size() == 1) {	
+        	
+        	PlayerPane pp = view.getPlayerPane(i);
+        	lastSequence = pp.updatePlayerDisplay();
+        	d = i * 5000 + 50;
+        	lastSequence.setDelay(new Duration(d));
+        	//lastSequence.setOnFinished(e->{
+        		pp.setevaluateText(p.evaluateHand().toString());
+            	p.getHandType().increaseStatistics();
+        		
+        	//});
+
+    		lastSequence.play();
+        }
+        /*lastSequence.setOnFinished(e->{       	
+        	//astSequence.
+        	ArrayList<Player> winners = model.evaluateWinner();
+    		for(Player p: winners) {
+	    		this.winners.add(new PlayerStatisticsDummie(p));
+	    		String text = "Winner";
+	    		if(winners.size() > 1) text ="Splitt";
 				winners.get(0).icreaseStatisticWinns();
 				view.getStatistics().addWinner(new PlayerStatisticsDummie(winners.get(0)));
-	    		for(int i = 0; i< view.getPlayerPanes().size(); i++) {
+		    	for(int i = 0; i< view.getPlayerPanes().size(); i++) {
 					PlayerPane pp = view.getPlayerPanes().get(i);
-					if(pp.getPlayer() == winners.get(0)) {
-						pp.setWinner("Winner");					
+					if(pp.getPlayer() == p) {
+						pp.setWinner(text);					
 					}
-	    		}
+		    	}
     		}
-    		else {
-	    		for(Player p : winners) {
-	    			p.icreaseStatisticWinns();
-	    			view.getStatistics().addWinner(new PlayerStatisticsDummie(p));
-	    			for(int i = 0; i< view.getPlayerPanes().size(); i++) {
-	    				PlayerPane pp = view.getPlayerPanes().get(i);
-	    				if(pp.getPlayer() == p) {
-	    					pp.setWinner("Splitt");
-	    					
-	    				}
-	    			}
-	    			
-	    		}
-
-		}
-
-				//view.getDealButton().setDisable(false);
-    		
+			view.getDealButton().setDisable(false);
+	    	view.getShuffleButton().setDisable(false);
+	    	view.getMenu().setDisable(false);
+       });*/
     }
 
     /**
