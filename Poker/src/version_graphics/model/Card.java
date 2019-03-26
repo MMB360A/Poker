@@ -1,5 +1,9 @@
 package version_graphics.model;
-
+/**
+ * 
+ * @author mibe1, Richards Bradley
+ *Data Class of a Card
+ */
 public class Card implements Comparable<Object>{
 	public enum Suit {Clubs, Diamonds, Hearts, Spades;
         @Override
@@ -38,7 +42,7 @@ public class Card implements Comparable<Object>{
     private final Rank rank;
     
     
-    public Card(Suit suit, Rank rank, boolean covered) {
+    public Card(Suit suit, Rank rank) {
     	this.suit = suit;
         this.rank = rank;
     }
@@ -52,7 +56,7 @@ public class Card implements Comparable<Object>{
     }
     
     /**
-     *  that every number has 2 digits
+     *  that every number has 2 digits used for the tiebreaks
      * @return The CardScore as String
      */
     public String getRankAsScore() {

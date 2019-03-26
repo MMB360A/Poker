@@ -11,11 +11,18 @@ import version_graphics.controller.PokerGameController;
 import version_graphics.model.PokerGameModel;
 import version_graphics.view.PokerGameView;
 import version_graphics.view.MultiLang.MultiLangModule;
-
+/**
+ * 
+ * @author mibe1, Richards Bradley
+ *Main Class , Start point of the Application contains main method and JavaFX Stat method
+ */
 public class PokerGame extends Application {
+	//Default number of playera
 	public static int NUM_PLAYERS = 2;
+	//Set a maximum and a minimum of possible players in the game
 	public final static int MAXNUM_PLAYERS = 4;
 	public final static int MINNUM_PLAYERS = 2;
+	//num of played games
 	public static int numberOfGames = 0;
 	PokerGameModel model;
 	PokerGameView view;

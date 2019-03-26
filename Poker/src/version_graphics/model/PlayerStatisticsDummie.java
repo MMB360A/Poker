@@ -1,4 +1,9 @@
 package version_graphics.model;
+/**
+ * Dummy class to save the winners for the statistics on restarting the model / view
+ * @author mibe1
+ * TODO Translation here?
+ */
 
 public class PlayerStatisticsDummie {
 	

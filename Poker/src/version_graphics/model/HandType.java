@@ -5,10 +5,14 @@ import java.util.Collections;
 import java.util.List;
 import version_graphics.model.Card.Rank;
 
-
+/**
+ * 
+ * @author mibe1, Richards Bradley
+ *To fully understand the Handevaluation please check the logic documentation of this class and not just the comments
+ */
 public enum HandType {
     HighCard, OnePair, TwoPair, ThreeOfAKind, Straight, Flush, FullHouse, FourOfAKind, StraightFlush, RoyalFlush;
-	
+	//How often was this Handtype evaluated during the game? This number is used for the statistics
 	private int statisticNumber = 0;
 	
 	public int getStatisticNumber() {
@@ -25,23 +29,33 @@ public enum HandType {
 	
 	/**
      * Determine the value of this hand 
+     * This method only works with a Arraylist with exactly 5 Cards
+	 * @throws WrongHandException throws exception when the cards arrazList is null, to small or to big
      */
-    public static HandType evaluateHand(ArrayList<Card> cards) {
-        HandType currentEval = HighCard;
-        ArrayList<Card> sortedCards =(ArrayList<Card>) cards.clone();
-        Collections.sort(sortedCards);
-        if (isOnePair(sortedCards)) currentEval = OnePair;
-        if (isTwoPair(sortedCards)) currentEval = TwoPair;
-        if (isThreeOfAKind(sortedCards)) currentEval = ThreeOfAKind;
-        if (isStraight(sortedCards)) currentEval = Straight;
-        if (isFlush(sortedCards)) currentEval = Flush;
-        if (isFullHouse(sortedCards)) currentEval = FullHouse;
-        if (isFourOfAKind(sortedCards)) currentEval = FourOfAKind;
-        if (isStraightFlush(sortedCards)) currentEval = StraightFlush;
-        if (isRoyalFlush(sortedCards)) currentEval = RoyalFlush;
-        return currentEval;
+    public static HandType evaluateHand(ArrayList<Card> cards) throws WrongHandException {
+        if(cards == null || cards.size() != 5) {
+        	throw new WrongHandException("cards is null or does not have the size 5"); 
+        }
+        else {
+        	for(Card c : cards) if(c == null)throw new WrongHandException("One of the Cards is null"); 
+	    	HandType currentEval = HighCard;
+	        //Clone and sort the Cards so it is simpiert to evaluate the Handtype
+	        ArrayList<Card> sortedCards =(ArrayList<Card>) cards.clone();
+	        Collections.sort(sortedCards);
+	        if (isOnePair(sortedCards)) currentEval = OnePair;
+	        if (isTwoPair(sortedCards)) currentEval = TwoPair;
+	        if (isThreeOfAKind(sortedCards)) currentEval = ThreeOfAKind;
+	        if (isStraight(sortedCards)) currentEval = Straight;
+	        if (isFlush(sortedCards)) currentEval = Flush;
+	        if (isFullHouse(sortedCards)) currentEval = FullHouse;
+	        if (isFourOfAKind(sortedCards)) currentEval = FourOfAKind;
+	        if (isStraightFlush(sortedCards)) currentEval = StraightFlush;
+	        if (isRoyalFlush(sortedCards)) currentEval = RoyalFlush;
+	        return currentEval;
+        }
     }
-    
+  
+//-------------------------------------------------Check the Handtypes------------------------------------------------------------------
     private static boolean isOnePair(ArrayList<Card> cards) {
         boolean found = false;
         for (int i = 1; i < cards.size() && !found; i++) 
@@ -106,13 +120,14 @@ public enum HandType {
     private static boolean isRoyalFlush(ArrayList<Card> cards) {
 		return (isStraightFlush(cards) && cards.get(0).getRank() == Rank.Ten);
 	}
-
+//------------------------------------------------------------------------------------------------------------------------------------------------------
 
     /**
      * Evaluates a Score of the hand. This score is based on the handType and every card. - This score is used to
      * evalutate the winner(s) 
      * @param cards all Cards of the Hand
      * @return Score of the hand as long
+     * The exact evaluation of the Score is explained in the handtype documentation
      */
 	public long evaluateScore( ArrayList<Card> cards) {
 		ArrayList<Card> sortedCards =(ArrayList<Card>) cards.clone();

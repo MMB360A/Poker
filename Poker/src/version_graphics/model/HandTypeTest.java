@@ -13,6 +13,7 @@ public class HandTypeTest {
 	// Another method takes a set of five cards, and translates the whole hand
 	//
 	// Yet another method does this for a whole set of hands
+	//TODO recheck all tests and rewrite if needed, kill errors
 	private static String[][] highCards = {
 			{ "2S", "9C", "3H", "5D", "7H" },
 			{ "7S", "5C", "AH", "JD", "6H" },
@@ -121,318 +122,181 @@ public class HandTypeTest {
 	 * be true, all TwoPair hands to be true, etc.
 	 */
 	@Test
-	public void testIsOnePair() {
+	public void testHandEvaluation() {
 		for (ArrayList<Card> hand : highCardHands) {
-			assertFalse(HandType.evaluateHand(hand) == HandType.OnePair);
+			try {
+				assertTrue(HandType.evaluateHand(hand) == HandType.HighCard);
+				assertFalse(HandType.evaluateHand(hand) == HandType.OnePair);
+				assertFalse(HandType.evaluateHand(hand) == HandType.TwoPair);
+				assertFalse(HandType.evaluateHand(hand) == HandType.ThreeOfAKind);
+				assertFalse(HandType.evaluateHand(hand) == HandType.Flush);
+				assertFalse(HandType.evaluateHand(hand) == HandType.Straight);
+				assertFalse(HandType.evaluateHand(hand) == HandType.FullHouse);
+				assertFalse(HandType.evaluateHand(hand) == HandType.FourOfAKind);
+				assertFalse(HandType.evaluateHand(hand) == HandType.StraightFlush);
+				assertFalse(HandType.evaluateHand(hand) == HandType.RoyalFlush);
+			} catch (WrongHandException e) {
+				e.printStackTrace();
+				fail();
+			}
 		}
 		for (ArrayList<Card> hand : pairHands) {
-			assertTrue(HandType.evaluateHand(hand) == HandType.OnePair);
+			try {
+				assertFalse(HandType.evaluateHand(hand) == HandType.HighCard);
+				assertTrue(HandType.evaluateHand(hand) == HandType.OnePair);
+				assertFalse(HandType.evaluateHand(hand) == HandType.TwoPair);
+				assertFalse(HandType.evaluateHand(hand) == HandType.ThreeOfAKind);
+				assertFalse(HandType.evaluateHand(hand) == HandType.Flush);
+				assertFalse(HandType.evaluateHand(hand) == HandType.Straight);
+				assertFalse(HandType.evaluateHand(hand) == HandType.FullHouse);
+				assertFalse(HandType.evaluateHand(hand) == HandType.FourOfAKind);
+				assertFalse(HandType.evaluateHand(hand) == HandType.StraightFlush);
+				assertFalse(HandType.evaluateHand(hand) == HandType.RoyalFlush);
+			} catch (WrongHandException e) {
+				e.printStackTrace();
+				fail();
+			}
 		}
 		for (ArrayList<Card> hand : twoPairHands) {
-			assertFalse(HandType.evaluateHand(hand) == HandType.OnePair);
+			try {
+				assertFalse(HandType.evaluateHand(hand) == HandType.HighCard);
+				assertFalse(HandType.evaluateHand(hand) == HandType.OnePair);
+				assertTrue(HandType.evaluateHand(hand) == HandType.TwoPair);
+				assertFalse(HandType.evaluateHand(hand) == HandType.ThreeOfAKind);
+				assertFalse(HandType.evaluateHand(hand) == HandType.Flush);
+				assertFalse(HandType.evaluateHand(hand) == HandType.Straight);
+				assertFalse(HandType.evaluateHand(hand) == HandType.FullHouse);
+				assertFalse(HandType.evaluateHand(hand) == HandType.FourOfAKind);
+				assertFalse(HandType.evaluateHand(hand) == HandType.StraightFlush);
+				assertFalse(HandType.evaluateHand(hand) == HandType.RoyalFlush);
+			} catch (WrongHandException e) {
+				e.printStackTrace();
+				fail();
+			}
 		}
 		for (ArrayList<Card> hand : threeOfAKindHands) {
-			assertFalse(HandType.evaluateHand(hand) == HandType.OnePair);
+			try {
+				assertFalse(HandType.evaluateHand(hand) == HandType.HighCard);
+				assertFalse(HandType.evaluateHand(hand) == HandType.OnePair);
+				assertFalse(HandType.evaluateHand(hand) == HandType.TwoPair);
+				assertTrue(HandType.evaluateHand(hand) == HandType.ThreeOfAKind);
+				assertFalse(HandType.evaluateHand(hand) == HandType.Flush);
+				assertFalse(HandType.evaluateHand(hand) == HandType.Straight);
+				assertFalse(HandType.evaluateHand(hand) == HandType.FullHouse);
+				assertFalse(HandType.evaluateHand(hand) == HandType.FourOfAKind);
+				assertFalse(HandType.evaluateHand(hand) == HandType.StraightFlush);
+				assertFalse(HandType.evaluateHand(hand) == HandType.RoyalFlush);
+			} catch (WrongHandException e) {
+				e.printStackTrace();
+				fail();
+			}
 		}
 		for (ArrayList<Card> hand : straightHands) {
-			assertFalse(HandType.evaluateHand(hand) == HandType.OnePair);
+			try {
+				assertFalse(HandType.evaluateHand(hand) == HandType.HighCard);
+				assertFalse(HandType.evaluateHand(hand) == HandType.OnePair);
+				assertFalse(HandType.evaluateHand(hand) == HandType.TwoPair);
+				assertFalse(HandType.evaluateHand(hand) == HandType.ThreeOfAKind);
+				assertFalse(HandType.evaluateHand(hand) == HandType.Flush);
+				assertTrue(HandType.evaluateHand(hand) == HandType.Straight);
+				assertFalse(HandType.evaluateHand(hand) == HandType.FullHouse);
+				assertFalse(HandType.evaluateHand(hand) == HandType.FourOfAKind);
+				assertFalse(HandType.evaluateHand(hand) == HandType.StraightFlush);
+				assertFalse(HandType.evaluateHand(hand) == HandType.RoyalFlush);
+			} catch (WrongHandException e) {
+				e.printStackTrace();
+				fail();
+			}
 		}
 		for (ArrayList<Card> hand : flushHands) {
-			assertFalse(HandType.evaluateHand(hand) == HandType.OnePair);
+			try {
+				assertFalse(HandType.evaluateHand(hand) == HandType.HighCard);
+				assertFalse(HandType.evaluateHand(hand) == HandType.OnePair);
+				assertFalse(HandType.evaluateHand(hand) == HandType.TwoPair);
+				assertFalse(HandType.evaluateHand(hand) == HandType.ThreeOfAKind);
+				assertTrue(HandType.evaluateHand(hand) == HandType.Flush);
+				assertFalse(HandType.evaluateHand(hand) == HandType.Straight);
+				assertFalse(HandType.evaluateHand(hand) == HandType.FullHouse);
+				assertFalse(HandType.evaluateHand(hand) == HandType.FourOfAKind);
+				assertFalse(HandType.evaluateHand(hand) == HandType.StraightFlush);
+				assertFalse(HandType.evaluateHand(hand) == HandType.RoyalFlush);
+			} catch (WrongHandException e) {
+				e.printStackTrace();
+				fail();
+			}
 		}
 		for (ArrayList<Card> hand : fullHouseHands) {
-			assertFalse(HandType.evaluateHand(hand) == HandType.OnePair);
+			try {
+				assertFalse(HandType.evaluateHand(hand) == HandType.HighCard);
+				assertFalse(HandType.evaluateHand(hand) == HandType.OnePair);
+				assertFalse(HandType.evaluateHand(hand) == HandType.TwoPair);
+				assertFalse(HandType.evaluateHand(hand) == HandType.ThreeOfAKind);
+				assertFalse(HandType.evaluateHand(hand) == HandType.Flush);
+				assertFalse(HandType.evaluateHand(hand) == HandType.Straight);
+				assertTrue(HandType.evaluateHand(hand) == HandType.FullHouse);
+				assertFalse(HandType.evaluateHand(hand) == HandType.FourOfAKind);
+				assertFalse(HandType.evaluateHand(hand) == HandType.StraightFlush);
+				assertFalse(HandType.evaluateHand(hand) == HandType.RoyalFlush);
+			} catch (WrongHandException e) {
+				e.printStackTrace();
+				fail();
+			}
 		}
 		for (ArrayList<Card> hand : fourOfAKindHands) {
-			assertFalse(HandType.evaluateHand(hand) == HandType.OnePair);
+			try {
+				assertFalse(HandType.evaluateHand(hand) == HandType.HighCard);
+				assertFalse(HandType.evaluateHand(hand) == HandType.OnePair);
+				assertFalse(HandType.evaluateHand(hand) == HandType.TwoPair);
+				assertFalse(HandType.evaluateHand(hand) == HandType.ThreeOfAKind);
+				assertFalse(HandType.evaluateHand(hand) == HandType.Flush);
+				assertFalse(HandType.evaluateHand(hand) == HandType.Straight);
+				assertFalse(HandType.evaluateHand(hand) == HandType.FullHouse);
+				assertTrue(HandType.evaluateHand(hand) == HandType.FourOfAKind);
+				assertFalse(HandType.evaluateHand(hand) == HandType.StraightFlush);
+				assertFalse(HandType.evaluateHand(hand) == HandType.RoyalFlush);
+			} catch (WrongHandException e) {
+				e.printStackTrace();
+				fail();
+			}
 		}
 		for (ArrayList<Card> hand : straightFlushHands) {
-			assertFalse(HandType.evaluateHand(hand) == HandType.OnePair);
+			try {
+				assertFalse(HandType.evaluateHand(hand) == HandType.HighCard);
+				assertFalse(HandType.evaluateHand(hand) == HandType.OnePair);
+				assertFalse(HandType.evaluateHand(hand) == HandType.TwoPair);
+				assertFalse(HandType.evaluateHand(hand) == HandType.ThreeOfAKind);
+				assertFalse(HandType.evaluateHand(hand) == HandType.Flush);
+				assertFalse(HandType.evaluateHand(hand) == HandType.Straight);
+				assertFalse(HandType.evaluateHand(hand) == HandType.FullHouse);
+				assertFalse(HandType.evaluateHand(hand) == HandType.FourOfAKind);
+				assertTrue(HandType.evaluateHand(hand) == HandType.StraightFlush);
+				assertFalse(HandType.evaluateHand(hand) == HandType.RoyalFlush);
+			} catch (WrongHandException e) {
+				e.printStackTrace();
+				fail();
+			}
 		}
 		for (ArrayList<Card> hand : royalFlushHands) {
-			assertFalse(HandType.evaluateHand(hand) == HandType.OnePair);
+			try {
+				assertFalse(HandType.evaluateHand(hand) == HandType.HighCard);
+				assertFalse(HandType.evaluateHand(hand) == HandType.OnePair);
+				assertFalse(HandType.evaluateHand(hand) == HandType.TwoPair);
+				assertFalse(HandType.evaluateHand(hand) == HandType.ThreeOfAKind);
+				assertFalse(HandType.evaluateHand(hand) == HandType.Flush);
+				assertFalse(HandType.evaluateHand(hand) == HandType.Straight);
+				assertFalse(HandType.evaluateHand(hand) == HandType.FullHouse);
+				assertFalse(HandType.evaluateHand(hand) == HandType.FourOfAKind);
+				assertFalse(HandType.evaluateHand(hand) == HandType.StraightFlush);
+				assertTrue(HandType.evaluateHand(hand) == HandType.RoyalFlush);
+			} catch (WrongHandException e) {
+				e.printStackTrace();
+				fail();
+			}
 		}
 	}
 
-	/**
-	 * This is the test method for the isTwoPair in HandType.
-	 */
-	@Test
-	public void testIsTwoPair() {
-		for (ArrayList<Card> hand : highCardHands) {
-			assertFalse(HandType.evaluateHand(hand) == HandType.TwoPair);
-		}
-		for (ArrayList<Card> hand : pairHands) {
-			assertFalse(HandType.evaluateHand(hand) == HandType.TwoPair);
-		}
-		for (ArrayList<Card> hand : twoPairHands) {
-			assertTrue(HandType.evaluateHand(hand) == HandType.TwoPair);
-		}
-		for (ArrayList<Card> hand : threeOfAKindHands) {
-			assertFalse(HandType.evaluateHand(hand) == HandType.TwoPair);
-		}
-		for (ArrayList<Card> hand : straightHands) {
-			assertFalse(HandType.evaluateHand(hand) == HandType.TwoPair);
-		}
-		for (ArrayList<Card> hand : flushHands) {
-			assertFalse(HandType.evaluateHand(hand) == HandType.TwoPair);
-		}
-		for (ArrayList<Card> hand : fullHouseHands) {
-			assertFalse(HandType.evaluateHand(hand) == HandType.TwoPair);
-		}
-		for (ArrayList<Card> hand : fourOfAKindHands) {
-			assertFalse(HandType.evaluateHand(hand) == HandType.TwoPair);
-		}
-		for (ArrayList<Card> hand : straightFlushHands) {
-			assertFalse(HandType.evaluateHand(hand) == HandType.TwoPair);
-		}
-		for (ArrayList<Card> hand : royalFlushHands) {
-			assertFalse(HandType.evaluateHand(hand) == HandType.TwoPair);
-		}
-	}
 	
-	/**
-	 * This is the test method for the isThreeOfAKind in HandType.
-	 */
-	
-	@Test
-	public void testIsThreeOfAKind() {
-		for (ArrayList<Card> hand : highCardHands) {
-			assertFalse(HandType.evaluateHand(hand) == HandType.ThreeOfAKind);
-		}
-		for (ArrayList<Card> hand : pairHands) {
-			assertFalse(HandType.evaluateHand(hand) == HandType.ThreeOfAKind);
-		}
-		for (ArrayList<Card> hand : twoPairHands) {
-			assertFalse(HandType.evaluateHand(hand) == HandType.ThreeOfAKind);
-		}
-		for (ArrayList<Card> hand : threeOfAKindHands) {
-			assertTrue(HandType.evaluateHand(hand) == HandType.ThreeOfAKind);
-		}
-		for (ArrayList<Card> hand : straightHands) {
-			assertFalse(HandType.evaluateHand(hand) == HandType.ThreeOfAKind);
-		}
-		for (ArrayList<Card> hand : flushHands) {
-			assertFalse(HandType.evaluateHand(hand) == HandType.ThreeOfAKind);
-		}
-		for (ArrayList<Card> hand : fullHouseHands) {
-			assertFalse(HandType.evaluateHand(hand) == HandType.ThreeOfAKind);
-		}
-		for (ArrayList<Card> hand : fourOfAKindHands) {
-			assertFalse(HandType.evaluateHand(hand) == HandType.ThreeOfAKind);
-		}
-		for (ArrayList<Card> hand : straightFlushHands) {
-			assertFalse(HandType.evaluateHand(hand) == HandType.ThreeOfAKind);
-		}
-		for (ArrayList<Card> hand : royalFlushHands) {
-			assertFalse(HandType.evaluateHand(hand) == HandType.ThreeOfAKind);
-		}
-	}
-	
-	@Test
-	public void testIsStraight() {
-		for (ArrayList<Card> hand : highCardHands) {
-			assertFalse(HandType.evaluateHand(hand) == HandType.Straight);
-		}
-		for (ArrayList<Card> hand : pairHands) {
-			assertFalse(HandType.evaluateHand(hand) == HandType.Straight);
-		}
-		for (ArrayList<Card> hand : twoPairHands) {
-			assertFalse(HandType.evaluateHand(hand) == HandType.Straight);
-		}
-		for (ArrayList<Card> hand : threeOfAKindHands) {
-			assertFalse(HandType.evaluateHand(hand) == HandType.Straight);
-		}
-		for (ArrayList<Card> hand : straightHands) {
-			assertTrue(HandType.evaluateHand(hand) == HandType.Straight);
-		}
-		for (ArrayList<Card> hand : flushHands) {
-			assertFalse(HandType.evaluateHand(hand) == HandType.Straight);
-		}
-		for (ArrayList<Card> hand : fullHouseHands) {
-			assertFalse(HandType.evaluateHand(hand) == HandType.Straight);
-		}
-		for (ArrayList<Card> hand : fourOfAKindHands) {
-			assertFalse(HandType.evaluateHand(hand) == HandType.Straight);
-		}
-		for (ArrayList<Card> hand : straightFlushHands) {
-			assertFalse(HandType.evaluateHand(hand) == HandType.Straight);
-		}
-		for (ArrayList<Card> hand : royalFlushHands) {
-			assertFalse(HandType.evaluateHand(hand) == HandType.Straight);
-		}
-	}
-	
-	
-	@Test
-	public void testIsFlush() {
-		for (ArrayList<Card> hand : highCardHands) {
-			assertFalse(HandType.evaluateHand(hand) == HandType.Flush);
-		}
-		for (ArrayList<Card> hand : pairHands) {
-			assertFalse(HandType.evaluateHand(hand) == HandType.Flush);
-		}
-		for (ArrayList<Card> hand : twoPairHands) {
-			assertFalse(HandType.evaluateHand(hand) == HandType.Flush);
-		}
-		for (ArrayList<Card> hand : threeOfAKindHands) {
-			assertFalse(HandType.evaluateHand(hand) == HandType.Flush);
-		}
-		for (ArrayList<Card> hand : straightHands) {
-			assertFalse(HandType.evaluateHand(hand) == HandType.Flush);
-		}
-		for (ArrayList<Card> hand : flushHands) {
-			assertTrue(HandType.evaluateHand(hand) == HandType.Flush);
-		}
-		for (ArrayList<Card> hand : fullHouseHands) {
-			assertFalse(HandType.evaluateHand(hand) == HandType.Flush);
-		}
-		for (ArrayList<Card> hand : fourOfAKindHands) {
-			assertFalse(HandType.evaluateHand(hand) == HandType.Flush);
-		}
-		for (ArrayList<Card> hand : straightFlushHands) {
-			assertFalse(HandType.evaluateHand(hand) == HandType.Flush);
-		}
-		for (ArrayList<Card> hand : royalFlushHands) {
-			assertFalse(HandType.evaluateHand(hand) == HandType.Flush);
-		}
-	}
-	@Test
-	public void testIsFullHouse() {
-		for (ArrayList<Card> hand : highCardHands) {
-			assertFalse(HandType.evaluateHand(hand) == HandType.FullHouse);
-		}
-		for (ArrayList<Card> hand : pairHands) {
-			assertFalse(HandType.evaluateHand(hand) == HandType.FullHouse);
-		}
-		for (ArrayList<Card> hand : twoPairHands) {
-			assertFalse(HandType.evaluateHand(hand) == HandType.FullHouse);
-		}
-		for (ArrayList<Card> hand : threeOfAKindHands) {
-			assertFalse(HandType.evaluateHand(hand) == HandType.FullHouse);
-		}
-		for (ArrayList<Card> hand : straightHands) {
-			assertFalse(HandType.evaluateHand(hand) == HandType.FullHouse);
-		}
-		for (ArrayList<Card> hand : flushHands) {
-			assertFalse(HandType.evaluateHand(hand) == HandType.FullHouse);
-		}
-		for (ArrayList<Card> hand : fullHouseHands) {
-			assertTrue(HandType.evaluateHand(hand) == HandType.FullHouse);
-		}
-		for (ArrayList<Card> hand : fourOfAKindHands) {
-			assertFalse(HandType.evaluateHand(hand) == HandType.FullHouse);
-		}
-		for (ArrayList<Card> hand : straightFlushHands) {
-			assertFalse(HandType.evaluateHand(hand) == HandType.FullHouse);
-		}
-		for (ArrayList<Card> hand : royalFlushHands) {
-			assertFalse(HandType.evaluateHand(hand) == HandType.FullHouse);
-		}
-	}
-	
-	@Test
-	public void testIsFourOfAKind() {
-		for (ArrayList<Card> hand : highCardHands) {
-			assertFalse(HandType.evaluateHand(hand) == HandType.FourOfAKind);
-		}
-		for (ArrayList<Card> hand : pairHands) {
-			assertFalse(HandType.evaluateHand(hand) == HandType.FourOfAKind);
-		}
-		for (ArrayList<Card> hand : twoPairHands) {
-			assertFalse(HandType.evaluateHand(hand) == HandType.FourOfAKind);
-		}
-		for (ArrayList<Card> hand : threeOfAKindHands) {
-			assertFalse(HandType.evaluateHand(hand) == HandType.FourOfAKind);
-		}
-		for (ArrayList<Card> hand : straightHands) {
-			assertFalse(HandType.evaluateHand(hand) == HandType.FourOfAKind);
-		}
-		for (ArrayList<Card> hand : flushHands) {
-			assertFalse(HandType.evaluateHand(hand) == HandType.FourOfAKind);
-		}
-		for (ArrayList<Card> hand : fullHouseHands) {
-			assertFalse(HandType.evaluateHand(hand) == HandType.FourOfAKind);
-		}
-		for (ArrayList<Card> hand : fourOfAKindHands) {
-			assertTrue(HandType.evaluateHand(hand) == HandType.FourOfAKind);
-		}
-		for (ArrayList<Card> hand : straightFlushHands) {
-			assertFalse(HandType.evaluateHand(hand) == HandType.FourOfAKind);
-		}
-		for (ArrayList<Card> hand : royalFlushHands) {
-			assertFalse(HandType.evaluateHand(hand) == HandType.FourOfAKind);
-		}
-	}
-	
-	@Test
-	public void testIsStraightFlush() {
-		for (ArrayList<Card> hand : highCardHands) {
-			assertFalse(HandType.evaluateHand(hand) == HandType.StraightFlush);
-		}
-		for (ArrayList<Card> hand : pairHands) {
-			assertFalse(HandType.evaluateHand(hand) == HandType.StraightFlush);
-		}
-		for (ArrayList<Card> hand : twoPairHands) {
-			assertFalse(HandType.evaluateHand(hand) == HandType.StraightFlush);
-		}
-		for (ArrayList<Card> hand : threeOfAKindHands) {
-			assertFalse(HandType.evaluateHand(hand) == HandType.StraightFlush);
-		}
-		for (ArrayList<Card> hand : straightHands) {
-			assertFalse(HandType.evaluateHand(hand) == HandType.StraightFlush);
-		}
-		for (ArrayList<Card> hand : flushHands) {
-			assertFalse(HandType.evaluateHand(hand) == HandType.StraightFlush);
-		}
-		for (ArrayList<Card> hand : fullHouseHands) {
-			assertFalse(HandType.evaluateHand(hand) == HandType.StraightFlush);
-		}
-		for (ArrayList<Card> hand : fourOfAKindHands) {
-			assertFalse(HandType.evaluateHand(hand) == HandType.StraightFlush);
-		}
-		for (ArrayList<Card> hand : straightFlushHands) {
-			assertTrue(HandType.evaluateHand(hand) == HandType.StraightFlush);
-		}
-		for (ArrayList<Card> hand : royalFlushHands) {
-			assertFalse(HandType.evaluateHand(hand) == HandType.StraightFlush);
-		}
-	}
-	
-	@Test
-	public void testIsRoyalFlush() {
-		for (ArrayList<Card> hand : highCardHands) {
-			assertFalse(HandType.evaluateHand(hand) == HandType.RoyalFlush);
-		}
-		for (ArrayList<Card> hand : pairHands) {
-			assertFalse(HandType.evaluateHand(hand) == HandType.RoyalFlush);
-		}
-		for (ArrayList<Card> hand : twoPairHands) {
-			assertFalse(HandType.evaluateHand(hand) == HandType.RoyalFlush);
-		}
-		for (ArrayList<Card> hand : threeOfAKindHands) {
-			assertFalse(HandType.evaluateHand(hand) == HandType.RoyalFlush);
-		}
-		for (ArrayList<Card> hand : straightHands) {
-			assertFalse(HandType.evaluateHand(hand) == HandType.RoyalFlush);
-		}
-		for (ArrayList<Card> hand : flushHands) {
-			assertFalse(HandType.evaluateHand(hand) == HandType.RoyalFlush);
-		}
-		for (ArrayList<Card> hand : fullHouseHands) {
-			assertFalse(HandType.evaluateHand(hand) == HandType.RoyalFlush);
-		}
-		for (ArrayList<Card> hand : fourOfAKindHands) {
-			assertFalse(HandType.evaluateHand(hand) == HandType.RoyalFlush);
-		}
-		for (ArrayList<Card> hand : straightFlushHands) {
-			assertFalse(HandType.evaluateHand(hand) == HandType.RoyalFlush);
-		}
-		for (ArrayList<Card> hand : royalFlushHands) {
-			assertTrue(HandType.evaluateHand(hand) == HandType.RoyalFlush);
-		}
-	}
-	
+//Score Tests
 	@Test
 	public void testScoreHighCard() {
 		assertTrue(evalueteHandScore(highCardHands.get(0)) ==  907050302L);
@@ -514,8 +378,16 @@ public class HandTypeTest {
 	}
 	
 	private long evalueteHandScore(ArrayList<Card> cards) {
-		HandType type = HandType.evaluateHand(cards);
-		return type.evaluateScore(cards);
+		HandType type;
+		try {
+			type = HandType.evaluateHand(cards);
+			return type.evaluateScore(cards);
+		} catch (WrongHandException e) {
+			e.printStackTrace();
+			fail();
+			return (long) 0;
+		}
+		
 	}
 	
 	/**
@@ -567,6 +439,6 @@ public class HandTypeTest {
 		if (s == 'H') suit = Card.Suit.Hearts;
 		if (s == 'S') suit = Card.Suit.Spades;
 
-		return new Card(suit, rank, false);
+		return new Card(suit, rank);
 	}
 }

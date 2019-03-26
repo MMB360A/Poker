@@ -16,7 +16,7 @@ public class DeckLabel extends VBox {
 	public DeckLabel(Button deal, MultiLangModule multilangModule) {
 		super();
 		lblCardRemaining = new Label(multilangModule.getTranslation("Cardsremaning"));
-    	Card card = new Card(null, null, true);
+    	Card card = new Card(null, null);
     	CardLabel cardLabel = new CardLabel();
     	cardLabel.setCard(card, true);
 		this.getChildren().addAll(cardLabel, lblCardNumber, lblCardRemaining);

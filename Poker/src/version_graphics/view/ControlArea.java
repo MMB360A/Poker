@@ -20,17 +20,17 @@ import version_graphics.view.MultiLang.MultiLangModule;
  */
 public class ControlArea extends BorderPane{
     
-    Button btnShuffle = new Button();
+    //Button btnShuffle = new Button();
     Button btnDeal = new Button();
     private DeckLabel vBoxDeck;
     public ControlArea(MultiLangModule multilangModule) {
     	super();
     	vBoxDeck = new DeckLabel(btnDeal, multilangModule);
-        btnShuffle.setText(multilangModule.getTranslation("Shuffle"));
+        //btnShuffle.setText(multilangModule.getTranslation("Shuffle"));
         btnDeal.setText(multilangModule.getTranslation("Deal"));
 
     	
-    	this.setLeft(btnShuffle);
+    	//this.setLeft(btnShuffle);
     	this.setCenter(vBoxDeck);
     	this.setRight(btnDeal);
 

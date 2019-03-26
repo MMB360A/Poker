@@ -6,8 +6,10 @@ import java.util.Collections;
 import javafx.beans.property.SimpleIntegerProperty;
 
 /**
+ * NO CHANGES MADE!
  * This class represents a deck of playing cards. When initially created, the deck is filled and shuffled.
  * Later, the deck can be refilled and reshuffled by calling the "shuffle" method.
+ * @author Richards Bradley
  */
 public class DeckOfCards {
     private final ArrayList<Card> cards = new ArrayList<>();
@@ -40,7 +42,7 @@ public class DeckOfCards {
         // Add all 52 cards
         for (Card.Suit suit : Card.Suit.values()) {
             for (Card.Rank rank : Card.Rank.values()) {
-                Card card = new Card(suit, rank, false);
+                Card card = new Card(suit, rank);
                 cards.add(card);
             }
         }

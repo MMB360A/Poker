@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import javafx.animation.FadeTransition;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Bounds;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -82,12 +83,24 @@ public class PokerGameView {
 		return menu;
 	}
 
-	public Button getShuffleButton() {
+	/*public Button getShuffleButton() {
 		return bottom.getControls().btnShuffle;
-	}
+	}*/
 	
 	public Button getDealButton() {
 		return bottom.getControls().btnDeal;
+	}
+	
+	public int getDeckX() {
+		DeckLabel d = (DeckLabel) bottom.getControls().getCenter();
+		Bounds boundsInScene = d.localToScene(d.getBoundsInLocal());
+		return (int) (boundsInScene.getMaxX());
+	}
+	
+	public int getDeckY() {
+		DeckLabel d = (DeckLabel) bottom.getControls().getCenter();
+		Bounds boundsInScene = d.localToScene(d.getBoundsInLocal());
+		return (int) (boundsInScene.getMinY());
 	}
 	
 	public ArrayList<PlayerPane> getPlayerPanes() {

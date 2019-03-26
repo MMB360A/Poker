@@ -12,6 +12,7 @@ import version_graphics.model.DeckOfCards;
 import version_graphics.model.Player;
 import version_graphics.model.PlayerStatisticsDummie;
 import version_graphics.model.PokerGameModel;
+import version_graphics.model.WrongHandException;
 import version_graphics.view.ChangePlayerNamesView;
 import version_graphics.view.PlayerPane;
 import version_graphics.view.PokerGameView;
@@ -35,7 +36,7 @@ public class PokerGameController {
 	 * Set all Events of the View
 	 */
 	private void setEvents() {
-		view.getShuffleButton().setOnAction( e -> shuffle() );
+		//view.getShuffleButton().setOnAction( e -> shuffle() );
 		view.getDealButton().setOnAction( e -> deal() );
 		view.getMenu().getLanguageSetting().setOnAction(e -> changeLanguage());
 		view.getMenu().getAbout().setOnAction(e -> about());
@@ -53,12 +54,11 @@ public class PokerGameController {
     	for (int i = 0; i < PokerGame.NUM_PLAYERS; i++) {
     		Player p = model.getPlayer(i);
     		PlayerPane pp = view.getPlayerPane(i);
-    		ParallelTransition trans =  pp.removeAllCards();
+    		ParallelTransition trans =  pp.removeAllCards(view.getDeckX(), view.getDeckY());
     		trans.play();
     		trans.setOnFinished(e-> {p.discardHand();});
     		
     	}
-    	
     	model.getDeck().shuffle();
     }
     
@@ -67,9 +67,8 @@ public class PokerGameController {
      */
     private void deal() {
     	if(model.getDeck().getCardsRemaining() < 52)this.shuffle();
-    	
     	view.getDealButton().setDisable(true);
-    	view.getShuffleButton().setDisable(true);
+    	//view.getShuffleButton().setDisable(true);
     	view.getMenu().setDisable(true);
     	PokerGame.numberOfGames++;
     	DeckOfCards deck = model.getDeck();
@@ -78,17 +77,26 @@ public class PokerGameController {
         for (int i = 0; i < PokerGame.NUM_PLAYERS; i++) {
         	Player p = model.getPlayer(i);
         	for (int j = 0; j < Player.HAND_SIZE; j++) {
-        		
         		Card card = deck.dealCard();
         		p.addCard(card);
         	}
         	
         	PlayerPane pp = view.getPlayerPane(i);
-        	lastSequence = pp.updatePlayerDisplay();
-        	d = i * 5000 + 50;
+        	lastSequence = pp.updatePlayerDisplay(view.getDeckX(), view.getDeckY());
+        	d = i * 2500 + 50;
         	lastSequence.setDelay(new Duration(d));
     		//Getting all Data from the Model Ready to update the view after the animation
-        	final String handType = p.evaluateHand().toString();
+        	final String handType;
+        	String a = "";
+			try {
+				a = p.evaluateHand().toString();
+			} catch (WrongHandException e1) {
+				
+				e1.printStackTrace();
+			}
+			finally {
+				handType = a;
+			}
         	p.getHandType().increaseStatistics();
         	final ArrayList<Player> winners;
         	if(model.getPlayer(PokerGame.NUM_PLAYERS-1) == p) {
@@ -115,7 +123,7 @@ public class PokerGameController {
         		    	}
             		}
         			view.getDealButton().setDisable(false);
-        	    	view.getShuffleButton().setDisable(false);
+        	    	//view.getShuffleButton().setDisable(false);
         	    	view.getMenu().setDisable(false);
         		}
         

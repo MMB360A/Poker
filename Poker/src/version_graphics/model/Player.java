@@ -1,13 +1,18 @@
 package version_graphics.model;
 
 import java.util.ArrayList;
-
+/**
+ * 
+ * @author mibe1, Richards Bradley
+ * Player Class
+ */
 public class Player implements Comparable<Player> {
     public static final int HAND_SIZE = 5;
-    
+    //TODO check what happens when 2 Players have the same name
     private String playerName; // This is the ID
     private final ArrayList<Card> cards = new ArrayList<>();
     private HandType handType;
+    
     private int totalWinns;
     
     public Player(String playerName) {
@@ -51,8 +56,9 @@ public class Player implements Comparable<Player> {
     /**
      * If the hand has not been evaluated, but does have all cards, 
      * then evaluate it.
+     * @throws WrongHandException 
      */
-    public HandType evaluateHand() {
+    public HandType evaluateHand() throws WrongHandException {
     	if (handType == null && cards.size() == HAND_SIZE) {
             handType = HandType.evaluateHand(cards);
         }
@@ -60,13 +66,15 @@ public class Player implements Comparable<Player> {
     }
 
     /**
-     * Hands are compared, based on the evaluation they have.
+     * Hands are compared, based on the evaluation they have.This method  does not include tiebreak
      */
     @Override
     public int compareTo(Player o) {
-        return (int) (handType.evaluateScore(cards) - o.handType.evaluateScore(o.getCards()));
+        return (int) (handType.ordinal() - o.handType.ordinal());
     }
-    
+    /**
+     * Hands are compared, based on the evaluation they have. This method includes tiebreak
+     */
     public long comaperHand(Player o) {
     	return handType.evaluateScore(cards) - o.handType.evaluateScore(o.getCards());
     }
@@ -79,11 +87,4 @@ public class Player implements Comparable<Player> {
 		this.totalWinns++;
 		
 	}
-
-	@Override
-	public Object clone() throws CloneNotSupportedException {
-		return super.clone();
-	}
-	
-
 }

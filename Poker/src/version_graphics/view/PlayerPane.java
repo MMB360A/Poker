@@ -55,14 +55,14 @@ public class PlayerPane extends VBox {
     
     public void setPlayer(Player player) {
     	this.player = player;
-    	updatePlayerDisplay(); // Immediately display the player information
+    	updatePlayerDisplay(0,0); // Immediately display the player information
     }
     
     public Player getPlayer() {
     	return player;
     }
     
-    public SequentialTransition updatePlayerDisplay() {
+    public SequentialTransition updatePlayerDisplay(int posX, int posY) {
     	lblName.setText(multilangModule.getTranslation("Player") + ": "+player.getPlayerName()); 
     	SequentialTransition sequence = new SequentialTransition();
     	for (int i = 0; i < Player.HAND_SIZE; i++) {
@@ -71,7 +71,7 @@ public class PlayerPane extends VBox {
     		else card = null;
     		CardLabel cl = (CardLabel) cards.get(i);
     		cl.setCard(card, true);
-    		PathTransition seq = cl.getMove(748, 494);
+    		PathTransition seq = cl.getMove(posX, posY);
     		seq.setOnFinished(e->{
     			cl.setCard(card, false);
     		});
@@ -84,14 +84,14 @@ public class PlayerPane extends VBox {
 			lblEvaluation.setText(multilangModule.getTranslation(s));
     }
     
-    public ParallelTransition removeAllCards() {
+    public ParallelTransition removeAllCards(int posX, int posY) {
     	ParallelTransition p = new ParallelTransition();
     	for (int i = 0; i < Player.HAND_SIZE; i++) {
     		Card card = null;
     		if (player.getCards().size() > i) card = player.getCards().get(i);
     		CardLabel cl = (CardLabel) cards.get(i);
     		cl.setCard(card, true);
-    		p.getChildren().addAll(cl.getReverseMove(748, 494));
+    		p.getChildren().addAll(cl.getReverseMove(posX, posY));
     	}
     	lblEvaluation.setText("--");
     	return p;
