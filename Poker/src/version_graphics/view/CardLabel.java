@@ -20,10 +20,10 @@ public class CardLabel extends Label {
 		this.getStyleClass().add("card");
 	}
 
-	public void setCard(Card card) {
+	public void setCard(Card card, Boolean turned) {
 		if (card != null) {
 			
-			String fileName = cardToFileName(card);
+			String fileName = cardToFileName(card, turned);
 			Image image;
 			if(PokerGameView.darkthem)  image = new Image(this.getClass().getClassLoader().getResourceAsStream("images/dark/" + fileName));
 			else image = new Image(this.getClass().getClassLoader().getResourceAsStream("images/light/" + fileName));
@@ -44,8 +44,8 @@ public class CardLabel extends Label {
 	}
 
 
-	private String cardToFileName(Card card) {
-		if(card.getCovered()) return "back.png";
+	private String cardToFileName(Card card, Boolean turned) {
+		if(turned) return "back.png";
 		String rank = card.getRank().toString();
 		String suit = card.getSuit().toString();
 		return rank + "_of_" + suit + ".png";
@@ -77,9 +77,11 @@ public class CardLabel extends Label {
 	   	return move;
 	}
 	
-	public SequentialTransition getTurn() {
+	public SequentialTransition getTurn(Card card, Boolean turned) {
 		SequentialTransition sequence = new SequentialTransition();
-		
+		sequence.setOnFinished(e->{
+			this.setCard(card, !turned);
+		});
 		return sequence;
 	}
 

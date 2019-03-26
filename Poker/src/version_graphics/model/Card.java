@@ -37,13 +37,8 @@ public class Card implements Comparable<Object>{
     private final Suit suit;
     private final Rank rank;
     
-
-
-	//Is the Card turned (Show backside)
-    private boolean covered;
     
     public Card(Suit suit, Rank rank, boolean covered) {
-       this.covered = covered;
     	this.suit = suit;
         this.rank = rank;
     }
@@ -54,10 +49,6 @@ public class Card implements Comparable<Object>{
 
     public Rank getRank() {
         return rank;
-    }
-    
-    public Boolean getCovered() {
-    	return covered;
     }
     
     /**

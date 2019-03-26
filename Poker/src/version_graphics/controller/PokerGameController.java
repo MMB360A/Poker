@@ -87,7 +87,8 @@ public class PokerGameController {
         	lastSequence = pp.updatePlayerDisplay();
         	d = i * 5000 + 50;
         	lastSequence.setDelay(new Duration(d));
-    		final String a = p.evaluateHand().toString();
+    		//Getting all Data from the Model Ready to update the view after the animation
+        	final String handType = p.evaluateHand().toString();
         	p.getHandType().increaseStatistics();
         	final ArrayList<Player> winners;
         	if(model.getPlayer(PokerGame.NUM_PLAYERS-1) == p) {
@@ -95,19 +96,17 @@ public class PokerGameController {
     			for(Player player: winners) {
     	    		this.winners.add(new PlayerStatisticsDummie(player));
     				player.icreaseStatisticWinns();
-    				view.getStatistics().addWinner(new PlayerStatisticsDummie(player));
     			}
         	}
         	else winners = new ArrayList<Player>();
+        	//All Hands of the Playerobjets are allready null in this Action, so just update the view, without getting data from the Model
         	lastSequence.setOnFinished(e->{
-        		pp.setevaluateText(a);
+        		pp.setevaluateText(handType);
         		if(model.getPlayer(PokerGame.NUM_PLAYERS-1) == p) {
         			for(Player player: winners) {
-        	    		//this.winners.add(new PlayerStatisticsDummie(player));
         	    		String text = "Winner";
         	    		if(winners.size() > 1) text ="Splitt";
-        				//player.icreaseStatisticWinns();
-        				//view.getStatistics().addWinner(new PlayerStatisticsDummie(player));
+        	    		view.getStatistics().setWinners(this.winners);
         		    	for(int y = 0; y< view.getPlayerPanes().size(); y++) {
         					PlayerPane playerpane = view.getPlayerPanes().get(y);
         					if(playerpane.getPlayer() == player) {
