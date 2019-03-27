@@ -3,8 +3,10 @@ package version_graphics.controller;
 import java.util.ArrayList;
 import javafx.animation.ParallelTransition;
 import javafx.animation.SequentialTransition;
+import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
 import version_graphics.PokerGame;
 import version_graphics.model.Card;
@@ -36,8 +38,13 @@ public class PokerGameController {
 	 * Set all Events of the View
 	 */
 	private void setEvents() {
-		//view.getShuffleButton().setOnAction( e -> shuffle() );
-		view.getDealButton().setOnAction( e -> deal() );
+		view.getDeckCardLabel().addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent arg0) {
+				deal();
+				
+			}
+});
 		view.getMenu().getLanguageSetting().setOnAction(e -> changeLanguage());
 		view.getMenu().getAbout().setOnAction(e -> about());
 		view.getMenu().getAddPlayer().setOnAction(e -> addPlayer());
@@ -55,9 +62,8 @@ public class PokerGameController {
     		Player p = model.getPlayer(i);
     		PlayerPane pp = view.getPlayerPane(i);
     		ParallelTransition trans =  pp.removeAllCards(view.getDeckX(), view.getDeckY());
-    		trans.play();
     		trans.setOnFinished(e-> {p.discardHand();});
-    		
+    		trans.play();    		
     	}
     	model.getDeck().shuffle();
     }
@@ -67,8 +73,6 @@ public class PokerGameController {
      */
     private void deal() {
     	if(model.getDeck().getCardsRemaining() < 52)this.shuffle();
-    	view.getDealButton().setDisable(true);
-    	//view.getShuffleButton().setDisable(true);
     	view.getMenu().setDisable(true);
     	PokerGame.numberOfGames++;
     	DeckOfCards deck = model.getDeck();
@@ -83,7 +87,7 @@ public class PokerGameController {
         	
         	PlayerPane pp = view.getPlayerPane(i);
         	lastSequence = pp.updatePlayerDisplay(view.getDeckX(), view.getDeckY());
-        	d = i * 2500 + 50;
+        	d = i * 2500 + 500;
         	lastSequence.setDelay(new Duration(d));
     		//Getting all Data from the Model Ready to update the view after the animation
         	final String handType;
@@ -122,8 +126,6 @@ public class PokerGameController {
         					}
         		    	}
             		}
-        			view.getDealButton().setDisable(false);
-        	    	//view.getShuffleButton().setDisable(false);
         	    	view.getMenu().setDisable(false);
         		}
         
@@ -223,7 +225,6 @@ public class PokerGameController {
 	
 	/**
 	 * Opens a new Window to change each Players Name
-	 * @return
 	 */
 	private void changePlayerNames() {
 		ChangePlayerNamesView namesView = new ChangePlayerNamesView(view.getMultilangModule(), model.getPlayers());

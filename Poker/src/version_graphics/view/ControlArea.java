@@ -20,19 +20,12 @@ import version_graphics.view.MultiLang.MultiLangModule;
  */
 public class ControlArea extends BorderPane{
     
-    //Button btnShuffle = new Button();
-    Button btnDeal = new Button();
     private DeckLabel vBoxDeck;
     public ControlArea(MultiLangModule multilangModule) {
     	super();
-    	vBoxDeck = new DeckLabel(btnDeal, multilangModule);
-        //btnShuffle.setText(multilangModule.getTranslation("Shuffle"));
-        btnDeal.setText(multilangModule.getTranslation("Deal"));
+    	vBoxDeck = new DeckLabel(multilangModule);
 
-    	
-    	//this.setLeft(btnShuffle);
     	this.setCenter(vBoxDeck);
-    	this.setRight(btnDeal);
 
         this.setId("controlArea");
     }
@@ -40,4 +33,9 @@ public class ControlArea extends BorderPane{
     public void linkDeck(DeckOfCards deck) {
     	vBoxDeck.setDeck(deck);
     }
+    
+	public DeckLabel getvBoxDeck() {
+		return vBoxDeck;
+	}
+    
 }

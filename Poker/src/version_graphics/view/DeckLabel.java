@@ -13,24 +13,29 @@ import version_graphics.view.MultiLang.MultiLangModule;
 public class DeckLabel extends VBox {
 	private Label lblCardNumber = new Label();
 	private Label lblCardRemaining;
-	public DeckLabel(Button deal, MultiLangModule multilangModule) {
+	private CardLabel cardLabel;
+	public DeckLabel(MultiLangModule multilangModule) {
 		super();
 		lblCardRemaining = new Label(multilangModule.getTranslation("Cardsremaning"));
     	Card card = new Card(null, null);
-    	CardLabel cardLabel = new CardLabel();
+    	cardLabel = new CardLabel();
     	cardLabel.setCard(card, true);
 		this.getChildren().addAll(cardLabel, lblCardNumber, lblCardRemaining);
     	cardLabel.getStyleClass().add("deckOfCards");
     	this.getStyleClass().add("card");
     	lblCardRemaining.getStyleClass().add("cardLabel");
-    	cardLabel.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+ /*  	cardLabel.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
     	     @Override
     	     public void handle(MouseEvent event) {
     	         deal.fire();
     	     }
-    	});
+    	});*/
 	}
 	
+	public CardLabel getCardLabel() {
+		return cardLabel;
+	}
+
 	// Bind the label to the CardsRemaining property of the deck
 	public void setDeck(DeckOfCards deck) {
 		lblCardNumber.textProperty().bind(deck.getCardsRemainingProperty().asString());

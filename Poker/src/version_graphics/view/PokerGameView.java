@@ -83,12 +83,8 @@ public class PokerGameView {
 		return menu;
 	}
 
-	/*public Button getShuffleButton() {
-		return bottom.getControls().btnShuffle;
-	}*/
-	
-	public Button getDealButton() {
-		return bottom.getControls().btnDeal;
+	public CardLabel getDeckCardLabel() {
+		return bottom.getControls().getvBoxDeck().getCardLabel();
 	}
 	
 	public int getDeckX() {
