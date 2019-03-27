@@ -13,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -55,6 +56,7 @@ public class PokerGameView {
 		root.setBottom(bottom );
 		// Disallow resizing - which is difficult to get right with images
 		stage.setResizable(false);
+
         // Create the scene using our layout; then display it
         Scene scene = new Scene(root);
        

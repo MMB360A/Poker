@@ -34,16 +34,23 @@ public class BottomArea extends BorderPane{
 	}
 	/**
 	 * returns the Control area to the PokerGameView
-	 * @return the ControlArea
 	 */
 	protected ControlArea getControls() {
 		return controls;
 	}
+	/**
+	 * returns the Statistics Table area to the PokerGameView
+	 */
 	protected Statistics getStatistics() {
 		
 		return statistics;
 	}
+	/**
+	 * Sets the Statistics this method is used after rebuilding the view
+	 * @param statistics
+	 */
 	public void setStatistics(Statistics statistics) {
+		if(this.statistics == null)
 		this.statistics = statistics;
 	}
 }

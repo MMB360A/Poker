@@ -74,6 +74,7 @@ public class PokerGameController {
     private void deal() {
     	if(model.getDeck().getCardsRemaining() < 52)this.shuffle();
     	view.getMenu().setDisable(true);
+    	view.getDeckCardLabel().setDisable(true);
     	PokerGame.numberOfGames++;
     	DeckOfCards deck = model.getDeck();
     	double d = 0;
@@ -90,48 +91,51 @@ public class PokerGameController {
         	d = i * 2500 + 500;
         	lastSequence.setDelay(new Duration(d));
     		//Getting all Data from the Model Ready to update the view after the animation
-        	final String handType;
-        	String a = "";
+        	
+
 			try {
-				a = p.evaluateHand().toString();
+				final String handType = p.evaluateHand().toString();
+	        	p.getHandType().increaseStatistics();
+	        	final ArrayList<Player> winners;
+	        	if(model.getPlayer(PokerGame.NUM_PLAYERS-1) == p) {
+	        		winners = model.evaluateWinner();
+	    			for(Player player: winners) {
+	    	    		this.winners.add(new PlayerStatisticsDummie(player));
+	    				player.icreaseStatisticWinns();
+	    			}
+	        	}
+	        	else winners = new ArrayList<Player>();
+	        	//All Hands of the Playerobjets are allready null in this Action, so just update the view, without getting data from the Model
+	        	lastSequence.setOnFinished(e->{
+	        		pp.setevaluateText(handType);
+	        		if(model.getPlayer(PokerGame.NUM_PLAYERS-1) == p) {
+	        			for(Player player: winners) {
+	        	    		String text = "Winner";
+	        	    		if(winners.size() > 1) text ="Splitt";
+	        	    		view.getStatistics().setWinners(this.winners);
+	        		    	for(int y = 0; y< view.getPlayerPanes().size(); y++) {
+	        					PlayerPane playerpane = view.getPlayerPanes().get(y);
+	        					if(playerpane.getPlayer() == player) {
+	        						playerpane.setWinner(text);					
+	        					}
+	        		    	}
+	            		}
+	        	    	view.getMenu().setDisable(false);
+	        	    	view.getDeckCardLabel().setDisable(false);
+	        		}
+	        
+	        	});
+
+	    		lastSequence.play();
 			} catch (WrongHandException e1) {
-				
+    	    	view.getMenu().setDisable(false);
+    	    	view.getDeckCardLabel().setDisable(false);
 				e1.printStackTrace();
 			}
 			finally {
-				handType = a;
+				
 			}
-        	p.getHandType().increaseStatistics();
-        	final ArrayList<Player> winners;
-        	if(model.getPlayer(PokerGame.NUM_PLAYERS-1) == p) {
-        		winners = model.evaluateWinner();
-    			for(Player player: winners) {
-    	    		this.winners.add(new PlayerStatisticsDummie(player));
-    				player.icreaseStatisticWinns();
-    			}
-        	}
-        	else winners = new ArrayList<Player>();
-        	//All Hands of the Playerobjets are allready null in this Action, so just update the view, without getting data from the Model
-        	lastSequence.setOnFinished(e->{
-        		pp.setevaluateText(handType);
-        		if(model.getPlayer(PokerGame.NUM_PLAYERS-1) == p) {
-        			for(Player player: winners) {
-        	    		String text = "Winner";
-        	    		if(winners.size() > 1) text ="Splitt";
-        	    		view.getStatistics().setWinners(this.winners);
-        		    	for(int y = 0; y< view.getPlayerPanes().size(); y++) {
-        					PlayerPane playerpane = view.getPlayerPanes().get(y);
-        					if(playerpane.getPlayer() == player) {
-        						playerpane.setWinner(text);					
-        					}
-        		    	}
-            		}
-        	    	view.getMenu().setDisable(false);
-        		}
-        
-        	});
 
-    		lastSequence.play();
         }
     }
 
