@@ -1,4 +1,38 @@
+/*Window Background */
+.root {
+		-fx-padding: 15px;
+}
+
 .heightSpace{
 	    -fx-min-height: 15px;
 	    -fx-max-height: 15px;
 }
+
+.button {
+	-fx-border-width: 0.75px;
+	-fx-border-radius: 2px;
+	-fx-background-radius: 2px;
+	-fx-min-width: 75px	
+}
+
+.regCenter {
+		-fx-alignment: center;
+		-fx-min-width: 55px;
+}
+
+.label {
+	-fx-alignment: center;
+	-fx-min-width: 200px;
+	-fx-alignment: center;
+}
+
+.radio-button {
+	-fx-padding: 8 5 8 5;
+
+}
+
+.radio-button .radio {
+	-fx-background-insets: 4;
+}
+
+

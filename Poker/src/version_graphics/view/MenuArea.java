@@ -4,7 +4,11 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import version_graphics.view.MultiLang.MultiLangModule;
-
+/**
+ * Menu Area
+ * @author mibe1
+ *
+ */
 public class MenuArea extends MenuBar{
 	//All MenuItems are Global to set the Actions in the Controler 
 	private MenuItem languageSetting;
@@ -52,7 +56,7 @@ public class MenuArea extends MenuBar{
 		this.getMenus().addAll(file, settings, view);
 		
 	}
-	//getters of the MenuItems
+	//getters of the MenuItems to add Actions in the controler
 	public MenuItem getLanguageSetting() {return languageSetting;}
 	public MenuItem getAddPlayer() {return addPlayer;}
 	public MenuItem getRemovePlayer() {return removePlayer;}

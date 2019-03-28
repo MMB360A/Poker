@@ -43,9 +43,9 @@ public class CenterArea extends BorderPane{
 				Region spaceTop = new Region();
 				spaceTop.getStyleClass().add("heightSpace");
 				
+				Region casinoLabel = new Region();
 				//Playing Field
-				Label casinoLabel = new Label(multilangModule.getTranslation("CasinoLabel"));
-				casinoLabel.getStyleClass().add("casinoLabel");
+				casinoLabel.getStyleClass().add("field");
 
 				
 				this.setCenter(players);

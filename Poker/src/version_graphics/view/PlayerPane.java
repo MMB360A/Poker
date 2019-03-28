@@ -25,7 +25,11 @@ import version_graphics.model.Card;
 import version_graphics.model.HandType;
 import version_graphics.model.Player;
 import version_graphics.view.MultiLang.MultiLangModule;
-
+/**
+ * Dispalys the Player with his Hand (5 Cards)
+ * @author mibe1, Richards Bradley
+ *
+ */
 public class PlayerPane extends VBox {
     private Label lblName = new Label();
     private HBox hboxCards = new HBox();
@@ -62,6 +66,12 @@ public class PlayerPane extends VBox {
     	return player;
     }
     
+    /**
+     * Updates the Playerpane
+     * @param posX X Position of the Deck
+     * @param posY Y Postion of the Deck
+     * @return a Card Dealing animations
+     */
     public SequentialTransition updatePlayerDisplay(int posX, int posY) {
     	lblName.setText(multilangModule.getTranslation("Player") + ": "+player.getPlayerName()); 
     	SequentialTransition sequence = new SequentialTransition();
@@ -80,10 +90,20 @@ public class PlayerPane extends VBox {
     	return sequence;
     }
     
+    /**
+     * Set the HandText
+     * @param s
+     */
     public void setevaluateText(String s) {
 			lblEvaluation.setText(multilangModule.getTranslation(s));
     }
     
+    /**
+     * Remove all Cards of the PlayerPane
+     * @param posX X Position of the Deck
+     * @param posY Y Postion of the Deck
+     * @return return annimation
+     */
     public ParallelTransition removeAllCards(int posX, int posY) {
     	ParallelTransition p = new ParallelTransition();
     	for (int i = 0; i < Player.HAND_SIZE; i++) {
@@ -97,7 +117,7 @@ public class PlayerPane extends VBox {
     	return p;
     }
     
-    
+    //Label the Winner
     public void setWinner(String message) {
     	lblEvaluation.setText(lblEvaluation.getText()+ "  " + multilangModule.getTranslation(message));
     }

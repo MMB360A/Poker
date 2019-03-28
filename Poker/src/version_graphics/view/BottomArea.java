@@ -10,7 +10,11 @@ import version_graphics.model.PokerGameModel;
 import version_graphics.view.MultiLang.MultiLangModule;
 
 
-
+/**
+ * Bottom area with the Control area, all possible Hands and the Statistics table
+ * @author mibe1
+ *
+ */
 public class BottomArea extends BorderPane{
 	private ControlArea controls;
 	private Statistics statistics;
@@ -26,8 +30,9 @@ public class BottomArea extends BorderPane{
 		spaceLeft.getStyleClass().add("widthSpace");
 		Region spaceRight = new Region();
 		spaceRight.getStyleClass().add("widthSpace");
+		//Statistics
 		statistics = new Statistics(multilangModule);
-		
+		//Handslist as Image
 		String fileName = "pokerhands.jpg";
 		Image image = new Image(this.getClass().getClassLoader().getResourceAsStream("images/" + fileName));
 		ImageView imv = new ImageView(image);

@@ -6,7 +6,8 @@ import version_graphics.model.DeckOfCards;
 import version_graphics.view.MultiLang.MultiLangModule;
 /**
  * Control Area is the Dealers Area in the Bottom of the GUI
- * It Contains a Shuffle Button, a Deal Buton and a Deck of Cards
+ * It contains only a DeckLAbel element
+ * THis Class exists for Style reason and it simplyfies future changes of the archtecture (adding new controls etc.)
  * @author mibe1
  *
  */

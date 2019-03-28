@@ -1,35 +1,19 @@
 package version_graphics.view;
 
-import java.io.IOException;
-import java.util.ArrayList;
 
-import javafx.animation.FadeTransition;
-import javafx.application.Platform;
-import javafx.fxml.FXMLLoader;
+import java.util.ArrayList;
 import javafx.geometry.Bounds;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-import version_graphics.PokerGame;
-import version_graphics.model.Player;
 import version_graphics.model.PokerGameModel;
 import version_graphics.view.MultiLang.MultiLangModule;
-
+/**
+ * Main view of the Programm
+ * @author mibe1, Richards Bradley
+ *
+ */
 public class PokerGameView {
 	
 	public static boolean darkthem = true;
@@ -64,7 +48,7 @@ public class PokerGameView {
         scene.getStylesheets().add(getClass().getResource("css\\poker.css").toExternalForm());
         if(darkthem) scene.getStylesheets().add(getClass().getResource("css\\pokerDark.css").toExternalForm());
         else scene.getStylesheets().add(getClass().getResource("css\\pokerLight.css").toExternalForm());
-        
+        //Title TODO Translate?
         stage.setTitle("Poker Miniproject Michael Berger");
         stage.setScene(scene);
         //Set Icon

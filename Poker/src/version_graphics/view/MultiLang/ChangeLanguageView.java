@@ -11,6 +11,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import version_graphics.view.PokerGameView;
 
 public class ChangeLanguageView extends Stage{
 	
@@ -20,41 +21,47 @@ public class ChangeLanguageView extends Stage{
 	
 	public ChangeLanguageView(MultiLangModule multiLangModule, final Stage primaryStage) {
 		 super();
+		 //Root elemnet
 		 BorderPane pane = new BorderPane();
-       
-       Label desc = new  Label(multiLangModule.getTranslation("selectLanguageText"));
-       pane.setTop(desc);
-       VBox langVBox = new VBox();
-		Region topSpace = new Region();
-		topSpace.getStyleClass().add("heightSpace");
-		langVBox.getChildren().add(topSpace);
-        tg = new ToggleGroup();
-        for(String lang : multiLangModule.getLanguages()) {
+		 //Text
+		 Label desc = new  Label(multiLangModule.getTranslation("selectLanguageText"));
+		 pane.setTop(desc);
+		 VBox langVBox = new VBox();
+		 Region topSpace = new Region();
+		 topSpace.getStyleClass().add("heightSpace");
+		 langVBox.getChildren().add(topSpace);
+		 //Toggle Group with all Languages
+		 tg = new ToggleGroup();
+		 for(String lang : multiLangModule.getLanguages()) {
 	        RadioButton rb1 = new RadioButton();
 	        rb1.setText(lang);
 	        if(lang.equals(multiLangModule.getDefalutLanguage())) rb1.setSelected(true);
 	        rb1.setToggleGroup(tg);
+	        langVBox.getChildren().add(rb1);
+		 }
 			Region space = new Region();
 			space.getStyleClass().add("heightSpace");
-	        langVBox.getChildren().addAll(rb1,space);
-        }
-        pane.setCenter(langVBox);
-        
-        HBox buttons = new HBox();
+			langVBox.getChildren().add(space);
+		 pane.setCenter(langVBox);
+        //Control Buttons
+		 HBox buttons = new HBox();
         ok = new Button(multiLangModule.getTranslation("save"));
-        //ok.setOnAction( e -> save() );
         cancel = new Button(multiLangModule.getTranslation("cancel"));
-        //ok.setOnAction( e -> cancel() );
-        buttons.getChildren().addAll(ok, cancel);
+        Region regCenter = new Region();
+        regCenter.getStyleClass().add("regCenter");
+        buttons.getChildren().addAll(ok,regCenter, cancel);
         pane.setBottom(buttons);
         
-        Scene scene = new Scene(pane, 230, (multiLangModule.getLanguages().size() * 25 + 100));
+        Scene scene = new Scene(pane, 230, (multiLangModule.getLanguages().size() * 25 + 110));
         scene.getStylesheets().add(getClass().getResource("multiLang.css").toExternalForm());
-
+        if(PokerGameView.darkthem)  scene.getStylesheets().add(getClass().getResource("multiLangDark.css").toExternalForm());
+        else  scene.getStylesheets().add(getClass().getResource("multiLangLight.css").toExternalForm());
+        
         this.setTitle(multiLangModule.getTranslation("selectLanguage"));
         this.setScene(scene);
         // Specifies the modality for new window.
         this.initModality(Modality.WINDOW_MODAL);
+        this.setResizable(false);
         this.initOwner(primaryStage);
 	}
 
@@ -65,6 +72,7 @@ public class ChangeLanguageView extends Stage{
 	protected Button getOk() {
 		return ok;
 	}
+	
 
 	protected Button getCancel() {
 		return cancel;

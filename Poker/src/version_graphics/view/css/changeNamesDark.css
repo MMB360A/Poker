@@ -1,12 +1,17 @@
 /*Window Background */
 .root {
-		-fx-background-color: #3c3c3c;
+		-fx-background-color: #696969;
+		-fx-padding: 15px;
 }
 /*Player Textfields */
 .textfield{
+		-fx-border-width: 0.75px;
+	-fx-border-color: black;
+	-fx-border-radius: 2px;
+	-fx-background-radius: 2px;
 	 -fx-text-fill: #96b946;
-	 -fx-background-color: #708090;
-	 -fx-min-width: 50px;
+	 -fx-background-color: #3c3c3c;
+	 -fx-min-width: 80px;
 	-fx-max-width: 150px;
 }
 
@@ -15,26 +20,21 @@
 }
 
 /*Bottom are */
-.bottomPane {
-		-fx-alignment: center;
-		-fx-max-width: 270;
-
-}
-
-
 .regCenter {
-		-fx-max-width: 75;
-		-fx-min-width: 75;
+		-fx-alignment: center;
+		-fx-min-width: 60px;
 }
 
 .regHeigt {
     -fx-min-height: 20px;
-    -fx-max-height: 20px;
 }
 
 .button {
-	-fx-background-color: #708090;
+	-fx-border-width: 0.75px;
+	-fx-border-color: black;
+	-fx-border-radius: 2px;
+	-fx-background-radius: 2px;
+	-fx-background-color: #3c3c3c;
 	-fx-text-fill: #96b946;
-		-fx-max-width: 75;
-	-fx-min-width: 75;
+	-fx-min-width: 75px	
 }

@@ -15,7 +15,7 @@ import javafx.util.Duration;
 import version_graphics.model.Card;
 /**
  * 
- * @author mibe1
+ * @author mibe1, Richards Bradley
  *
  */
 public class CardLabel extends Label {

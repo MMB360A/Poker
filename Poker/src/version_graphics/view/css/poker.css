@@ -16,7 +16,7 @@
 .card {
   -fx-font-size: 18px;
 	-fx-padding: 2.0px;
-    -fx-min-width: 50;
+    -fx-min-width: 50px;
     -fx-pref-width: 111px;
     -fx-max-width: 111px;
     -fx-min-height: 80px;
@@ -26,18 +26,9 @@
 /*--------------------------------------------------------------------------------------------- */
 /*Field with Casino Label ----------------------------------------------------------------------*/
 .field {
-    -fx-min-height: 200;
+	    -fx-min-height: 40;
 }
-.casinoLabel {
-	-fx-max-width: 400px;
-	-fx-border-color: gold;
-    -fx-border-width: 1.0px;
-    -fx-border-radius: 15px;
-  	-fx-alignment: center;
-  	-fx-font-size: 40px;
-  	-fx-font-family: 'Blackadder ITC';
-  	-fx-text-fill: gold;
-}
+
 /*--------------------------------------------------------------------------------------------- */
 /*Control Area with BUttons and Statistics, the Decklabel is a Card --------------------------- */
 #controlArea {
@@ -72,7 +63,7 @@
 }
 /*----------------------------------------------------------------------------------------------------------------- */
 /*Regions as Spaces ----------------------------------------------------------------------------------*/
-.widthSpace{
+.widthSpace {
 	    -fx-min-width: 25px;
 	    -fx-max-width: 25px;
 }

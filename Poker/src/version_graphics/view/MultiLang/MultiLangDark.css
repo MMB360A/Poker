@@ -1,0 +1,33 @@
+/*Window Background */
+.root {
+		-fx-background-color: #696969;
+}
+
+.button {
+
+	-fx-background-color: #3c3c3c;
+	-fx-text-fill: #96b946;
+}
+
+.label {
+	-fx-text-fill: #96b946;
+	-fx-background-color: #3c3c3c;
+}
+
+.radio-button {
+	-fx-text-fill: #96b946;
+}
+
+.radio-button .radio {
+	-fx-background-color: #3c3c3c;
+}
+.radio-button:selected {
+	-fx-background-color: #3c3c3c;
+}
+
+.radio-button .dot {
+	
+  -fx-mark-highlight-color: #96b946 ;
+  -fx-mark-color: #96b946 ;
+}
+

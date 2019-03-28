@@ -1,15 +1,16 @@
 package version_graphics.view;
 
-import javafx.event.EventHandler;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import version_graphics.model.Card;
 import version_graphics.model.DeckOfCards;
 import version_graphics.view.MultiLang.MultiLangModule;
-
+/**
+ * 
+ * @author mibe1, Richards Bradley
+ *Shows the Deck with the Label Cards Remaining
+ *TODO Label Update?
+ */
 public class DeckLabel extends VBox {
 	private Label lblCardNumber = new Label();
 	private Label lblCardRemaining;

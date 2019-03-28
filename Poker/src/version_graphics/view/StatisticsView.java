@@ -25,10 +25,15 @@ import version_graphics.model.HandType;
 import version_graphics.model.Player;
 import version_graphics.model.PokerGameModel;
 import version_graphics.view.MultiLang.MultiLangModule;
-
+/**
+ * Shows detail statistics in a popup view
+ * @author mibe1
+ *
+ */
 public class StatisticsView extends Stage{
 	public StatisticsView(MultiLangModule multiLangModule, PokerGameModel model) {
 		 super();
+		 //Root element
 		 TabPane pane = new TabPane();
 		 pane.setTabClosingPolicy(TabClosingPolicy.UNAVAILABLE);
 		 if(PokerGame.numberOfGames > 0) {
@@ -57,15 +62,13 @@ public class StatisticsView extends Stage{
 			 }
 			 bc.getData().add(seriesHand); 
 			 hands.setContent(bc);
-			 
-			 
-			 
+			 //Add all statistics to the TabPane
 			 pane.getTabs().addAll(players, hands);
 		 
 		 }
 		 
 	     Scene scene = new Scene(pane, 750, 400);
-	     //scene.getStylesheets().add(getClass().getResource("multiLang.css").toExternalForm());
+	     //Set CSS Class
 	     if(PokerGameView.darkthem) scene.getStylesheets().add(getClass().getResource("css\\statisticsDark.css").toExternalForm());
 	     else scene.getStylesheets().add(getClass().getResource("css\\statisticsLight.css").toExternalForm());
 	     this.setTitle(multiLangModule.getTranslation("statistics"));
