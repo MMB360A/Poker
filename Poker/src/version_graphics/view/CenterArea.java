@@ -2,6 +2,7 @@ package version_graphics.view;
 
 import java.util.ArrayList;
 
+import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
@@ -13,7 +14,11 @@ import version_graphics.view.MultiLang.MultiLangModule;
 public class CenterArea extends BorderPane{
 			
 	private  ArrayList<PlayerPane> playerPanes;
-	
+	/**
+	 * Center area with all Players and a Field
+	 * @param model
+	 * @param multilangModule
+	 */
 	public CenterArea(PokerGameModel model, MultiLangModule multilangModule) {
 				super();
 				// Create all of the player panes we need, and put them into an HBox
@@ -27,9 +32,10 @@ public class CenterArea extends BorderPane{
 					spacePlayer.getStyleClass().add("widthSpace");
 					playerPanes.add(pp);
 				}
+				//remove last Space Region
 				players.getChildren().remove(players.getChildren().size() -1);
 				
-				
+				//Spaces around the Players section
 				Region spacePlayerLeft = new Region();
 				spacePlayerLeft.getStyleClass().add("widthSpace");
 				Region spacePlayerRight = new Region();
@@ -38,18 +44,19 @@ public class CenterArea extends BorderPane{
 				spaceTop.getStyleClass().add("heightSpace");
 				
 				//Playing Field
-				BorderPane field = new BorderPane();
-				field.setCenter(new CasinoLabel(multilangModule));
-				field.getStyleClass().add("field");
+				Label casinoLabel = new Label(multilangModule.getTranslation("CasinoLabel"));
+				casinoLabel.getStyleClass().add("casinoLabel");
+
 				
 				this.setCenter(players);
 				this.setTop(spaceTop);
-				this.setBottom(field);
+				this.setBottom(casinoLabel);
 				this.setLeft(spacePlayerLeft);
 				this.setRight(spacePlayerRight);
 	}
 
-	protected ArrayList<PlayerPane> getPlayerPanes() {
+	//Returns all Playrpanes 
+	public ArrayList<PlayerPane> getPlayerPanes() {
 		return playerPanes;
 	}
 }

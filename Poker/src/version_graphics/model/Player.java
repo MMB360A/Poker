@@ -8,11 +8,9 @@ import java.util.ArrayList;
  */
 public class Player implements Comparable<Player> {
     public static final int HAND_SIZE = 5;
-    //TODO check what happens when 2 Players have the same name
-    private String playerName; // This is the ID
+    private String playerName;
     private final ArrayList<Card> cards = new ArrayList<>();
     private HandType handType;
-    
     private int totalWinns;
     
     public Player(String playerName) {
@@ -24,7 +22,6 @@ public class Player implements Comparable<Player> {
 		return totalWinns;
 	}
 
-    
 	public String getPlayerName() {
         return playerName;
     }

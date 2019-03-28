@@ -90,7 +90,7 @@ public class CardLabel extends Label {
 	 * Reverse version of the getMove method
 	 * @param endX
 	 * @param endY
-	 * @return
+	 * @return 
 	 */
 	public PathTransition getReverseMove(int endX, int endY) {
 		Bounds boundsInScene = this.localToScene(this.getBoundsInLocal());

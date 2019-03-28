@@ -14,6 +14,11 @@ import javafx.stage.Stage;
 import version_graphics.model.Player;
 import version_graphics.view.MultiLang.MultiLangModule;
 
+/**
+ * This is a Popup View to change the Names of the Players
+ * @author mibe1
+ *
+ */
 public class ChangePlayerNamesView extends Stage{
 	private Button ok;
 	private Button cancel;
@@ -21,7 +26,10 @@ public class ChangePlayerNamesView extends Stage{
 	
 	public ChangePlayerNamesView(MultiLangModule multiLangModule, ArrayList<Player> players) {
 		 super();
+		 //Mainpane / Root element
 		 BorderPane pane = new BorderPane();
+		 pane.getStyleClass().add("root");
+		 //All Playernames
 		 vBoxPlayers = new VBox();
 		 vBoxPlayers.getStyleClass().add("vBox");
 		 	for(Player p : players)  {
@@ -33,24 +41,19 @@ public class ChangePlayerNamesView extends Stage{
 		 		vBoxPlayers.getChildren().addAll(tf, reg);
 		 	}
 		 	pane.setCenter(vBoxPlayers);
-		 	pane.getStyleClass().add("root");
-		 	//Control Buttons
-
-	        VBox bottom = new VBox();
+		 	//The control buttons
 	        HBox buttons = new HBox();
-	        bottom.getStyleClass().add("bottomPane");
 	        ok = new Button(multiLangModule.getTranslation("save"));
 	        cancel = new Button(multiLangModule.getTranslation("cancel"));
 	        Region regCenter = new Region();
 	        regCenter.getStyleClass().add("regCenter");
 	        buttons.getChildren().addAll(ok, regCenter, cancel);
-	        Region regBottom = new Region();
 	        regCenter.getStyleClass().add("regHeigt");
-	        bottom.getChildren().addAll(buttons, regBottom);
 	        buttons.setSpacing(20);
 	        pane.setBottom(buttons);
 	        
 	        Scene scene = new Scene(pane, 270, (players.size()*50) + 100);
+	        //Set the correct CSS file
 	        if(PokerGameView.darkthem) scene.getStylesheets().add(getClass().getResource("css\\changeNamesDark.css").toExternalForm());
 	        else scene.getStylesheets().add(getClass().getResource("css\\changeNamesLight.css").toExternalForm());
 	        this.setTitle(multiLangModule.getTranslation("selectLanguage"));
@@ -60,10 +63,14 @@ public class ChangePlayerNamesView extends Stage{
 	        this.setResizable(false);
 	       
 	}
-	
+
+	//geters for the Buttons
 	public Button getOk() {	return ok;}
 	public Button getCancel() {return cancel;}
-	
+	/**
+	 * 
+	 * @return all updated Playernames
+	 */
 	public ArrayList<String> getPlayerNames(){
 		ArrayList<String> names = new ArrayList<String>();
 		for(int i = 0; i < vBoxPlayers.getChildren().size(); i+= 2) 

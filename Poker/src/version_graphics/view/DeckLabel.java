@@ -24,12 +24,6 @@ public class DeckLabel extends VBox {
     	cardLabel.getStyleClass().add("deckOfCards");
     	this.getStyleClass().add("card");
     	lblCardRemaining.getStyleClass().add("cardLabel");
- /*  	cardLabel.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-    	     @Override
-    	     public void handle(MouseEvent event) {
-    	         deal.fire();
-    	     }
-    	});*/
 	}
 	
 	public CardLabel getCardLabel() {

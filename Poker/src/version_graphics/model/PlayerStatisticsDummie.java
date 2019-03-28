@@ -5,7 +5,7 @@ package version_graphics.model;
  * TODO Translation here?
  */
 
-public class PlayerStatisticsDummie {
+public class  PlayerStatisticsDummie{
 	
 	private String handType;
 	private Player p;
@@ -15,8 +15,8 @@ public class PlayerStatisticsDummie {
 	public String getHandType() {
 		return handType;
 	}
-	public String getTotalWinns() {
-		return p.getTotalWinns()+"";
+	public int getTotalWinns() {
+		return p.getTotalWinns();
 	}
 	public PlayerStatisticsDummie(Player p) {
 		this.p = p;

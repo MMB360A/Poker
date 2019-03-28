@@ -38,7 +38,6 @@ public class DeckOfCards {
     public void shuffle() {
         // Remove all cards
         cards.clear();
-        
         // Add all 52 cards
         for (Card.Suit suit : Card.Suit.values()) {
             for (Card.Rank rank : Card.Rank.values()) {
@@ -46,7 +45,6 @@ public class DeckOfCards {
                 cards.add(card);
             }
         }
-        
         // Shuffle
         Collections.shuffle(cards);
         cardsRemaining.setValue(cards.size());

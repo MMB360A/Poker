@@ -76,8 +76,8 @@ public class Card implements Comparable<Object>{
     }
 
 	@Override
-	public int compareTo(Object arg0) {
-		Card c = (Card) arg0;
+	public int compareTo(Object o) {
+		Card c = (Card) o;
 		return this.getRank().ordinal() - c.getRank().ordinal();
 	}
 }
