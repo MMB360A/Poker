@@ -100,7 +100,7 @@ public class PokerGameController {
 	        	if(model.getPlayer(PokerGame.NUM_PLAYERS-1) == p) {
 	        		winners = model.evaluateWinner();
 	    			for(Player player: winners) {
-	    	    		this.winners.add(new PlayerStatisticsDummie(player));
+	    	    		this.winners.add(new PlayerStatisticsDummie(player, view.getMultilangModule()));
 	    				player.icreaseStatisticWinns();
 	    			}
 	        	}
