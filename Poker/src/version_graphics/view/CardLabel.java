@@ -31,7 +31,6 @@ public class CardLabel extends Label {
 	 */
 	public void setCard(Card card, Boolean turned) {
 		if (card != null) {
-			
 			String fileName = cardToFileName(card, turned);
 			Image image;
 			//Get the image of the Card label in Dark or Light at the moment it is the same label
@@ -107,19 +106,4 @@ public class CardLabel extends Label {
 	   	PathTransition move = new PathTransition(Duration.millis(750), path, this);
 	   	return move;
 	}
-	/**
-	 * 
-	 * @param card
-	 * @param turned
-	 * @return
-	 */
-	public SequentialTransition getTurn(Card card, Boolean turned) {
-		SequentialTransition sequence = new SequentialTransition();
-		//Make turn animation
-		sequence.setOnFinished(e->{
-			this.setCard(card, !turned);
-		});
-		return sequence;
-	}
-
 }

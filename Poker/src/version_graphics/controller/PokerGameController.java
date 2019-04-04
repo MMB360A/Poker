@@ -52,15 +52,17 @@ public class PokerGameController {
      * Remove all cards from players hands, and shuffle the deck
      */
     private void shuffle() {
+
     	if(model.getDeck().getCardsRemaining() < 52) {
 	    	for (int i = 0; i < PokerGame.NUM_PLAYERS; i++) {
 	    		Player p = model.getPlayer(i);
 	    		PlayerPane pp = view.getPlayerPane(i);
 	    		ParallelTransition trans =  pp.removeAllCards(view.getDeckX(), view.getDeckY());
+	    		trans.play();   
 	    		trans.setOnFinished(e-> {p.discardHand();});
-	    		trans.play();    		
 	    	}
 	    	model.getDeck().shuffle();
+
     	}
     }
     
@@ -73,22 +75,23 @@ public class PokerGameController {
     	view.getDeckCardLabel().setDisable(true);
     	PokerGame.numberOfGames++;
     	DeckOfCards deck = model.getDeck();
+    	deck.shuffle();
     	double d = 0;
     	SequentialTransition lastSequence = new SequentialTransition();
         for (int i = 0; i < PokerGame.NUM_PLAYERS; i++) {
         	Player p = model.getPlayer(i);
+        	//It might be that the shuffle action is not finished yet but the cards must be discarded to add new ones.
+        	p.discardHand();
         	for (int j = 0; j < Player.HAND_SIZE; j++) {
         		Card card = deck.dealCard();
         		p.addCard(card);
         	}
-        	
         	PlayerPane pp = view.getPlayerPane(i);
+        	pp.setPlayer(p);
         	lastSequence = pp.updatePlayerDisplay(view.getDeckX(), view.getDeckY());
         	d = i * 2500 + 500;
         	lastSequence.setDelay(new Duration(d));
     		//Getting all Data from the Model Ready to update the view after the animation
-        	
-
 			try {
 				final String handType = p.evaluateHand().toString();
 	        	p.getHandType().increaseStatistics();
@@ -118,20 +121,14 @@ public class PokerGameController {
 	            		}
 	        	    	view.getMenu().setDisable(false);
 	        	    	view.getDeckCardLabel().setDisable(false);
-	        		}
-	        
+	        		}	        
 	        	});
-
 	    		lastSequence.play();
 			} catch (WrongHandException e1) {
     	    	view.getMenu().setDisable(false);
     	    	view.getDeckCardLabel().setDisable(false);
 				e1.printStackTrace();
 			}
-			finally {
-				
-			}
-
         }
     }
 
