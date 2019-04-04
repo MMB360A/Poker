@@ -11,6 +11,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import version_graphics.PokerGame;
 import version_graphics.model.Player;
 import version_graphics.view.MultiLang.MultiLangModule;
 
@@ -24,7 +25,7 @@ public class ChangePlayerNamesView extends Stage{
 	private Button cancel;
 	private VBox vBoxPlayers;
 	
-	public ChangePlayerNamesView(MultiLangModule multiLangModule, ArrayList<Player> players) {
+	public ChangePlayerNamesView(ArrayList<Player> players) {
 		 super();
 		 //Mainpane / Root element
 		 BorderPane pane = new BorderPane();
@@ -43,8 +44,8 @@ public class ChangePlayerNamesView extends Stage{
 		 	pane.setCenter(vBoxPlayers);
 		 	//The control buttons
 	        HBox buttons = new HBox();
-	        ok = new Button(multiLangModule.getTranslation("save"));
-	        cancel = new Button(multiLangModule.getTranslation("cancel"));
+	        ok = new Button(PokerGame.MULTILANGMODULE.getTranslation("Save"));
+	        cancel = new Button(PokerGame.MULTILANGMODULE.getTranslation("Cancel"));
 	        Region regCenter = new Region();
 	        regCenter.getStyleClass().add("regCenter");
 	        buttons.getChildren().addAll(ok, regCenter, cancel);
@@ -56,7 +57,7 @@ public class ChangePlayerNamesView extends Stage{
 	        //Set the correct CSS file
 	        if(PokerGameView.darkthem) scene.getStylesheets().add(getClass().getResource("css\\changeNamesDark.css").toExternalForm());
 	        else scene.getStylesheets().add(getClass().getResource("css\\changeNamesLight.css").toExternalForm());
-	        this.setTitle(multiLangModule.getTranslation("selectLanguage"));
+	        this.setTitle(PokerGame.MULTILANGMODULE.getTranslation("SelectLanguage"));
 	        this.setScene(scene);
 	        // Specifies the modality for new window.
 	        this.initModality(Modality.WINDOW_MODAL);

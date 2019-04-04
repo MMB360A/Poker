@@ -24,16 +24,6 @@
     -fx-border-color: darkred;
     -fx-background-color: black;
 }
-.button {
-	-fx-border-color: #96b946;
-    -fx-background-color: #3c3c3c;
-    -fx-text-fill: #96b946;
-}
-.button:hover {
-	-fx-border-color: white;
-    -fx-background-color: #4d4d4d;
-    -fx-text-fill: white;
-}
 .statistics{
      -fx-background-color: black;
      -fx-text-fill: #96b946;

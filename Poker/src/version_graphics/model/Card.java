@@ -61,11 +61,11 @@ public class Card implements Comparable<Object>{
      */
     public String getRankAsScore() {
     	String score = "";
-    	if(rank == rank.Ace) score = "14";
-    	else if(rank == rank.King) score = "13";
-    	else if(rank == rank.Queen) score = "12";
-    	else if(rank == rank.Jack) score = "11";
-    	else if(rank == rank.Ten) score = "10";
+    	if(rank == Rank.Ace) score = "14";
+    	else if(rank == Rank.King) score = "13";
+    	else if(rank == Rank.Queen) score = "12";
+    	else if(rank == Rank.Jack) score = "11";
+    	else if(rank == Rank.Ten) score = "10";
     	else score = "0" + rank;
     	return score;
     }

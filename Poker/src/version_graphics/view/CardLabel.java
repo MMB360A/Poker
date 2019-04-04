@@ -19,6 +19,7 @@ import version_graphics.model.Card;
  *
  */
 public class CardLabel extends Label {
+	
 	public CardLabel() {
 		super();
 		this.getStyleClass().add("card");
@@ -77,8 +78,9 @@ public class CardLabel extends Label {
 	public PathTransition getMove(int startX, int startY) {
 		Bounds boundsInScene = this.localToScene(this.getBoundsInLocal());
 		int centralXPos = (int) ((boundsInScene.getMaxX() + boundsInScene.getMinX()) /2);
+		int centralYPos = (int) ((boundsInScene.getMaxY() + boundsInScene.getMinY()) /2);
 		PathElement pe1;
-		pe1	= new MoveTo(startX -  centralXPos,startY);
+		pe1	= new MoveTo(startX -  centralXPos,startY - centralYPos + 200);
 	   	PathElement pe2 = new LineTo(this.getScaleX() + 55, this.getScaleY() + 80); 
 	   	Path path = new Path();
 	   	path.getElements().add(pe1);
@@ -95,9 +97,10 @@ public class CardLabel extends Label {
 	public PathTransition getReverseMove(int endX, int endY) {
 		Bounds boundsInScene = this.localToScene(this.getBoundsInLocal());
 		int centralXPos = (int) ((boundsInScene.getMaxX() + boundsInScene.getMinX()) /2);
+		int centralYPos = (int) ((boundsInScene.getMaxY() + boundsInScene.getMinY()) /2);
 		PathElement pe1;
 		pe1	= new MoveTo(this.getScaleX() + 55, this.getScaleY() + 80);
-	   	PathElement pe2 = new LineTo(endX -  centralXPos,endY); 
+	   	PathElement pe2 = new LineTo(endX -  centralXPos,endY - centralYPos +200); 
 	   	Path path = new Path();
 	   	path.getElements().add(pe1);
 	   	path.getElements().add(pe2);

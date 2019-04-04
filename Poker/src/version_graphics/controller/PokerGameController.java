@@ -38,13 +38,7 @@ public class PokerGameController {
 	 * Set all Events of the View
 	 */
 	private void setEvents() {
-		view.getDeckCardLabel().addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent arg0) {
-				deal();
-				
-			}
-});
+		view.getDeckCardLabel().addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {deal();});
 		view.getMenu().getLanguageSetting().setOnAction(e -> changeLanguage());
 		view.getMenu().getAbout().setOnAction(e -> about());
 		view.getMenu().getAddPlayer().setOnAction(e -> addPlayer());
@@ -58,21 +52,23 @@ public class PokerGameController {
      * Remove all cards from players hands, and shuffle the deck
      */
     private void shuffle() {
-    	for (int i = 0; i < PokerGame.NUM_PLAYERS; i++) {
-    		Player p = model.getPlayer(i);
-    		PlayerPane pp = view.getPlayerPane(i);
-    		ParallelTransition trans =  pp.removeAllCards(view.getDeckX(), view.getDeckY());
-    		trans.setOnFinished(e-> {p.discardHand();});
-    		trans.play();    		
+    	if(model.getDeck().getCardsRemaining() < 52) {
+	    	for (int i = 0; i < PokerGame.NUM_PLAYERS; i++) {
+	    		Player p = model.getPlayer(i);
+	    		PlayerPane pp = view.getPlayerPane(i);
+	    		ParallelTransition trans =  pp.removeAllCards(view.getDeckX(), view.getDeckY());
+	    		trans.setOnFinished(e-> {p.discardHand();});
+	    		trans.play();    		
+	    	}
+	    	model.getDeck().shuffle();
     	}
-    	model.getDeck().shuffle();
     }
     
     /**
      * Deal each player five cards, then evaluate the two hands
      */
     private void deal() {
-    	if(model.getDeck().getCardsRemaining() < 52)this.shuffle();
+    	this.shuffle();
     	view.getMenu().setDisable(true);
     	view.getDeckCardLabel().setDisable(true);
     	PokerGame.numberOfGames++;
@@ -100,7 +96,7 @@ public class PokerGameController {
 	        	if(model.getPlayer(PokerGame.NUM_PLAYERS-1) == p) {
 	        		winners = model.evaluateWinner();
 	    			for(Player player: winners) {
-	    	    		this.winners.add(new PlayerStatisticsDummie(player, view.getMultilangModule()));
+	    	    		this.winners.add(new PlayerStatisticsDummie(player));
 	    				player.icreaseStatisticWinns();
 	    			}
 	        	}
@@ -142,9 +138,10 @@ public class PokerGameController {
     /**
      * Open the Language Settings Window and Updates the view in the new Language if needed
      */
-    public void changeLanguage()
+    private void changeLanguage()
 	{
-    	ChangeLanguageView clView = view.getMultilangModule().setDefalutLanguage(view.getStage());
+    	this.shuffle();
+    	ChangeLanguageView clView = PokerGame.MULTILANGMODULE.setDefalutLanguage(view.getStage());
     	clView.show();
     	clView.setOnHidden(e -> {
     		//Restart the View with the new Settings
@@ -159,6 +156,7 @@ public class PokerGameController {
      * Changes the View form Day to Nightmode and from Nightmode to Daymode
      */
     private void changeSkin() {
+    	this.shuffle();
 		PokerGameView.darkthem = !PokerGameView.darkthem;
 		//Restart the VIew with the new Settings
 		view = view.restart(model);
@@ -172,6 +170,7 @@ public class PokerGameController {
      * Removes the last Player from the Game 
      */
 	private void removePlayer() {
+		this.shuffle();
 		if(PokerGame.NUM_PLAYERS > PokerGame.MINNUM_PLAYERS) {
 			PokerGame.NUM_PLAYERS--;
 			//Recreates the Model with the new number of Players
@@ -187,7 +186,8 @@ public class PokerGameController {
     		view.getStatistics().setWinners(this.winners);
 		}
 		else {
-            Alert alert = new Alert(AlertType.ERROR, view.getMultilangModule().getTranslation("MinPlayers"));
+			String message = PokerGame.MULTILANGMODULE.getTranslation("Min") + PokerGame.MAXNUM_PLAYERS +PokerGame.MULTILANGMODULE.getTranslation("Allowed");
+            Alert alert = new Alert(AlertType.ERROR, message);
             alert.showAndWait();
 		}            
 	}
@@ -196,6 +196,7 @@ public class PokerGameController {
 	 * Adds a Player to the Game
 	 */
 	private void addPlayer() {
+		this.shuffle();
 		if(PokerGame.NUM_PLAYERS < PokerGame.MAXNUM_PLAYERS) {
 			PokerGame.NUM_PLAYERS++;
 			
@@ -212,7 +213,8 @@ public class PokerGameController {
     		view.getStatistics().setWinners(this.winners);
 		}
 		else {
-            Alert alert = new Alert(AlertType.ERROR, view.getMultilangModule().getTranslation("MaxPlayers"));
+			String message = PokerGame.MULTILANGMODULE.getTranslation("Max") + PokerGame.MAXNUM_PLAYERS + PokerGame.MULTILANGMODULE.getTranslation("Allowed");
+            Alert alert = new Alert(AlertType.ERROR, message);
             alert.showAndWait();
 		}            
 	}
@@ -222,7 +224,8 @@ public class PokerGameController {
 	 * @author mibe1
 	 */
 	private void about() {
-        Alert alert = new Alert(AlertType.INFORMATION, view.getMultilangModule().getTranslation("programInfo"));
+		this.shuffle();
+        Alert alert = new Alert(AlertType.INFORMATION, PokerGame.MULTILANGMODULE.getTranslation("ProgramInfo"));
         alert.setHeaderText("");
         alert.showAndWait();
 	}
@@ -231,7 +234,8 @@ public class PokerGameController {
 	 * Opens a new Window to change each Players Name
 	 */
 	private void changePlayerNames() {
-		ChangePlayerNamesView namesView = new ChangePlayerNamesView(view.getMultilangModule(), model.getPlayers());
+		this.shuffle();
+		ChangePlayerNamesView namesView = new ChangePlayerNamesView(model.getPlayers());
 		namesView.initOwner(view.getStage());
 		namesView.getOk().setOnAction(e -> {
 			ArrayList<String> newNames = namesView.getPlayerNames();
@@ -255,7 +259,8 @@ public class PokerGameController {
 	 * Opens a new Window and shows some Statistics
 	 */
 	private void showStatistics() {
-		StatisticsView sv = new StatisticsView(view.getMultilangModule(), model);
+		this.shuffle();
+		StatisticsView sv = new StatisticsView(model);
 		sv.initOwner(view.getStage());
 		sv.show();
 	}

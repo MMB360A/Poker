@@ -19,21 +19,19 @@ public class CenterArea extends BorderPane{
 	 * @param model
 	 * @param multilangModule
 	 */
-	public CenterArea(PokerGameModel model, MultiLangModule multilangModule) {
+	public CenterArea(PokerGameModel model ) {
 				super();
 				// Create all of the player panes we need, and put them into an HBox
-				HBox players = new HBox();
+				FlowPane players = new FlowPane();
+				players.setVgap(15);
+				players.setHgap(15);
 				playerPanes = new ArrayList<PlayerPane>(); 
 				for (int i = 0; i < PokerGame.NUM_PLAYERS; i++) {
-					PlayerPane pp = new PlayerPane(multilangModule);
+					PlayerPane pp = new PlayerPane();
 					pp.setPlayer(model.getPlayer(i)); // link to player object in the logic
-					Region spacePlayer = new Region();
-					players.getChildren().addAll(pp, spacePlayer);
-					spacePlayer.getStyleClass().add("widthSpace");
+					players.getChildren().add(pp);
 					playerPanes.add(pp);
 				}
-				//remove last Space Region
-				players.getChildren().remove(players.getChildren().size() -1);
 				
 				//Spaces around the Players section
 				Region spacePlayerLeft = new Region();
@@ -43,14 +41,14 @@ public class CenterArea extends BorderPane{
 				Region spaceTop = new Region();
 				spaceTop.getStyleClass().add("heightSpace");
 				
-				Region casinoLabel = new Region();
+				Region field = new Region();
 				//Playing Field
-				casinoLabel.getStyleClass().add("field");
+				field.getStyleClass().add("field");
 
 				
 				this.setCenter(players);
 				this.setTop(spaceTop);
-				this.setBottom(casinoLabel);
+				this.setBottom(field);
 				this.setLeft(spacePlayerLeft);
 				this.setRight(spacePlayerRight);
 	}

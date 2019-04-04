@@ -18,10 +18,10 @@ import version_graphics.view.MultiLang.MultiLangModule;
 public class BottomArea extends BorderPane{
 	private ControlArea controls;
 	private Statistics statistics;
-	public BottomArea(PokerGameModel model, MultiLangModule multilangModule) {
+	public BottomArea(PokerGameModel model) {
 		super();
 		// Create the control area
-		controls = new ControlArea(multilangModule);
+		controls = new ControlArea();
 		controls.linkDeck(model.getDeck()); // link DeckLabel to DeckOfCards in the logic
 		//Regions because FXCSS does not have margin
 		Region spaceBottom = new Region();
@@ -31,7 +31,7 @@ public class BottomArea extends BorderPane{
 		Region spaceRight = new Region();
 		spaceRight.getStyleClass().add("widthSpace");
 		//Statistics
-		statistics = new Statistics(multilangModule);
+		statistics = new Statistics();
 		//Handslist as Image
 		String fileName = "pokerhands.jpg";
 		Image image = new Image(this.getClass().getClassLoader().getResourceAsStream("images/" + fileName));

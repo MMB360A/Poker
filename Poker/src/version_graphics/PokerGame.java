@@ -22,13 +22,15 @@ public class PokerGame extends Application {
 	//Set a maximum and a minimum of possible players in the game
 	public final static int MAXNUM_PLAYERS = 4;
 	public final static int MINNUM_PLAYERS = 2;
+	public final static MultiLangModule MULTILANGMODULE = new MultiLangModule("English");
 	//num of played games
 	public static int numberOfGames = 0;
-	PokerGameModel model;
-	PokerGameView view;
-	PokerGameController controller;
+	private PokerGameModel model;
+	private PokerGameView view;
+	private PokerGameController controller;
 	
     public static void main(String[] args) {
+
     	launch();
     }
 
@@ -37,11 +39,10 @@ public class PokerGame extends Application {
     	//Get Windows Language and set the Program Language equals to this
     	Locale locale = Locale.getDefault();
     	String lang = locale.getDisplayLanguage();
-    	MultiLangModule multiLangModule = new MultiLangModule("English");
-    	if(multiLangModule.getLanguages().contains(lang)) multiLangModule.setDefalutLanguage(lang);  	
+    	if(MULTILANGMODULE.getLanguages().contains(lang)) MULTILANGMODULE.setDefalutLanguage(lang);   	
     	// Create and initialize the MVC components
     	model = new PokerGameModel();
-    	view = new PokerGameView(primaryStage, model, multiLangModule);
+    	view = new PokerGameView(primaryStage, model);
     	controller = new PokerGameController(model, view);
     }
 }

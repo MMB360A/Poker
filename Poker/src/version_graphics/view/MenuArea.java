@@ -3,6 +3,7 @@ package version_graphics.view;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import version_graphics.PokerGame;
 import version_graphics.view.MultiLang.MultiLangModule;
 /**
  * Menu Area
@@ -19,7 +20,7 @@ public class MenuArea extends MenuBar{
 	private MenuItem changeUserName;
 	private MenuItem viewStatistics;
 	
-	public MenuArea(MultiLangModule multilangModule) {
+	public MenuArea() {
 		super();
 		//CSS Style Sheet
 		if(PokerGameView.darkthem) this.getStylesheets().add(getClass().getResource("css\\MenuDark.css").toExternalForm());
@@ -28,28 +29,28 @@ public class MenuArea extends MenuBar{
 		this.getStyleClass().add("MenuBar");
 		
 		//Menu File
-		Menu file = new Menu(multilangModule.getTranslation("File"));
-		about= new MenuItem(multilangModule.getTranslation("about"));
-		viewStatistics= new MenuItem(multilangModule.getTranslation("viewStatistics"));
+		Menu file = new Menu(PokerGame.MULTILANGMODULE.getTranslation("File"));
+		about= new MenuItem(PokerGame.MULTILANGMODULE.getTranslation("About"));
+		viewStatistics= new MenuItem(PokerGame.MULTILANGMODULE.getTranslation("ViewStatistics"));
 		file.getItems().addAll(about, viewStatistics);
 		
 		//Menu Settings
-		Menu settings = new Menu(multilangModule.getTranslation("Settings"));
-		languageSetting = new MenuItem(multilangModule.getTranslation("Language"));
-		changeUserName= new MenuItem(multilangModule.getTranslation("changeUserNames"));
+		Menu settings = new Menu(PokerGame.MULTILANGMODULE.getTranslation("Settings"));
+		languageSetting = new MenuItem(PokerGame.MULTILANGMODULE.getTranslation("Language"));
+		changeUserName= new MenuItem(PokerGame.MULTILANGMODULE.getTranslation("ChangeUserNames"));
 		//SubMenu Number of Players
-		Menu numOfPlayers = new Menu(multilangModule.getTranslation("NumOfPlayers"));
-		addPlayer = new MenuItem(multilangModule.getTranslation("addPlayer"));
-		removePlayer = new MenuItem(multilangModule.getTranslation("removePlayer"));
+		Menu numOfPlayers = new Menu(PokerGame.MULTILANGMODULE.getTranslation("NumOfPlayers"));
+		addPlayer = new MenuItem(PokerGame.MULTILANGMODULE.getTranslation("AddPlayer"));
+		removePlayer = new MenuItem(PokerGame.MULTILANGMODULE.getTranslation("RemovePlayer"));
 		numOfPlayers.getItems().addAll(addPlayer, removePlayer);
 		//Add the Items and the Submenu to the Settings Menu
 		settings.getItems().addAll(languageSetting, numOfPlayers, changeUserName);
 		
 		//Menu View
-		Menu view = new Menu(multilangModule.getTranslation("view"));
+		Menu view = new Menu(PokerGame.MULTILANGMODULE.getTranslation("View"));
 		changeSkin = new MenuItem();
-		if(PokerGameView.darkthem) changeSkin.setText(multilangModule.getTranslation("lightTheme"));
-		else changeSkin.setText(multilangModule.getTranslation("darkTheme"));
+		if(PokerGameView.darkthem) changeSkin.setText(PokerGame.MULTILANGMODULE.getTranslation("LightTheme"));
+		else changeSkin.setText(PokerGame.MULTILANGMODULE.getTranslation("DarkTheme"));
 		view.getItems().addAll(changeSkin);
 		
 		//Add all Menus to the Menubar

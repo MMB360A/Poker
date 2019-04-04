@@ -2,6 +2,7 @@ package version_graphics.view;
 
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
+import version_graphics.PokerGame;
 import version_graphics.model.Card;
 import version_graphics.model.DeckOfCards;
 import version_graphics.view.MultiLang.MultiLangModule;
@@ -15,9 +16,9 @@ public class DeckLabel extends VBox {
 	private Label lblCardNumber = new Label();
 	private Label lblCardRemaining;
 	private CardLabel cardLabel;
-	public DeckLabel(MultiLangModule multilangModule) {
+	public DeckLabel() {
 		super();
-		lblCardRemaining = new Label(multilangModule.getTranslation("Cardsremaning"));
+		lblCardRemaining = new Label(PokerGame.MULTILANGMODULE.getTranslation("Cardsremaning"));
     	Card card = new Card(null, null);
     	cardLabel = new CardLabel();
     	cardLabel.setCard(card, true);

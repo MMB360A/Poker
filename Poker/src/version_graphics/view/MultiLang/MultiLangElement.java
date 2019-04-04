@@ -13,8 +13,8 @@ public class MultiLangElement {
 		elements = new ArrayList<LangElement>();
 	}
 	
-	public void addLangElement(LangElement e) {
-		elements.add(e);
+	public void addLangElement(String language, String translation) {
+		elements.add(new LangElement(language, translation));
 	}
 
 	@Override
@@ -28,6 +28,24 @@ public class MultiLangElement {
 
 	public ArrayList<LangElement> getElements() {
 		return elements;
+	}
+	
+	public String getTranslation(String lang) {
+		String val = "P";
+		for(LangElement l: elements) {
+			if(l.language.equals(lang)) 
+				val = l.value;
+		}
+		return val;
+	}
+	
+	private class LangElement {
+		private String language;		
+		private String value;		
+		public LangElement(String language, String value) {
+			this.language = language;
+			this.value = value;
+		}
 	}
 	
 	

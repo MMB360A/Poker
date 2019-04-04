@@ -21,18 +21,16 @@ public class PokerGameView {
 	private CenterArea center;
 	private BottomArea bottom;
 	private MenuArea menu;
-	private MultiLangModule multilangModule;
 	private Stage stage;
-	public PokerGameView(Stage stage, PokerGameModel model, MultiLangModule multilangModule) {
+	public PokerGameView(Stage stage, PokerGameModel model) {
 		this.model = model;
 		this.stage = stage;
-		this.multilangModule = multilangModule;
 		
 		//Top Pane with menu and close Button
-		menu = new MenuArea(multilangModule);
+		menu = new MenuArea();
 		
-		center = new CenterArea(model, multilangModule);
-		bottom = new BottomArea(model, multilangModule);
+		center = new CenterArea(model);
+		bottom = new BottomArea(model);
 		// Put players and controls into a BorderPane
 		BorderPane root = new BorderPane();
 		root.setTop(menu);
@@ -59,10 +57,6 @@ public class PokerGameView {
 
 	public Stage getStage() {
 		return stage;
-	}
-
-	public MultiLangModule getMultilangModule() {
-		return multilangModule;
 	}
 
 	public MenuArea getMenu() {
@@ -100,7 +94,7 @@ public class PokerGameView {
 
 	public PokerGameView restart(PokerGameModel m) {
 			PokerGameView v = this;
-			v = new PokerGameView(stage, m, multilangModule);
+			v = new PokerGameView(stage, m);
 			return v;
 	}
 

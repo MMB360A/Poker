@@ -31,14 +31,14 @@ import version_graphics.view.MultiLang.MultiLangModule;
  *
  */
 public class StatisticsView extends Stage{
-	public StatisticsView(MultiLangModule multiLangModule, PokerGameModel model) {
+	public StatisticsView(PokerGameModel model) {
 		 super();
 		 //Root element
 		 TabPane pane = new TabPane();
 		 pane.setTabClosingPolicy(TabClosingPolicy.UNAVAILABLE);
 		 if(PokerGame.numberOfGames > 0) {
 			 //Winners statistic with Pie Chart
-			 Tab players = new Tab(multiLangModule.getTranslation("player"));
+			 Tab players = new Tab(PokerGame.MULTILANGMODULE.getTranslation("player"));
 			 ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
 
 			 for(Player p : model.getPlayers()) {
@@ -46,17 +46,17 @@ public class StatisticsView extends Stage{
 				 pieChartData.add(data);			 
 			 }
 		        final PieChart chart = new PieChart(pieChartData);
-		        chart.setTitle(multiLangModule.getTranslation("player"));	 
+		        chart.setTitle(PokerGame.MULTILANGMODULE.getTranslation("player"));	 
 			 players.setContent(chart);
 			 
 			 //Hands statistic with BarChart
-			 Tab hands = new Tab(multiLangModule.getTranslation("hands"));
+			 Tab hands = new Tab(PokerGame.MULTILANGMODULE.getTranslation("hands"));
 		        CategoryAxis xAxis = new CategoryAxis();
 		        NumberAxis yAxis = new NumberAxis();
 		        BarChart<String,Number> bc = new BarChart<String,Number>(xAxis,yAxis);
-		        bc.setTitle(multiLangModule.getTranslation("hands"));
-		        XYChart.Series seriesHand = new XYChart.Series();
-		        seriesHand.setName(multiLangModule.getTranslation("hands"));       
+		        bc.setTitle(PokerGame.MULTILANGMODULE.getTranslation("hands"));
+				XYChart.Series seriesHand = new XYChart.Series();
+		        seriesHand.setName(PokerGame.MULTILANGMODULE.getTranslation("hands"));       
 			 for(HandType h : HandType.values()) {
 				 seriesHand.getData().add(new XYChart.Data(h.name() + ": " + h.getStatisticNumber(), h.getStatisticNumber()));
 			 }
@@ -71,7 +71,7 @@ public class StatisticsView extends Stage{
 	     //Set CSS Class
 	     if(PokerGameView.darkthem) scene.getStylesheets().add(getClass().getResource("css\\statisticsDark.css").toExternalForm());
 	     else scene.getStylesheets().add(getClass().getResource("css\\statisticsLight.css").toExternalForm());
-	     this.setTitle(multiLangModule.getTranslation("statistics"));
+	     this.setTitle(PokerGame.MULTILANGMODULE.getTranslation("statistics"));
 	     this.setScene(scene);
 	     // Specifies the modality for new window.
 	     this.initModality(Modality.WINDOW_MODAL);

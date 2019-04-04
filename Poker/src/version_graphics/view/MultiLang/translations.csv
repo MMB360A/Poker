@@ -7,7 +7,6 @@ TotalWinns;Total Winns;Total Siege
 Shuffle;Shuffle;Mischen
 Deal;Deal;Geben
 Cardsremaning;Cards Reaning;Karten übrig
-CasinoLabel;Michael 's Casino;Michael 's Casino
 HighCard;HighCard;Höchste Karte
 OnePair;OnePair;Ein Paar
 TwoPair;TwoPair;Zwei Paare
@@ -23,23 +22,22 @@ Splitt;Splitt Winner;Splitt Gewinner
 Player;Player;Spieler
 Language;Language;Sprache
 NumOfPlayers;Number of Player;Anzahl Spieler
-selectLanguage;Select Language;Sprache Auswählen
-save;Save;Speichern
-cancel;Cancel;Schliessen
-selectLanguageText;Select prefered language;Bevorzugte Sprache auswählen
-about;about;über
-lightTheme;Change to Daymode;Tagesmodus
-addPlayer;Add Player;Spieler hinzufügen
-removePlayer;remove Player;Spieler entfernen
-view;View;Ansicht
-darkTheme;Nightmode;Nachtmodus
-programInfo;This programm was Created by Michael Berger;Michael Berger
-MaxPlayers;Max 4 Players;Maximum 4 Spieler
-MinPlayers;Min 2 Players;Minnimum 2 Spieler
-notEnoughCards;Not enough cards - shuffle first;nicht genügend Karten im Deck
-changeUserNames;changeUserNames;Namen ändern
-viewStatistics;Statistics;Statistik
+SelectLanguage;Select Language;Sprache Auswählen
+Save;Save;Speichern
+Cancel;Cancel;Schliessen
+SelectLanguageText;Select prefered language;Bevorzugte Sprache auswählen
+About;about;über
+LightTheme;Change to Daymode;Tagesmodus
+AddPlayer;Add Player;Spieler hinzufügen
+RemovePlayer;remove Player;Spieler entfernen
+View;View;Ansicht
+DarkTheme;Nightmode;Nachtmodus
+ProgramInfo;This game was created by Michael Berger;Dieses Spiel wurde entwickelt von Michael Berger
+Min;Min;Minnimum
+Max;Max;Maximum
+ChangeUserNames;changeUserNames;Namen ändern
+ViewStatistics;Statistics;Statistik
 NumOfPlayers;NumOfPlayers;Spieleranzahl
 statistics;statistics;Statistik
-player;player;Spieler
 hands;Hände;Blätter
+Allowed;allowed;Erlaubt

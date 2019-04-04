@@ -21,6 +21,7 @@ import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
 import javafx.scene.shape.PathElement;
 import javafx.util.Duration;
+import version_graphics.PokerGame;
 import version_graphics.model.Card;
 import version_graphics.model.HandType;
 import version_graphics.model.Player;
@@ -35,13 +36,11 @@ public class PlayerPane extends VBox {
     private HBox hboxCards = new HBox();
     private ArrayList<Label> cards = new ArrayList<Label>();
     private Label lblEvaluation = new Label("--");
-    private MultiLangModule multilangModule;
     // Link to player object
     private Player player;
     
-    public PlayerPane(MultiLangModule multilangModule) {
+    public PlayerPane() {
         super(); // Always call super-constructor first !!
-        this.multilangModule = multilangModule;
         this.getStyleClass().add("player"); // CSS style class
         // Add child nodes
         this.getChildren().addAll(lblName, hboxCards, lblEvaluation);
@@ -73,7 +72,7 @@ public class PlayerPane extends VBox {
      * @return a Card Dealing animations
      */
     public SequentialTransition updatePlayerDisplay(int posX, int posY) {
-    	lblName.setText(multilangModule.getTranslation("Player") + ": "+player.getPlayerName()); 
+    	lblName.setText(PokerGame.MULTILANGMODULE.getTranslation("Player") + ": "+player.getPlayerName()); 
     	SequentialTransition sequence = new SequentialTransition();
     	for (int i = 0; i < Player.HAND_SIZE; i++) {
     		final Card card;
@@ -95,7 +94,7 @@ public class PlayerPane extends VBox {
      * @param s
      */
     public void setevaluateText(String s) {
-			lblEvaluation.setText(multilangModule.getTranslation(s));
+			lblEvaluation.setText(PokerGame.MULTILANGMODULE.getTranslation(s));
     }
     
     /**
@@ -119,6 +118,6 @@ public class PlayerPane extends VBox {
     
     //Label the Winner
     public void setWinner(String message) {
-    	lblEvaluation.setText(lblEvaluation.getText()+ "  " + multilangModule.getTranslation(message));
+    	lblEvaluation.setText(lblEvaluation.getText()+ "  " + PokerGame.MULTILANGMODULE.getTranslation(message));
     }
 }

@@ -1,5 +1,6 @@
 package version_graphics.model;
 
+import version_graphics.PokerGame;
 import version_graphics.view.MultiLang.MultiLangModule;
 
 /**
@@ -12,19 +13,17 @@ public class  PlayerStatisticsDummie{
 	
 	private String handType;
 	private Player p;
-	private MultiLangModule m;
 	public String getPlayerName() {
 		return p.getPlayerName();
 	}
 	public String getHandType() {
-		return m.getTranslation(handType);
+		return PokerGame.MULTILANGMODULE.getTranslation(handType);
 	}
 	public int getTotalWinns() {
 		return p.getTotalWinns();
 	}
-	public PlayerStatisticsDummie(Player p, MultiLangModule m) {
+	public PlayerStatisticsDummie(Player p) {
 		this.p = p;
-		this.m = m;
 		this.handType = p.getHandType().name();
 	}
 	

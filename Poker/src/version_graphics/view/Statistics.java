@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import version_graphics.PokerGame;
 import version_graphics.model.PlayerStatisticsDummie;
 import version_graphics.view.MultiLang.MultiLangModule;
 
@@ -15,15 +16,15 @@ import version_graphics.view.MultiLang.MultiLangModule;
  *
  */
 public class Statistics extends TableView  implements Cloneable{
-	public Statistics(MultiLangModule multilangModule) {
+	public Statistics() {
 		this.getStyleClass().add("statistics");
-        TableColumn winnerCol = new TableColumn((multilangModule.getTranslation("Winner")));
+        TableColumn winnerCol = new TableColumn((PokerGame.MULTILANGMODULE.getTranslation("Winner")));
         winnerCol.setCellValueFactory(new PropertyValueFactory<>("playerName"));
         
-        TableColumn handCol = new TableColumn((multilangModule.getTranslation("Hand")));
+        TableColumn handCol = new TableColumn((PokerGame.MULTILANGMODULE.getTranslation("Hand")));
         handCol.setCellValueFactory(new PropertyValueFactory<>("handType"));
         
-        TableColumn totalWinns = new TableColumn((multilangModule.getTranslation("TotalWinns")));
+        TableColumn totalWinns = new TableColumn((PokerGame.MULTILANGMODULE.getTranslation("TotalWinns")));
         totalWinns.setCellValueFactory(new PropertyValueFactory<>("totalWinns"));
         
         this.getColumns().addAll(winnerCol, handCol, totalWinns);

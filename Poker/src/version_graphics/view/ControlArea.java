@@ -14,9 +14,9 @@ import version_graphics.view.MultiLang.MultiLangModule;
 public class ControlArea extends BorderPane{
     
     private DeckLabel vBoxDeck;
-    public ControlArea(MultiLangModule multilangModule) {
+    public ControlArea() {
     	super();
-    	vBoxDeck = new DeckLabel(multilangModule);
+    	vBoxDeck = new DeckLabel();
 
     	this.setCenter(vBoxDeck);
 

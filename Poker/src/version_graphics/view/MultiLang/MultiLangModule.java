@@ -48,7 +48,8 @@ public class MultiLangModule {
 	            while ((line = br.readLine()) != null) {
 	                String[] translation = line.split(cvsSplitBy);
 	                MultiLangElement e = new MultiLangElement(translation[0]);
-	                for(int i = 1; i < translation.length; i++) e.addLangElement(new LangElement(languages.get(i -1), translation[i]));
+	                for(int i = 1; i < translation.length; i++) 
+	                	e.addLangElement(languages.get(i -1), translation[i]);
 	                translations.add(e);              
 	        }
 
@@ -68,16 +69,9 @@ public class MultiLangModule {
 	
 	public String getTranslation(String id) {
 		String value = "Not Found";
-		MultiLangElement multielement;
-		LangElement langElement;
 		for(MultiLangElement e : translations) {
-			if(e.getId().compareTo(id) == 0) {
-				
-				multielement = e;
-				for(LangElement le : multielement.getElements()) 
-				{
-				if(le.getLanguage().compareTo(this.defalutLanguage) == 0) value = le.getValue();
-				}
+			if(e.getId().equals(id)) {
+				value = e.getTranslation(this.defalutLanguage);
 			}
 		}
 		return value;
@@ -86,15 +80,9 @@ public class MultiLangModule {
 	
 	public String getTranslationByLanguage(String id, String language) {
 		String value = "Not Found";
-		MultiLangElement multielement;
-		LangElement langElement;
 		for(MultiLangElement e : translations) {
-			if(e.getId() == id) {
-				multielement = e;
-				for(LangElement le : multielement.getElements()) 
-				{
-				if(le.getLanguage() == language) value = le.getValue();
-				}
+			if(e.getId().equals(id)) {
+				value = e.getTranslation(language);
 			}
 		}
 		return value;

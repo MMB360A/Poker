@@ -24,7 +24,7 @@ public class ChangeLanguageView extends Stage{
 		 //Root elemnet
 		 BorderPane pane = new BorderPane();
 		 //Text
-		 Label desc = new  Label(multiLangModule.getTranslation("selectLanguageText"));
+		 Label desc = new  Label(multiLangModule.getTranslation("SelectLanguageText"));
 		 pane.setTop(desc);
 		 VBox langVBox = new VBox();
 		 Region topSpace = new Region();
@@ -45,8 +45,8 @@ public class ChangeLanguageView extends Stage{
 		 pane.setCenter(langVBox);
         //Control Buttons
 		 HBox buttons = new HBox();
-        ok = new Button(multiLangModule.getTranslation("save"));
-        cancel = new Button(multiLangModule.getTranslation("cancel"));
+        ok = new Button(multiLangModule.getTranslation("Save"));
+        cancel = new Button(multiLangModule.getTranslation("Cancel"));
         Region regCenter = new Region();
         regCenter.getStyleClass().add("regCenter");
         buttons.getChildren().addAll(ok,regCenter, cancel);
@@ -57,7 +57,7 @@ public class ChangeLanguageView extends Stage{
         if(PokerGameView.darkthem)  scene.getStylesheets().add(getClass().getResource("multiLangDark.css").toExternalForm());
         else  scene.getStylesheets().add(getClass().getResource("multiLangLight.css").toExternalForm());
         
-        this.setTitle(multiLangModule.getTranslation("selectLanguage"));
+        this.setTitle(multiLangModule.getTranslation("SelectLanguage"));
         this.setScene(scene);
         // Specifies the modality for new window.
         this.initModality(Modality.WINDOW_MODAL);
