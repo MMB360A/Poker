@@ -58,12 +58,6 @@
     -fx-fill: #96b946;
 }
 
-.default-color0.chart-pie { -fx-pie-color: #00ffff; }
-.default-color1.chart-pie { -fx-pie-color:  #7cfc00; }
-.default-color2.chart-pie { -fx-pie-color: #87cefa; }
-.default-color3.chart-pie { -fx-pie-color: #ee82ee; }
-.default-color4.chart-pie { -fx-pie-color: #ff5700; }
-
 /*Bar Chart Hands */
 .chart-bar {
     -fx-background-color: #96b946;
