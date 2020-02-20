@@ -30,7 +30,6 @@ public class PokerGame extends Application {
 	private PokerGameController controller;
 	
     public static void main(String[] args) {
-
     	launch();
     }
 
